@@ -5,7 +5,7 @@ export default function Home(){
     return(
         <div>
             <Head>
-                <title>HarBer.id</title>
+                <title>HarBer.id - Website Product Price Comparison from Various E-commerce in Indonesia</title>
                 <meta name="description" content="HarBer.id description" />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
