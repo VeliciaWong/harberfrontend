@@ -12,7 +12,7 @@ const Input = forwardRef(({ className, prefix, affix, ...rest }, ref) => {
       <input
         ref={ref}
         className={[
-          "py-2 px-4 w-full text-base text-black rounded-lg",
+          "py-2 px-4 w-[350px] text-base text-black rounded-lg",
           className,
           prefix && "rounded-l-none pl-0",
           affix && "rounded-r-none pr-0",
