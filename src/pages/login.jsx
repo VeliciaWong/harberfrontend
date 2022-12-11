@@ -19,13 +19,13 @@ const ModalLogin = (props) => {
 
   return(
     <Modal {...props}>
-        <span className="text-white text-4xl text-left pl-[20px] font-bold mb-10">
+        <span className="text-white text-4xl text-center pl-[20px] font-bold mb-10">
             Login to HarBer.id
         </span>
   
       <div className="relative flex px-4">
         <FormContainer>
-          <div className="space-y-10">
+          <div className="space-y-6">
             <Field label="Email" error={errors["email"]?.message}>
               <Input {...register("email", { required: true })} />
             </Field>
