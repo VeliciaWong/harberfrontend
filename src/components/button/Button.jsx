@@ -1,7 +1,8 @@
 import React from "react";
 
 const background = {
-  primary: "bg-[#292F36] text-white"
+  primary: "bg-[#292F36] text-white",
+  submit:"bg-[#78A55A] text-white",
 };
 const Button = ({
   children,
