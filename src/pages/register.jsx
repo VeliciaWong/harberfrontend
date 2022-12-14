@@ -69,7 +69,7 @@ const RegisterPage = () =>{
                         </Field>
                         
                         <div className="flex justify-end pt-[5%]">
-                          <Button onClick={(handleSubmit(registers))}>REGISTER</Button>
+                          <Button onClick={handleSubmit(registers)}>REGISTER</Button>
                         </div>
                         
                       </div>
