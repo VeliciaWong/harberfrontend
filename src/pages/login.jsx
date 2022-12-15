@@ -31,14 +31,14 @@ const LoginPage = () =>{
             </Head>
             <div className="relative h-screen w-screen top-0">
               <div className="h-screen w-screen overflow-hidden flex flex-col px-10 xl:px-30 3xl:px-[139px]">
-                <div className="max-w-[150px] mt-[1%] z-40 ml-[50px]">
+                <div className="max-w-[150px] mt-[2%] mb-[2%] z-40 ml-[70px] cursor-pointer" onClick={() => window.location.href = "/"}>
                     <Image
-                    src="/assets/images/harber.png"
-                    alt=""
-                    layout="responsive"
-                    width="150"
-                    height="70"
-                    />
+                        src="/assets/images/harber.png"
+                        alt=""
+                        layout="responsive"
+                        width="150"
+                        height="70"
+                        />
                 </div>
                 <div className="flex-grow flex items-center justify-center">
                   <Modal>

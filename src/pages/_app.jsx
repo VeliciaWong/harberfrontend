@@ -8,7 +8,7 @@ function MyApp({ Component, pageProps }) {
 
     return getLayout(
         <NextUIProvider>
-            <ToastContainer/>
+            <ToastContainer autoClose={1500} closeOnClick pauseOnHover={false}/>
            <Component {...pageProps} /> 
         </NextUIProvider>
     )

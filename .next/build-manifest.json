@@ -25,10 +25,10 @@
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
     ],
-    "/recovery-change-password": [
+    "/edit-profile": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/recovery-change-password.js"
+      "static/chunks/pages/edit-profile.js"
     ]
   },
   "ampFirstPages": []
