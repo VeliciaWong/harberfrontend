@@ -9,6 +9,7 @@ import { useForm, Controller } from "react-hook-form";
 import FormContainer  from "../components/forms/Container";
 import Field  from "../components/forms/Field";
 import { Input } from "../components/inputs";
+import Footer from "../components/footer/Footer";
 
 const RegisterPage = () =>{
   const { register, handleSubmit, control, formState: { errors }} = useForm();
@@ -84,9 +85,7 @@ const RegisterPage = () =>{
                     }}
                     onSubmit={saveRecovery}/>
                 </div>
-                <div className="text-black font-semibold text-center text-[25px] leading-[20px] mt-1 mb-[30px]">
-                  ©2022-2023 HarBer.Id | All right reserved
-                </div>
+                <Footer/>
             </div>
         </div>
     )

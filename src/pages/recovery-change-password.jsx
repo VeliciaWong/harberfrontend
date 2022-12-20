@@ -7,6 +7,7 @@ import { Input } from "../components/inputs";
 import { useState, useEffect, useRef } from "react";
 import { Text } from "@nextui-org/react";
 import { useForm } from "react-hook-form";
+import Footer from "../components/footer/Footer";
 
 const saveRecoveryPassword = () =>{
     // masukin api buat nyimpen pass recovery ini jadi pass baru di db
@@ -54,9 +55,7 @@ const recoveryChangePasswordPage = () =>{
                         </div>
                     </div>
                 </div>
-                <div className="text-white h-full font-semibold bg-[#4ECDC4] text-center text-[25px] pt-[30px]">
-                    <span>©2022-2023 HarBer.Id</span>
-                </div>
+                <Footer/>
             </div>
         </div>
     )

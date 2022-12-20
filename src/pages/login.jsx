@@ -9,6 +9,7 @@ import { useForm } from "react-hook-form";
 import FormContainer  from "../components/forms/Container";
 import Field  from "../components/forms/Field";
 import { Input } from "../components/inputs";
+import Footer from "../components/footer/Footer";
 
 const login = () =>{
     window.location.href="/"
@@ -74,9 +75,7 @@ const LoginPage = () =>{
                     }}
                     onSubmit={checkingAnswer}/>
                 </div>
-                <div className="text-black font-semibold text-center text-[25px] leading-[20px] mt-1 mb-[30px]">
-                  ©2022-2023 HarBer.Id | All right reserved
-                </div>
+                <Footer/>
               </div>
             </div>
             

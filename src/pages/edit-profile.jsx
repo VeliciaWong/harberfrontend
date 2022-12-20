@@ -11,6 +11,7 @@ import { useForm } from "react-hook-form";
 import { toast} from "react-toastify";
 import LogoutIcon from '@mui/icons-material/Logout';
 import 'react-toastify/dist/ReactToastify.css';
+import Footer from "../components/footer/Footer";
 
 
 const saveEditProfile = () =>{
@@ -74,10 +75,8 @@ const editProfilePage = () =>{
                         </div>
                     </div>
                 </div>
-                <div className="text-white h-full font-semibold bg-[#4ECDC4] text-center text-[25px] pt-[30px]">
-                    <span>©2022-2023 HarBer.Id</span>
-                </div>
             </div>
+                <Footer/>
             </div>
         </div>
     )
