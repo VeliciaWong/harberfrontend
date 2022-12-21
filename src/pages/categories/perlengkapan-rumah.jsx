@@ -90,7 +90,7 @@ const perlengkapanRumahTanggaPage = () =>{
                 <div className="h-screen w-screen flex flex-col">
                     <div className="flex justify-center items-center">
                       <div className="w-[1000px] h-[300px] bg-[#4ECDC4] rounded-lg flex flex-col justify-center self-center items-center">
-                          <span className="text-white text-5xl font-bold">PERLENGKAPAN RUMAH TANGGA</span>
+                          <span className="text-white text-5xl font-bold">PERLENGKAPAN RUMAH</span>
                       </div>
                     </div>
                     

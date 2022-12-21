@@ -37,15 +37,16 @@ export default function Home(){
       };
 
     const bookmark = () =>{
+        // dikasih validasi user udh login atau gk, kl belum gk bisa akses page
 
     }
 
     const editProfile = () =>{
-
+        // dikasih validasi user udh login atau gk, kl belum gk bisa akses page
     }
 
     const logout = () =>{
-
+        
     }
 
     return(
