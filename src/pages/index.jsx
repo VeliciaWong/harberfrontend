@@ -51,11 +51,6 @@ export default function Home(){
 
     return(
         <div className="relative bg-[#F7FFF7]">
-            <Head>
-                <title>HarBer.id - Website Product Price Comparison from Various E-commerce in Indonesia</title>
-                <meta name="description" content="HarBer.id description" />
-                <link rel="icon" href="/favicon.ico" />
-            </Head>
             <div className="h-screen w-screen flex flex-col">
                 <header className="pt-4 px-10 pb-[3%]">
                     <div className="items-center justify-center flex sm:justify-between px-10">

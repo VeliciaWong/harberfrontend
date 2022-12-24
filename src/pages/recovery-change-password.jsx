@@ -19,12 +19,6 @@ const recoveryChangePasswordPage = () =>{
 
     return(
         <div className="relative h-screen w-screen bg-[#F7FFF7]">
-            <Head>
-                <title>HarBer.id - Website Product Price Comparison from Various E-commerce in Indonesia</title>
-                <meta name="description" content="HarBer.id description" />
-                <link rel="icon" href="/favicon.ico" />
-            </Head>
-
             <div className={`relative h-screen w-screen overflow-hidden xl:px-30 3xl:px-[139px]`}>
                 <div className="max-w-[150px] mt-[2%] mb-[2%] z-40 ml-[70px] cursor-pointer" onClick={() => window.location.href = "/"}>
                     <Image

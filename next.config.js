@@ -1,8 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    trailingSlash: true,
+    exportTrailingSlash: true,
     reactStrictMode: false,
     swcMinify: true,
+    basePath: '/',
     experimental: {
       images: {
         unoptimized: true

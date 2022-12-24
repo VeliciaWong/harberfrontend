@@ -36,12 +36,6 @@ const productDetailPage = () =>{
 
     return(
         <div className="relative bg-[#F7FFF7]">
-            <Head>
-                <title>HarBer.id - Website Product Price Comparison from Various E-commerce in Indonesia</title>
-                <meta name="description" content="HarBer.id description" />
-                <link rel="icon" href="/favicon.ico" />
-            </Head>
-
             <div className="h-screen w-screen flex flex-col bg-[#F7FFF7]">
                 <header className="pt-4 pb-[2%]">
                     <div className="items-center justify-center flex sm:justify-between px-20">
