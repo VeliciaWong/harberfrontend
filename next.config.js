@@ -3,7 +3,6 @@ const nextConfig = {
     exportTrailingSlash: true,
     reactStrictMode: false,
     swcMinify: true,
-    basePath: '/',
     experimental: {
       images: {
         unoptimized: true
