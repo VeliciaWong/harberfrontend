@@ -4,6 +4,8 @@ import Button from "../components/button/Button";
 import Modal from "../components/modal/Modals";
 import ModalRecovery from "../components/modal/ModalRecovery";
 import * as React from 'react';
+import * as yup from "yup";
+import { useYupResolver } from "../helpers/yup";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import FormContainer  from "../components/forms/Container";
@@ -19,8 +21,19 @@ const checkingAnswer = () =>{
   window.location.href = "/recovery-change-password"
 }
 
+const schema = yup.object().shape(
+  {
+    email: yup.string().required("Field email is required"),
+    password: yup.string().required("Field password is required"),
+    
+  },
+  []
+);
+
 const LoginPage = () =>{
-    const { register, control, formState: { errors }} = useForm();
+
+    const resolver = useYupResolver(schema);
+    const { register, handleSubmit, control, formState: { errors }} = useForm({resolver});
     const [modalRecovery, setModalRecovery] = useState(false);
 
     return(
@@ -56,7 +69,7 @@ const LoginPage = () =>{
                           <a className="text-white underline cursor-pointer" href="/register">Don’t have an account? Register here</a>
                           </div>
                           <div className="flex justify-end">
-                            <Button onClick={login}>LOGIN</Button>
+                            <Button onClick={handleSubmit(login)}>LOGIN</Button>
                           </div>
                         </div>
                       </FormContainer>

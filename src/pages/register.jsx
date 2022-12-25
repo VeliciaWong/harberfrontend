@@ -4,6 +4,8 @@ import Button from "../components/button/Button";
 import Modal from "../components/modal/Modals";
 import ModalSetRecovery from "../components/modal/ModalSetRecovery"
 import * as React from 'react';
+import * as yup from "yup";
+import { useYupResolver } from "../helpers/yup";
 import { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import FormContainer  from "../components/forms/Container";
@@ -11,8 +13,19 @@ import Field  from "../components/forms/Field";
 import { Input } from "../components/inputs";
 import Footer from "../components/footer/Footer";
 
+const schema = yup.object().shape(
+  {
+    username: yup.string().required("Field username is required"),
+    email: yup.string().required("Field email is required"),
+    password: yup.string().required("Field password is required"),
+    confirm_password: yup.string().required("Field confirm password is required"),
+  },
+  []
+);
+
 const RegisterPage = () =>{
-  const { register, handleSubmit, control, formState: { errors }} = useForm();
+  const resolver = useYupResolver(schema);
+  const { register, handleSubmit, control, formState: { errors }} = useForm({resolver});
   const registers = (data) =>{
     setModalChooseRecovery(true)
     console.log(data);
@@ -49,7 +62,7 @@ const RegisterPage = () =>{
               
                   <div className="relative flex px-4">
                     <FormContainer>
-                      <div className="space-y-3">
+                      <div className="space-y-2">
                         <Field label="Username" error={errors["username"]?.message}>
                           <Input {...register("username", { required: true })} />
                         </Field>
@@ -63,7 +76,7 @@ const RegisterPage = () =>{
                           <Input {...register("confirm_password", { required: true })} />
                         </Field>
                         
-                        <div className="flex justify-end pt-[5%]">
+                        <div className="flex justify-end pt-[3%]">
                           <Button onClick={handleSubmit(registers)}>REGISTER</Button>
                         </div>
                         
