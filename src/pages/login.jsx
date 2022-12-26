@@ -83,7 +83,11 @@ const LoginPage = () =>{
                     }}
                     onSubmit={checkingAnswer}/>
                 </div>
-                <Footer/>
+                <footer>
+                    <div className="text-black font-semibold text-center text-[25px] pt-[30px] pb-[30px] flex self-center justify-center items-center">
+                            <span>©2022-2023 HarBer.Id | All right reserved</span>
+                    </div>
+                </footer>
               </div>
             </div>
             

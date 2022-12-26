@@ -1,4 +1,4 @@
-import { classnames } from "../helpers/classnames";
+import { classnames } from "../../helpers/classnames";
 import { forwardRef, useId } from "react";
 
 // eslint-disable-next-line react/display-name
