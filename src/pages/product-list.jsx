@@ -70,12 +70,14 @@ const productListPage = () =>{
             <div className="h-screen w-screen flex flex-col bg-[#F7FFF7]">
                 <header className="pt-4 pb-[2%]">
                     <div className="items-center justify-center flex sm:justify-between px-20">
-                            <Image
-                            src="/assets/images/harber.png"
-                            alt=""
-                            width={150}
-                            height={70}
-                            />
+                            <a href="/">
+                                <Image
+                                src="/assets/images/harber.png"
+                                alt=""
+                                width={150}
+                                height={70}
+                                />   
+                            </a>
                             <div className="px-2">
                                 <input type="text" placeholder="Search Keyword" className="mt-[1.5%] py-1 px-4 w-[400px] h-[35px] border-[#ABABAB] border-2 text-base text-black rounded-lg font-semibold"></input>
                             </div>

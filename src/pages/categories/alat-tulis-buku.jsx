@@ -65,12 +65,14 @@ const alatTulisBukuPage = () =>{
             <div className="h-screen w-screen flex flex-col">
                 <header className="pt-4 pb-[3%]">
                     <div className="items-center justify-center flex sm:justify-between px-10">
-                            <Image
+                      <a href="/">
+                          <Image
                             src="/assets/images/harber.png"
                             alt=""
                             width={150}
                             height={70}
-                            />
+                          />   
+                      </a>
                             <div className="px-2">
                                 <input type="text" placeholder="Search Keyword" className="mt-[1.5%] py-1 px-4 w-[400px] h-[35px] border-[#ABABAB] border-2 text-base text-black rounded-lg font-semibold"></input>
                             </div>

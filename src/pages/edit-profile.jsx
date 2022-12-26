@@ -34,12 +34,14 @@ const editProfilePage = () =>{
             <div className="h-screen w-screen flex flex-col">
                 <header className="pt-4 px-4 pb-[30px]">
                     <div className="relative overflow-hidden xl:px-32 3xl:px-[139px] mx-auto items-center justify-center flex sm:justify-between">
-                        <Image
-                        src="/assets/images/harber.png"
-                        alt=""
-                        width={150}
-                        height={70}
-                        />
+                        <a href="/">
+                            <Image
+                                src="/assets/images/harber.png"
+                                alt=""
+                                width={150}
+                                height={70}
+                            />   
+                        </a>
                         <div className="hidden sm:flex sm:items-center sm:space-x-[14px]">
                             <LogoutIcon fontSize="large" onClick={(logout)} className="cursor-pointer"/>
                         </div>

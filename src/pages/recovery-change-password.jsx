@@ -21,13 +21,14 @@ const recoveryChangePasswordPage = () =>{
         <div className="relative h-screen w-screen bg-[#F7FFF7]">
             <div className={`relative h-screen w-screen overflow-hidden xl:px-30 3xl:px-[139px]`}>
                 <div className="max-w-[150px] mt-[2%] mb-[2%] z-40 ml-[70px] cursor-pointer" onClick={() => window.location.href = "/"}>
-                    <Image
-                        src="/assets/images/harber.png"
-                        alt=""
-                        layout="responsive"
-                        width="150"
-                        height="70"
-                    />
+                    <a href="/">
+                        <Image
+                            src="/assets/images/harber.png"
+                            alt=""
+                            width={150}
+                            height={70}
+                        />   
+                    </a>
                 </div>
                 <Text size={30} className="text-black font-bold text-center mb-[20px]">Change your Password</Text>
                 <div className="max-w-[600px] h-[380px] mx-auto bg-[#4ECDC4] shadow-xl bg-contain bg-center rounded-[18px] w-full p-5 mb-[5%]">

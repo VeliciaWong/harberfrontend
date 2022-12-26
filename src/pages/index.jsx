@@ -56,7 +56,9 @@ export default function Home(){
                     <div className="items-center justify-center flex sm:justify-between px-10">
                         {/* bikin kondisi kl misalnya blm login headernya munculin yg mana, login yg mana*/}
                         {/* buat greetings user, nanti tarik dari BE buat ambil username user */}
-                        <span className="font-bold text-2xl">Hi</span>
+                        <div>
+                          {/* <span className="font-bold text-2xl">Hi</span>   */}
+                        </div>
                         <div className="hidden sm:flex sm:items-center sm:space-x-[14px]">
                             <BookmarksIcon fontSize="large" className="cursor-pointer" onClick={bookmark}/>
                             <Buttons onClick={() => window.location.href = "/login"}>LOGIN</Buttons>

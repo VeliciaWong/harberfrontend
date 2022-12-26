@@ -40,7 +40,7 @@ const RegisterPage = () =>{
     return(
         <div className="min-h-screen w-screen bg-[#F7FFF7]">
             <div className="h-screen w-screen flex flex-col">
-                <div className="max-w-[150px] mt-[2%] mb-[2%] z-40 ml-[70px] cursor-pointer" onClick={() => window.location.href = "/"}>
+                <div className="max-w-[150px] mt-[2%] mb-[2%] z-40 ml-[70px] cursor-pointer">
                     <Image
                         src="/assets/images/harber.png"
                         alt=""
