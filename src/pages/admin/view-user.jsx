@@ -1,18 +1,57 @@
 import Head from "next/head";
 import Image from "next/image";
 import Button from "../../components/button/Button";
-import { useState, useEffect, useRef } from "react";
+import {TableGroup } from "../../components/tables";
+import { useState, useEffect, useRef, useMemo } from "react";
 import { Text } from "@nextui-org/react";
 import { useForm } from "react-hook-form";
 import { toast} from "react-toastify";
 import LogoutIcon from '@mui/icons-material/Logout';
 import 'react-toastify/dist/ReactToastify.css';
 import Footer from "../../components/footer/Footer";
+import { createColumnHelper } from "@tanstack/react-table";
+import { useQuery } from "@tanstack/react-query";
 
 const adminViewUserPage = () =>{
     const logout = () =>{
         window.location.href = "/admin"
     }
+
+    const exportCsv = () =>{
+
+    }
+
+    const userListQuery = useQuery({
+        queryKey: [""],
+        // queryFn: async () => {
+        //   let result = await axiosAdmin.post(`/getAllMissions`);
+    
+        //   return result.data;
+        // },
+      });
+
+        const columnHelper = createColumnHelper();
+        const columns = useMemo(
+            () => [
+            columnHelper.accessor("number", {
+                header: () => <span>No</span>,
+                // cell: (info) => <p>{info.getValue()}</p>,
+            }),
+            columnHelper.accessor("username", {
+                header: () => <span>Username</span>,
+                // cell: (info) => <p>{info.getValue()}</p>,
+            }),
+            columnHelper.accessor("email", {
+                header: () => <span>email</span>,
+                // cell: (info) => info.getValue(),
+            }),
+            columnHelper.accessor("created_time", {
+                header: () => <span>Created On</span>,
+                // cell: (info) => info.getValue(),
+            }),
+            ],
+            []
+        );
 
     return(
         <div className="relative bg-[#F7FFF7]">
@@ -30,8 +69,22 @@ const adminViewUserPage = () =>{
                         </div>
                     </div>
                 </header>
-                <div className="">
+                <div className="w-screen h-screen flex flex-col">
+                    <div className="flex justify-between px-[9.5%] mb-10">
+                        <Text size={35} className="text-black font-bold">List of Users</Text>
+                        <Button onClick={exportCsv}>Export .csv</Button>
+                    </div>
 
+                    <div className="z-30 flex items-center justify-center">
+                        <div className="max-w-[1250px] h-[450px] mx-auto bg-[#4ECDC4] drop-shadow-lg shadow-lg bg-contain bg-center rounded-[18px] w-full p-[30px]">
+                        <TableGroup
+                            keyProp="user_id"
+                            selectionMode="none"
+                            data={userListQuery.data}
+                            columns={columns}
+                        />
+                        </div>
+                    </div>
                 </div>
             </div>
 
