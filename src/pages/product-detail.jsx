@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import Head from "next/head";
 import Image from "next/image";
 import { useState } from "react";
@@ -10,7 +11,7 @@ import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
 import BookmarksIcon from '@mui/icons-material/Bookmarks';
 import Footer from "../components/footer/Footer";
-import { Text } from "@nextui-org/react";
+import { Link, Text } from "@nextui-org/react";
 
 
 const productDetailPage = () =>{
@@ -44,14 +45,14 @@ const productDetailPage = () =>{
             <div className="h-screen w-screen flex flex-col bg-[#F7FFF7]">
                 <header className="pt-4 pb-[2%]">
                     <div className="items-center justify-center flex sm:justify-between px-20">
-                            <a href="/">
-                                <Image
+                        <Link href="/">
+                            <Image
                                 src="/assets/images/harber.png"
                                 alt=""
                                 width={150}
                                 height={70}
-                                />   
-                            </a>
+                            />   
+                        </Link>
                             <div className="px-2">
                                 <input type="text" placeholder="Search Keyword" className="mt-[1.5%] py-1 px-4 w-[400px] h-[35px] border-[#ABABAB] border-2 text-base text-black rounded-lg font-semibold"></input>
                             </div>

@@ -24,8 +24,10 @@ const schema = yup.object().shape(
 );
 
 const RegisterPage = () =>{
+  const [modalChooseRecovery, setModalChooseRecovery] = useState(false);
   const resolver = useYupResolver(schema);
   const { register, handleSubmit, control, formState: { errors }} = useForm({resolver});
+
   const registers = (data) =>{
     setModalChooseRecovery(true)
     console.log(data);
@@ -34,8 +36,6 @@ const RegisterPage = () =>{
   const saveRecovery = () =>{
     window.location.href="/"
   }
-
-  const [modalChooseRecovery, setModalChooseRecovery] = useState(false);
 
     return(
         <div className="min-h-screen w-screen bg-[#F7FFF7]">

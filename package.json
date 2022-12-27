@@ -14,10 +14,13 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^14.4.3",
+    "@tanstack/react-query": "^4.3.9",
+    "@tanstack/react-table": "^8.7.0",
     "axios": "^1.2.1",
     "classcat": "^5.0.4",
     "keen-slider": "^6.8.5",
     "next": "^13.0.7",
+    "react-csv": "^2.2.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.41.0",
@@ -29,7 +32,9 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "export": "next export",
+    "start": "next start",
+    "lint": "next lint"
   },
   "eslintConfig": {
     "extends": [

@@ -17,7 +17,7 @@ const adminViewUserPage = () =>{
     return(
         <div className="relative bg-[#F7FFF7]">
             <div className="h-screen w-screen flex flex-col">
-            <header className="pt-4 px-4 pb-[30px]">
+                <header className="pt-4 px-4 pb-[30px]">
                     <div className="relative overflow-hidden xl:px-32 3xl:px-[139px] mx-auto items-center justify-center flex sm:justify-between">
                         <Image
                         src="/assets/images/harber.png"
@@ -30,6 +30,9 @@ const adminViewUserPage = () =>{
                         </div>
                     </div>
                 </header>
+                <div className="">
+
+                </div>
             </div>
 
         </div>

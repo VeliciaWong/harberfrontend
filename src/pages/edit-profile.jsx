@@ -6,7 +6,7 @@ import Field  from "../components/forms/Field";
 import { Input } from "../components/inputs";
 import { useState, useEffect, useRef } from "react";
 import { useRouter } from 'next/router'
-import { Text } from "@nextui-org/react";
+import { Link, Text } from "@nextui-org/react";
 import { useForm } from "react-hook-form";
 import { toast} from "react-toastify";
 import LogoutIcon from '@mui/icons-material/Logout';
@@ -34,14 +34,14 @@ const editProfilePage = () =>{
             <div className="h-screen w-screen flex flex-col">
                 <header className="pt-4 px-4 pb-[30px]">
                     <div className="relative overflow-hidden xl:px-32 3xl:px-[139px] mx-auto items-center justify-center flex sm:justify-between">
-                        <a href="/">
-                            <Image
-                                src="/assets/images/harber.png"
-                                alt=""
-                                width={150}
-                                height={70}
-                            />   
-                        </a>
+                        <Link href="/">
+                                <Image
+                                    src="/assets/images/harber.png"
+                                    alt=""
+                                    width={150}
+                                    height={70}
+                                />   
+                        </Link>
                         <div className="hidden sm:flex sm:items-center sm:space-x-[14px]">
                             <LogoutIcon fontSize="large" onClick={(logout)} className="cursor-pointer"/>
                         </div>

@@ -5,7 +5,7 @@ import Button from "../components/button/Button";
 import BookmarksIcon from '@mui/icons-material/Bookmarks';
 import Footer from "../components/footer/Footer";
 import Checkbox from "../components/inputs/Checkbox"
-import { Card, Grid, Row, Text } from "@nextui-org/react";
+import { Card, Grid, Link, Row, Text } from "@nextui-org/react";
 
 const productListPage = () =>{
     const bookmark = () =>{
@@ -70,14 +70,14 @@ const productListPage = () =>{
             <div className="h-screen w-screen flex flex-col bg-[#F7FFF7]">
                 <header className="pt-4 pb-[2%]">
                     <div className="items-center justify-center flex sm:justify-between px-20">
-                            <a href="/">
-                                <Image
+                        <Link href="/">
+                            <Image
                                 src="/assets/images/harber.png"
                                 alt=""
                                 width={150}
                                 height={70}
-                                />   
-                            </a>
+                            />   
+                        </Link>
                             <div className="px-2">
                                 <input type="text" placeholder="Search Keyword" className="mt-[1.5%] py-1 px-4 w-[400px] h-[35px] border-[#ABABAB] border-2 text-base text-black rounded-lg font-semibold"></input>
                             </div>
@@ -169,7 +169,7 @@ const productListPage = () =>{
 
                         <div className="w-screen flex flex-col justify-center self-center">
                             <div className="">
-                                <Text size={16} className="ml-[20px] font-bold">Results "keyword"</Text>
+                                <Text size={16} className="ml-[20px] font-bold">Results &quot;keyword&quot;</Text>
                             </div>
                             <div className="mr-[90px]">
                                 <Grid.Container gap={4} justify="flex-start">

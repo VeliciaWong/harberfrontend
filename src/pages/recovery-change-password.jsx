@@ -5,7 +5,9 @@ import FormContainer  from "../components/forms/Container";
 import Field  from "../components/forms/Field";
 import { Input } from "../components/inputs";
 import { useState, useEffect, useRef } from "react";
-import { Text } from "@nextui-org/react";
+import { Link, Text } from "@nextui-org/react";
+import * as yup from "yup";
+import { useYupResolver } from "../helpers/yup";
 import { useForm } from "react-hook-form";
 import Footer from "../components/footer/Footer";
 
@@ -15,20 +17,30 @@ const saveRecoveryPassword = () =>{
 }
 
 const recoveryChangePasswordPage = () =>{
-    const { register, handleSubmit, control, formState: { errors }} = useForm();
+    const resolver = useYupResolver(schema);
+    const {
+        register,
+        control,
+        watch,
+        handleSubmit,
+        resetField,
+        formState: { errors },
+      } = useForm({
+        resolver,
+      });
 
     return(
         <div className="relative h-screen w-screen bg-[#F7FFF7]">
             <div className={`relative h-screen w-screen overflow-hidden xl:px-30 3xl:px-[139px]`}>
                 <div className="max-w-[150px] mt-[2%] mb-[2%] z-40 ml-[70px] cursor-pointer" onClick={() => window.location.href = "/"}>
-                    <a href="/">
-                        <Image
-                            src="/assets/images/harber.png"
-                            alt=""
-                            width={150}
-                            height={70}
-                        />   
-                    </a>
+                    <Link href="/">
+                            <Image
+                                src="/assets/images/harber.png"
+                                alt=""
+                                width={150}
+                                height={70}
+                            />   
+                    </Link>
                 </div>
                 <Text size={30} className="text-black font-bold text-center mb-[20px]">Change your Password</Text>
                 <div className="max-w-[600px] h-[380px] mx-auto bg-[#4ECDC4] shadow-xl bg-contain bg-center rounded-[18px] w-full p-5 mb-[5%]">
