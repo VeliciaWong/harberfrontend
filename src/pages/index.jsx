@@ -16,6 +16,7 @@ import Carousel from "react-multi-carousel"
 import "react-multi-carousel/lib/styles.css";
 import { Text } from "@nextui-org/react";
 import Footer from "../components/footer/Footer";
+import SliderofCards from "../components/carousel/SliderofCard";
 
 export default function Home(){
     const responsive = {
@@ -225,7 +226,8 @@ export default function Home(){
                             <Text size={20} className="text-white text-center font-bold text-3xl">FOR YOU</Text>
                         </div>
                         <div className="mb-[20px]">
-                            <Fragment>
+                            <SliderofCards></SliderofCards>
+                            {/* <Fragment>
                                 <Section>
                                     <Carousel
                                         ssr={true}
@@ -353,7 +355,7 @@ export default function Home(){
                                             </Card>
                                     </Carousel>
                                 </Section>
-                            </Fragment>
+                            </Fragment> */}
                         </div>
                     </div>
                     <Footer/>
