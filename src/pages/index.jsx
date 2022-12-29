@@ -136,22 +136,7 @@ export default function Home(){
                                         </CardContent>
                                     </CardActionArea>
                                 </Card>
-                                <Card sx={{ maxWidth: 250 }} style={{boxShadow: "rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px"}} onClick={() => window.location.href = "/categories/pakaian"}>
-                                    <CardActionArea style={{height: "300px"}}>
-                                        <CardMedia
-                                        component="img"
-                                        height="150"
-                                        image="/assets/images/pakaian.png"
-                                        alt=""
-                                        />
-                                        <CardContent>
-                                        <Typography gutterBottom variant="h5" component="div" className="text-center font-semibold">
-                                            Pakaian
-                                        </Typography>
-                                        
-                                        </CardContent>
-                                    </CardActionArea>
-                                </Card>
+
                                 <Card sx={{ maxWidth: 250 }} style={{boxShadow: "rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px"}} onClick={() => window.location.href = "/categories/elektronik"}>
                                     <CardActionArea style={{height: "300px"}}>
                                         <CardMedia
@@ -168,8 +153,6 @@ export default function Home(){
                                         </CardContent>
                                     </CardActionArea>
                                 </Card>
-                            </div>
-                            <div className="grid grid-cols-3 gap-x-[30px]">
                                 <Card sx={{ maxWidth: 250 }} style={{boxShadow: "rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px"}} onClick={() => window.location.href = "/categories/kesehatan"}>
                                     <CardActionArea style={{height: "300px"}}>
                                         <CardMedia
@@ -186,6 +169,8 @@ export default function Home(){
                                         </CardContent>
                                     </CardActionArea>
                                 </Card>
+                            </div>
+                            <div className="grid grid-cols-3 gap-x-[30px]">
                                 <Card sx={{ maxWidth: 250 }} style={{boxShadow: "rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px"}} onClick={() => window.location.href = "/categories/makanan-minuman"}>
                                     <CardActionArea style={{height: "300px"}}>
                                         <CardMedia
@@ -197,6 +182,22 @@ export default function Home(){
                                         <CardContent>
                                         <Typography gutterBottom variant="h5" component="div" className="text-center font-semibold">
                                             Makanan & Minuman
+                                        </Typography>
+                                        
+                                        </CardContent>
+                                    </CardActionArea>
+                                </Card>
+                                <Card sx={{ maxWidth: 250 }} style={{boxShadow: "rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px"}} onClick={() => window.location.href = "/categories/pakaian"}>
+                                    <CardActionArea style={{height: "300px"}}>
+                                        <CardMedia
+                                        component="img"
+                                        height="150"
+                                        image="/assets/images/pakaian.png"
+                                        alt=""
+                                        />
+                                        <CardContent>
+                                        <Typography gutterBottom variant="h5" component="div" className="text-center font-semibold">
+                                            Pakaian
                                         </Typography>
                                         
                                         </CardContent>

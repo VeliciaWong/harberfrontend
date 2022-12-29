@@ -1,12 +1,30 @@
 import Head from "next/head";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import LogoutIcon from '@mui/icons-material/Logout';
 import Button from "../../components/button/Button";
 import BookmarksIcon from '@mui/icons-material/Bookmarks';
 import Footer from "../../components/footer/Footer";
+import Axios from "axios";
 import { Card, Grid, Link, Row, Text } from "@nextui-org/react";
 
 const alatTulisBukuPage = () =>{
+
+  useEffect(() => {
+   getalatTulisBuku() 
+  }, []
+  )
+
+  const getalatTulisBuku = async () =>{
+    // let result = await Axios.post(`http://localhost:8080/harberid/webresources/product`, {
+    //   filterCategory: data.filterCategory,
+    // });
+
+    let result = await Axios.get(`http://localhost:8080/harberid/webresources/product?filterCategory=1`);
+    console.log(result.data);
+    return result.data;
+  }
+
     const logout = () =>{
         toast.warn("Logout !");
         // router.back();

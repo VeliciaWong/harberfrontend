@@ -7,6 +7,22 @@ import Footer from "../../components/footer/Footer";
 import { Card, Grid, Link, Row, Text } from "@nextui-org/react";
 
 const perlengkapanRumahTanggaPage = () =>{
+
+  useEffect(() => {
+    getPerlengkapanRumah() 
+   }, []
+   )
+ 
+   const getPerlengkapanRumah = async () =>{
+     // let result = await Axios.post(`http://localhost:8080/harberid/webresources/product`, {
+     //   filterCategory: data.filterCategory,
+     // });
+ 
+     let result = await Axios.get(`http://localhost:8080/harberid/webresources/product?filterCategory=6`);
+     console.log(result.data);
+     return result.data;
+   }
+
     const logout = () =>{
         toast.warn("Logout !");
         // router.back();
