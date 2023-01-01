@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import Head from "next/head";
 import Image from "next/image";
 import BookmarksIcon from '@mui/icons-material/Bookmarks';
@@ -17,25 +17,38 @@ import "react-multi-carousel/lib/styles.css";
 import { Text } from "@nextui-org/react";
 import Footer from "../components/footer/Footer";
 import SliderofCards from "../components/carousel/SliderofCard";
+import {useForm, Controller} from "react-hook-form"
+import Axios from "axios";
+import { useRouter } from 'next/router'
 
 export default function Home(){
-    const responsive = {
-        desktop: {
-          breakpoint: { max: 3000, min: 1024 },
-          items: 4,
-          paritialVisibilityGutter: 60
-        },
-        tablet: {
-          breakpoint: { max: 1024, min: 464 },
-          items: 3,
-          paritialVisibilityGutter: 40
-        },
-        mobile: {
-          breakpoint: { max: 464, min: 0 },
-          items: 1,
-          paritialVisibilityGutter: 20
-        }
-      };
+    // const [userInput, setUserInput] = useState([]);
+    const router = useRouter()
+    // useEffect(() => {
+    //     onSubmit() 
+    //    }, []
+    //    )
+
+    const {
+        register,
+        control,
+        watch,
+        handleSubmit,
+        resetField,
+        formState: { errors },
+      } = useForm();
+
+    const onSubmit = (data)=>{
+        Axios.post(`http://localhost:8080/harberid/webresources/product`, {
+            searchKeyword: data.searchkeyword,
+        });
+        window.location.href = "/product-list"
+        // router.push({
+        //     pathname: '/product-list/[searchkeyword]',
+        //     query: { searchkeyword: data.searchkeyword },
+        //   })
+        // console.log(data.searchkeyword);
+    }
 
     const bookmark = () =>{
         // dikasih validasi user udh login atau gk, kl belum gk bisa akses page
@@ -80,7 +93,9 @@ export default function Home(){
                             height={150}
                         />
                         
-                        <input type="text" placeholder="Search Keyword" className="mt-[1.5%] py-1 px-4 w-[400px] h-[35px] border-[#ABABAB] border-2 shadow-lg text-base text-black rounded-lg font-semibold"></input>
+                        <form onSubmit={handleSubmit(onSubmit)}>
+                           <input type="text" placeholder="Search Keyword" className="mt-[1.5%] py-1 px-4 w-[400px] h-[35px] border-[#ABABAB] border-2 shadow-lg text-base text-black rounded-lg font-semibold" {...register("searchkeyword")}></input> 
+                        </form>
                     </div>
                     
                     <div className="bg-[#F7FFF7] relative flex flex-col">

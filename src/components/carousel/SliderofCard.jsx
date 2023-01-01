@@ -1,5 +1,7 @@
-import React from 'react'
+import { useState, useEffect } from "react";
 import { Card, Grid, Link, Row, Text } from "@nextui-org/react";
+import Axios from "axios";
+import StarRateIcon from '@mui/icons-material/StarRate';
 
 const list = [
     {
@@ -46,28 +48,59 @@ const list = [
   ];
 
 const SliderofCards = () =>{
+  const [productRecommend, setProductRecommend] = useState([]);
+
+    useEffect(() => {
+    getProductRecommend() 
+    }, []
+    )
+
+    const getProductRecommend = async () =>{
+      // let result = await Axios.post(`http://localhost:8080/harberid/webresources/product`, {
+      //   filterCategory: data.filterCategory,
+      // });
+
+      let result = await Axios.get(`http://localhost:8080/harberid/webresources/product?pageSize=10`);
+      // console.log(result.data);
+      return setProductRecommend(result.data);
+    }
+
     return(
         <div className='grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-8 gap-[18rem] overflow-x-scroll px-2'>
-                {list.map((item, index) => (
-                        <Card isPressable isHoverable css={{width: "250px"}} key={index}>
-                            <Card.Body css={{ p: 0, height: "300px" }}>
-                                <Card.Image
-                                    src={"https://nextui.org" + item.img}
-                                    objectFit="cover"
-                                    width="100%"
-                                    height={140}
-                                    alt={item.title}
-                                />
-                                <Card.Footer css={{ justifyItems: "flex-start" }}>
-                                    <Row wrap="wrap" justify="space-between" align="center">
-                                        <Text b>{item.title}</Text>
-                                        <Text css={{ color: "$accents7", fontWeight: "$semibold", fontSize: "$sm" }}>
-                                            {item.price}
-                                        </Text>
-                                    </Row>
-                                </Card.Footer>
-                            </Card.Body>
-                            </Card>
+                {productRecommend.data?.map((item) => (
+                    <Card isPressable isHoverable css={{width: "250px"}}>
+                        <Card.Body css={{ p: 0, height: "300px" }}>
+                          <Card.Image
+                              src={item.productUrlImage}
+                              objectFit="cover"
+                              width="100%"
+                              height={140}
+                              alt={item.productName}
+                          />
+                          <Card.Footer css={{ justifyItems: "flex-start" }}>
+                            <div className="flex flex-col">
+                                <Text b fontSize={30}>{item.productName}</Text>
+                                <div className="pt-2">
+                                    <Text className="pr-5" css={{ color: "$accents7", fontWeight: "$semibold", fontSize: "$sm" }}>Rp 
+                                      {item.productPrice}
+                                    </Text>
+                                  <Row wrap="wrap" justify="space-between">
+                                      <Text className="flex items-center mr-[100px]" css={{ color: "$accents7", fontWeight: "$semibold", fontSize: "$sm" }}>Sold : &nbsp;
+                                      {item.productSold}
+                                      </Text>
+                                      &nbsp;
+                                      <Text className="flex items-center flex-end" css={{ color: "$accents7", fontWeight: "$semibold", fontSize: "$sm" }}><StarRateIcon/>
+                                      {item.productRating}
+                                      </Text>
+                                  </Row>
+                                  <Text css={{ color: "$accents7", fontWeight: "$semibold", fontSize: "$sm" }}> 
+                                  {item.productLocation}
+                                  </Text>
+                                </div>
+                            </div>
+                          </Card.Footer>
+                        </Card.Body>
+                    </Card>
                 ))}
         </div>
     )
