@@ -15,14 +15,13 @@ export default function ModalRecovery({ open, onClose, data, onSubmit, loading }
       aria-labelledby="modal-recovery"
     >
       <Modal.Header>
-        <Text size={23} className="text-black font-semibold">Please answer your recovery question to recover your password</Text>
+        <Text size={23} className="text-black font-semibold">Please input your email account !</Text>
       </Modal.Header>
       <Modal.Body>
         {/* pertanyaannya nanti bisa ditarik dari berdasarkan yg user pilih pas dia register akun */}
-        <Text size={20} className="text-black italic text-center">Question ?</Text>
 
-        <Text size={17} className="font-bold">Your Answer</Text>    
-        <Input {...register("recovery_answer", { required: true })} />
+        <Text size={17} className="font-bold">Email</Text>    
+        <Input {...register("email", { required: true })} />
         
        
       </Modal.Body>

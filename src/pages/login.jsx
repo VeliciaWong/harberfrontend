@@ -17,8 +17,8 @@ const login = () =>{
     window.location.href="/"
 }
 
-const checkingAnswer = () =>{
-  window.location.href = "/recovery-change-password"
+const goToRecovery = () =>{
+  window.location.href = "/recovery"
 }
 
 const schema = yup.object().shape(
@@ -81,7 +81,7 @@ const LoginPage = () =>{
                     onClose={() => {
                       setModalRecovery(false);
                     }}
-                    onSubmit={checkingAnswer}/>
+                    onSubmit={goToRecovery}/>
                 </div>
                 <footer>
                     <div className="text-black font-semibold text-center text-[25px] pt-[30px] pb-[30px] flex self-center justify-center items-center">
