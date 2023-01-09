@@ -1,6 +1,13 @@
 {
     "name": "HarBer.id",
     "short_name": "HarBer.id",
+    "icons": [
+        {
+          "src": "/icon.png",
+          "sizes": "200x200",
+          "type": "image/png"
+        }
+    ],
     "theme_color": "#4ecdc4",
     "background_color": "#f7fff7",
     "display": "standalone",
