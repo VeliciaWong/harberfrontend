@@ -118,10 +118,10 @@ const TableGroup = ({
                 {headerGroup.headers.map((header) => (
                   <th
                     key={header.id}
-                    className="text-left bg-gray-100 px-4 first:rounded-l-xl last:rounded-r-xl"
+                    className="text-center uppercase bg-gray-100 px-4 first:rounded-l-xl last:rounded-r-xl"
                     style={header.column.columnDef.headerStyle}
                   >
-                    <span className="font-semibold text-gray-500 text-xs leading-10">
+                    <span className="font-bold text-black-500 text-xs leading-10">
                       {header.isPlaceholder
                         ? null
                         : flexRender(
@@ -135,7 +135,7 @@ const TableGroup = ({
             ))}
             <tr aria-hidden={true} className="mt-2.5 block"></tr>
           </thead>
-          <tbody>
+          <tbody className="text-white text-center drop-shadow-sm">
             {!isLoading ? (
               <>
                 {table.getRowModel().rows.map((row) => (
@@ -166,7 +166,7 @@ const TableGroup = ({
           </tbody>
         </table>
 
-        <div className="flex justify-center mt-2.5">
+        <div className="flex justify-end mt-2.5">
           <div className="flex">
             <button
               className={classnames(

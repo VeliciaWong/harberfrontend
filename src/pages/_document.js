@@ -10,7 +10,12 @@ class MyDocument extends Document {
   render() {
     return (
       <Html>
-        <Head>{CssBaseline.flush()}</Head>
+        <Head>
+          <link rel="manifest" href="/manifest.json" />
+          {/* <link rel="apple-touch-icon" href="/icon.png"></link> */}
+          <meta name="theme-color" content="#4ecdc4" />
+          {CssBaseline.flush()}
+        </Head>
         <body>
           <Main />
           <NextScript />

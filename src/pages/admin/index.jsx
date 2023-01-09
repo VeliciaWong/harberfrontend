@@ -12,28 +12,72 @@ import FormContainer  from "../../components/forms/Container";
 import Field  from "../../components/forms/Field";
 import { Input } from "../../components/inputs";
 import Footer from "../../components/footer/Footer";
+import axios from "axios";
+import qs from "qs"
+import { setAuthToken } from "../../services/AuthService";
+import { toast} from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+import { useRouter } from "next/router";
 
 const schema = yup.object().shape(
   {
-    email: yup.string().required("Field email is required"),
+    username: yup.string().required("Field username is required"),
     password: yup.string().required("Field password is required"),
     
   },
 );
 
-const login = () =>{
-    window.location.href="/admin/view-user"
-}
 
 const AdminLoginPage = () =>{
   const resolver = useYupResolver(schema);
   const { register, handleSubmit, control, formState: { errors }} = useForm({resolver});
-
+  const [isShown, setIsSHown] = useState(false);
+  const router = useRouter();
+  
+  const login = async (data) =>{
+    await axios({
+      method: 'post',
+      url: 'http://localhost:8091/api/login',
+      data: qs.stringify({
+        username: data.username,
+        password: data.password
+      }),
+      headers: {
+        'content-type': 'application/x-www-form-urlencoded;charset=utf-8'
+      }
+    }).then(response => {
+      //get token from response
+      const token  =  response.data?.access_token;
+      const role = response.data?.role;
+      // const username  =  response.data?.username;
+      // console.log(username)
+  
+      //set JWT token to local
+      if(role === "Admin"){
+          localStorage.setItem("token", token);
+      
+          //set token to axios common header
+          setAuthToken(token);
+      
+          //redirect user to home page
+          router.push({
+            pathname: `/admin/view-user`,
+            // query: { "token": token },
+          })
+      }else {
+        toast.error("You don't have Admin role!");
+      }
+    })
+    .catch(err => {
+      toast.error("Your Email/Password is incorrect!")
+      console.log(err)
+    });
+  }
     return(
         <div className="h-screen w-screen bg-[#F7FFF7]">
             <div className="relative h-screen w-screen top-0">
               <div className="h-screen w-screen flex flex-col">
-                <div className="max-w-[150px] mt-[2%] mb-[2%] z-40 ml-[70px] cursor-pointer" onClick={() => window.location.href = "/"}>
+                <div className="max-w-[150px] mt-[2%] mb-[2%] z-40 ml-[70px] cursor-pointer">
                     <Image
                         src="/assets/images/harber.png"
                         alt=""
@@ -51,11 +95,11 @@ const AdminLoginPage = () =>{
                     <div className="relative flex px-4">
                       <FormContainer>
                         <div className="space-y-5">
-                          <Field label="Email" error={errors["email"]?.message}>
-                            <Input {...register("email", { required: true })} />
+                          <Field label="Username" error={errors["username"]?.message}>
+                            <Input {...register("username", { required: true })} />
                           </Field>
                           <Field label="Password" error={errors["password"]?.message} className>
-                            <Input {...register("password", { required: true })} />
+                            <Input type={isShown ? "text" : "password"} {...register("password", { required: true })} />
                           </Field>
                           <div className="flex justify-end">
                             <Button onClick={handleSubmit(login)}>LOGIN</Button>

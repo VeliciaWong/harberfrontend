@@ -1,0 +1,89 @@
+import Axios from "axios"
+import { setAuthToken } from "../services/AuthService"
+
+export const axiosLocal = Axios.create({
+    baseURL: 'http://localhost:8091/api'
+})
+  
+
+export const getProductPage = async (pageParam = 0, keywordParam, filterParam) =>{
+    const result = await axiosLocal.get(`/product?page=${pageParam}&name.contains=${keywordParam}&categoryId.equals=${filterParam?.category?.id ? filterParam?.category?.id :""}&price.lessThan=${filterParam?.minPrice ? filterParam?.minPrice:""}&price.greaterThan=${filterParam?.maxPrice ? filterParam?.maxPrice:""}&location.contains=${filterParam?.location ? filterParam?.location:""}&rating.equals=${filterParam?.rating?.value ? filterParam?.rating?.value :""}`)
+    // .then(res => {
+    //     localStorage.setItem("totalProduct", res.headers.get('X-Total-Count'));
+
+    // })
+    return result.data
+    // console.log(result.data)
+}
+
+export const getWishlistPage = async (pageParam = 0, filterParam) =>{
+    const token = localStorage.getItem("token");
+    const result = await axiosLocal.get(`/wish_list?page=${pageParam}&categoryId.equals=${filterParam?.category?.id ? filterParam?.category?.id :""}&price.lessThan=${filterParam?.minPrice ? filterParam?.minPrice:""}&price.greaterThan=${filterParam?.maxPrice ? filterParam?.maxPrice:""}&location.contains=${filterParam?.location ? filterParam?.location:""}&rating.equals=${filterParam?.rating?.value ? filterParam?.rating?.value :""}`,{
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    })
+    // console.log(result.data)
+    return result.data
+}
+
+export const getProductById = async (idParam) =>{
+    const result = await axiosLocal.get(`/product/${idParam}`)
+    console.log(result.data)
+    return result.data
+}
+
+export const saveWishlist = async(idParam) =>{
+    const token = localStorage.getItem("token");
+    await axiosLocal.post(`/wish_list/save/${idParam}`,{}, {
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
+    })
+}
+
+export const deleteWishlist = async(idParam)=>{
+    const token = localStorage.getItem("token");
+    await axiosLocal.delete(`/wish_list/${idParam}`,{
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
+    })
+}
+
+// export const saveEditProfile = async(idParam) =>{
+//     const token = localStorage.getItem("token");
+//     await axiosLocal.delete(`/user/${idParam}`,{
+//         headers: {
+//             'Authorization': `Bearer ${token}`
+//         }
+//     })
+// }
+
+// export const getUserDetail = async()=>{
+//     await axiosLocal.get(`/user/see_my_profile`,{
+//         headers: {
+//             'Authorization': `Bearer ${token}`
+//         }
+//     })
+// }
+
+// export const checkIsWishlist = async(idParam)=>{
+//     const token = localStorage.getItem("token");
+//     const result = await axiosLocal.get(`/check_wishlist/${idParam}`,{
+//         headers: {
+//             'Authorization': `Bearer ${token}`
+//         } 
+//     })
+//     // console.log(result.data)
+//     return result.data
+// }
+
+// export const getProductComparison = async(nameParam) =>{
+//     const result = await axiosLocal.get(`/product?name.contains=${nameParam}`)
+//     return result.data
+// }
+// export const getProductByKeyword = async (keywordParam) =>{
+//     const result = await axiosLocal.get(`/product?name.contains=${keywordParam}`)
+//     return result.data
+// }

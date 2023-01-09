@@ -1,7 +1,7 @@
 import { forwardRef } from "react";
 
 // eslint-disable-next-line react/display-name
-const Input = forwardRef(({ className, prefix, affix, ...rest }, ref) => {
+const Input = forwardRef(({ onChange, className, prefix, affix, ...rest }, ref) => {
   return (
     <div className="flex w-full border border-gray-400 rounded-md bg-white">
       {prefix && (
@@ -10,6 +10,7 @@ const Input = forwardRef(({ className, prefix, affix, ...rest }, ref) => {
         </div>
       )}
       <input
+      onChange={onChange}
         ref={ref}
         className={[
           "py-1 px-4 w-[350px] h-[26px] text-base text-black rounded-md",

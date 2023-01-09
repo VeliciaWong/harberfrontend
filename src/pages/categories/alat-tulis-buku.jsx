@@ -5,27 +5,44 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import Button from "../../components/button/Button";
 import BookmarksIcon from '@mui/icons-material/Bookmarks';
 import Footer from "../../components/footer/Footer";
-import Axios from "axios";
+import { axiosLocal } from "../../helpers/axios";
 import { Card, Col, Grid, Link, Row, Text } from "@nextui-org/react";
 import StarRateIcon from '@mui/icons-material/StarRate';
+import { useQuery } from "@tanstack/react-query";
+import { useRouter } from "next/router";
 
 const alatTulisBukuPage = () =>{
   const [product, setProduct] = useState([]);
+  const router = useRouter()
 
-  useEffect(() => {
-   getalatTulisBuku() 
-  }, []
-  )
+//   useEffect(() => {
+//    getalatTulisBuku() 
+//   }, []
+//   )
 
-  const getalatTulisBuku = async () =>{
-    // let result = await Axios.post(`http://localhost:8080/harberid/webresources/product`, {
-    //   filterCategory: data.filterCategory,
-    // });
+//   const getalatTulisBuku = async () =>{
+//     // let result = await Axios.post(`http://localhost:8080/harberid/webresources/product`, {
+//     //   filterCategory: data.filterCategory,
+//     // });
 
-    let result = await Axios.get(`http://localhost:8080/harberid/webresources/product?filterCategory=1`);
-    // console.log(result.data);
-    return setProduct(result.data);
-  }
+//     // let result = await Axios.get(`http://localhost:8080/harberid/webresources/product?filterCategory=1`);
+//     // // console.log(result.data);
+//     // return setProduct(result.data);
+
+//     let result = await axiosLocal.get(`/product?categoryId.equals=1`);
+//     console.log(result.data);
+//     return setProduct(result.data);
+  
+//   }
+
+const getalatTulisBuku = useQuery({
+    queryKey: ["alatTulisBuku-list"],
+    queryFn: async () => {
+      let result = await axiosLocal.get(`/product?categoryId.equals=1`);
+
+      return result.data;
+    },
+  });
 
     const logout = () =>{
         toast.warn("Logout !");
@@ -35,50 +52,6 @@ const alatTulisBukuPage = () =>{
     const bookmark = () =>{
 
     }
-
-    // const list = [
-    //     {
-    //       title: "Orange",
-    //       img: "/images/fruit-1.jpeg",
-    //       price: "$5.50",
-    //     },
-    //     {
-    //       title: "Tangerine",
-    //       img: "/images/fruit-2.jpeg",
-    //       price: "$3.00",
-    //     },
-    //     {
-    //       title: "Cherry",
-    //       img: "/images/fruit-3.jpeg",
-    //       price: "$10.00",
-    //     },
-    //     {
-    //       title: "Lemon",
-    //       img: "/images/fruit-4.jpeg",
-    //       price: "$5.30",
-    //     },
-    //     {
-    //       title: "Avocado",
-    //       img: "/images/fruit-5.jpeg",
-    //       price: "$15.70",
-    //     },
-    //     {
-    //       title: "Lemon 2",
-    //       img: "/images/fruit-6.jpeg",
-    //       price: "$8.00",
-    //     },
-    //     {
-    //       title: "Banana",
-    //       img: "/images/fruit-7.jpeg",
-    //       price: "$7.50",
-    //     },
-    //     {
-    //       title: "Watermelon",
-    //       img: "/images/fruit-8.jpeg",
-    //       price: "$12.20",
-    //     },
-        
-    //   ];
 
     return(
         <div className="relative bg-[#F7FFF7]">
@@ -93,11 +66,7 @@ const alatTulisBukuPage = () =>{
                                   height={70}
                               />   
                       </Link>
-                            <div className="px-2">
-                                <input type="text" placeholder="Search Keyword" className="mt-[1.5%] py-1 px-4 w-[400px] h-[35px] border-[#ABABAB] border-2 text-base text-black rounded-lg font-semibold"></input>
-                            </div>
                             <div className="hidden sm:flex sm:items-center sm:space-x-[14px]">
-                                <BookmarksIcon fontSize="large" className="cursor-pointer" onClick={bookmark}/>
                                 <Button onClick={() => window.location.href = "/login"}>LOGIN</Button>
                                 {/* <LogoutIcon fontSize="large" onClick={(logout)} className="cursor-pointer"/> */}
                             </div>
@@ -114,32 +83,59 @@ const alatTulisBukuPage = () =>{
 
                     <div className="flex justify-center self-center items-center ml-[60px] pt-[50px] pb-[50px] px-10">
                         <Grid.Container gap={4} justify="flex-start">
-                            {product.data?.map((item, index) => (
+                            {/* {console.log(product)} */}
+                            {getalatTulisBuku.data?.map((item, index) => (
                                 <Grid xs={5} sm={3} key={index}>
-                                <Card isPressable isHoverable css={{width: "350px"}}>
+                                <Card isPressable isHoverable css={{width: "350px"}} onClick={async() =>{
+                                            const result = await axiosLocal.get(`/product/${item.id}`)
+                                            console.log(result.data)
+                                            router.push({
+                                                pathname: `/product-detail/`,
+                                                query: { "id": result.data.id },
+                                              })
+                                        }}>
                                     <Card.Body css={{ p: 0, height: "300px" }}>
                                       <Card.Image
-                                          src={item.productUrlImage}
+                                          src={item.urlImage}
                                           objectFit="cover"
                                           width="100%"
                                           height={140}
-                                          alt={item.productName}
+                                          alt={item.name}
                                       />
                                       <Card.Footer css={{ justifyItems: "flex-start" }}>
                                         <div className="flex flex-col">
-                                            <Text b fontSize={30}>{item.productName}</Text>
+                                            <Text b fontSize={30}>{item.name}</Text>
                                             <div className="pt-2">
                                               <Row wrap="wrap" justify="space-between">
-                                                <Text className="pr-3" css={{ color: "$accents7", fontWeight: "$semibold", fontSize: "$sm" }}>Rp 
-                                                  {item.productPrice}
+                                                <Text className="pr-3" css={{ color: "$accents7", fontWeight: "$semibold", fontSize: "$sm" }}>Rp&nbsp; 
+                                                  {item.price}
                                                   </Text>
                                                   <Text className="flex items-center" css={{ color: "$accents7", fontWeight: "$semibold", fontSize: "$sm" }}><StarRateIcon/>
-                                                  {item.productRating}
+                                                  {item.rating}
                                                   </Text>
                                               </Row>
                                               <Text css={{ color: "$accents7", fontWeight: "$semibold", fontSize: "$sm" }}> 
-                                              {item.productLocation}
+                                              {item.location}
                                               </Text>
+                                              {
+                                                item.ecommerce.name === "Tokopedia" ? <>
+                                                  <Text css={{ color: "$green600", fontWeight: "$semibold", fontSize: "$sm" }}> 
+                                                  {item.ecommerce.name}
+                                                  </Text>
+                                                </>:<>
+                                                  {
+                                                    item.ecommerce.name === "Shopee" ? <>
+                                                      <Text css={{ color: "#F1582C", fontWeight: "$semibold", fontSize: "$sm" }}> 
+                                                        {item.ecommerce.name}
+                                                      </Text>
+                                                    </>:<>
+                                                      <Text css={{ color: "#0094D9", fontWeight: "$semibold", fontSize: "$sm" }}> 
+                                                      {item.ecommerce.name}
+                                                    </Text>
+                                                    </>
+                                                  }
+                                                </>
+                                              }
                                             </div>
                                         </div>
                                       </Card.Footer>

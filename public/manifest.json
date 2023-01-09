@@ -1,0 +1,9 @@
+{
+    "name": "HarBer.id",
+    "short_name": "HarBer.id",
+    "theme_color": "#4ecdc4",
+    "background_color": "#f7fff7",
+    "display": "standalone",
+    "scope": "/",
+    "start_url": "/"
+  }

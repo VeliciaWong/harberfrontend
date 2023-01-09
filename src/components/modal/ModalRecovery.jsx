@@ -4,7 +4,7 @@ import Field from "../forms/Field";
 import Input from "../inputs/Input";
 import { useForm } from "react-hook-form";
 
-export default function ModalRecovery({ open, onClose, data, onSubmit, loading }){
+export default function ModalRecovery({ open, onClose, onSubmit, loading }){
   const { register, handleSubmit } = useForm();
 
   return (
@@ -22,8 +22,7 @@ export default function ModalRecovery({ open, onClose, data, onSubmit, loading }
 
         <Text size={17} className="font-bold">Email</Text>    
         <Input {...register("email", { required: true })} />
-        
-       
+
       </Modal.Body>
       <Modal.Footer justify="center">
         <Button

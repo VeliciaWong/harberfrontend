@@ -3,6 +3,7 @@ import Head from "next/head";
 import Image from "next/image";
 import BookmarksIcon from '@mui/icons-material/Bookmarks';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import LogoutIcon from '@mui/icons-material/Logout';
 import Buttons from "../components/button/Button";
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -18,11 +19,13 @@ import { Text } from "@nextui-org/react";
 import Footer from "../components/footer/Footer";
 import SliderofCards from "../components/carousel/SliderofCard";
 import {useForm, Controller} from "react-hook-form"
-import Axios from "axios";
+import {axiosLocal, getProductByKeyword} from "../helpers/axios";
 import { useRouter } from 'next/router'
+import { useEffect } from "react";
+import { setAuthToken } from "../services/AuthService";
 
 export default function Home(){
-    // const [userInput, setUserInput] = useState([]);
+    const [usernames, setUsername] = useState([]);
     const router = useRouter()
     // useEffect(() => {
     //     onSubmit() 
@@ -38,45 +41,84 @@ export default function Home(){
         formState: { errors },
       } = useForm();
 
-    const onSubmit = (data)=>{
-        Axios.post(`http://localhost:8080/harberid/webresources/product`, {
-            searchKeyword: data.searchkeyword,
-        });
-        window.location.href = "/product-list"
-        // router.push({
-        //     pathname: '/product-list/[searchkeyword]',
-        //     query: { searchkeyword: data.searchkeyword },
-        //   })
+    const onSubmit = async (data)=>{
+        // let result = await axiosLocal.get(`/product`, {params: {
+        //     name.contains : data.searchkeyword,
+        // }});
+        // let result = getProductByKeyword(data.searchkeyword)
+        // console.log(result)
+        router.push({
+            pathname: `/product-list/`,
+            query: { "keyword": data.searchkeyword },
+          })
         // console.log(data.searchkeyword);
     }
 
     const bookmark = () =>{
-        // dikasih validasi user udh login atau gk, kl belum gk bisa akses page
+        router.push(`/wishlist`)
 
     }
 
     const editProfile = () =>{
-        // dikasih validasi user udh login atau gk, kl belum gk bisa akses page
+        router.push(`/edit-profile`)
+        // router.push({
+        //     pathname: `/edit-profile/`,
+        //     query: { "id": userId}
+        // })
     }
 
     const logout = () =>{
-        
+        localStorage.removeItem("token");
+        localStorage.removeItem("username");
+        setToken("")
+        router.push(`/`)
     }
+    const [tokens, setToken] = useState()
+
+    useEffect(()=>{
+        const token = localStorage.getItem("token");
+        const username = localStorage.getItem("username");
+        // console.log(username)
+        if (token) {
+            setAuthToken(token);
+            setToken(token)
+            setUsername(username)
+        } else localStorage.removeItem("token");
+    })
 
     return(
         <div className="relative bg-[#F7FFF7]">
             <div className="h-screen w-screen flex flex-col">
                 <header className="pt-4 px-10 pb-[3%]">
                     <div className="items-center justify-center flex sm:justify-between px-10">
+                        {
+                            tokens?<>
+                                <div>
+                                    <span className="font-bold text-2xl">Hi, {usernames}</span>  
+                                </div>
+                                <div className="hidden sm:flex sm:items-center sm:space-x-[14px]">
+                                    <BookmarksIcon fontSize="large" className="cursor-pointer" onClick={bookmark}/>
+                                    <AccountCircleIcon fontSize="large" className="cursor-pointer" onClick={editProfile}/>
+                                    <LogoutIcon fontSize="large" onClick={(logout)} className="ml-[93%] cursor-pointer"/>
+                                </div>
+                            </>:<>
+                            <div>
+                                {/* <span className="font-bold text-2xl">Hi</span>   */}
+                            </div>
+                            <div className="hidden sm:flex sm:items-center sm:space-x-[14px]">
+                                <Buttons onClick={() => window.location.href = "/login"}>LOGIN</Buttons>
+                            </div>
+                            </>
+                        }
                         {/* bikin kondisi kl misalnya blm login headernya munculin yg mana, login yg mana*/}
                         {/* buat greetings user, nanti tarik dari BE buat ambil username user */}
-                        <div>
-                          {/* <span className="font-bold text-2xl">Hi</span>   */}
+                        {/* <div>
+                          <span className="font-bold text-2xl">Hi</span>  
                         </div>
                         <div className="hidden sm:flex sm:items-center sm:space-x-[14px]">
                             <BookmarksIcon fontSize="large" className="cursor-pointer" onClick={bookmark}/>
                             <Buttons onClick={() => window.location.href = "/login"}>LOGIN</Buttons>
-                        </div>
+                        </div> */}
                         {/* <div className="hidden sm:flex sm:items-center sm:space-x-[14px]">
                             <BookmarksIcon fontSize="large" className="cursor-pointer" onClick={bookmark}/>
                             <AccountCircleIcon fontSize="large" className="cursor-pointer" onClick={editProfile}/>
@@ -243,135 +285,6 @@ export default function Home(){
                         </div>
                         <div className="mb-[20px]">
                             <SliderofCards></SliderofCards>
-                            {/* <Fragment>
-                                <Section>
-                                    <Carousel
-                                        ssr={true}
-                                        additionalTransfrom={0}
-                                        arrows
-                                        autoPlaySpeed={3000}
-                                        centerMode={false}
-                                        className=""
-                                        containerClass="carousel-container"
-                                        dotListClass=""
-                                        draggable
-                                        focusOnSelect={false}
-                                        infinite={false}
-                                        itemClass=""
-                                        keyBoardControl
-                                        minimumTouchDrag={80}
-                                        pauseOnHover
-                                        renderArrowsWhenDisabled={false}
-                                        renderButtonGroupOutside={false}
-                                        renderDotsOutside={false}
-                                        responsive={responsive}
-                                        rewind={false}
-                                        rewindWithAnimation={false}
-                                        rtl={false}
-                                        shouldResetAutoplay
-                                        showDots={false}
-                                        sliderClass=""
-                                        slidesToSlide={2}
-                                        swipeable
-                                        >
-                                            <Card sx={{ maxWidth: 250 }}>
-                                                <CardActionArea style={{height: "300px"}}>
-                                                    <CardMedia
-                                                    component="img"
-                                                    height="140"
-                                                    image=""
-                                                    alt="green iguana"
-                                                    />
-                                                    <CardContent>
-                                                    <Typography gutterBottom variant="h5" component="div">
-                                                        Lizard
-                                                    </Typography>
-                                                    <Typography variant="body2" color="text.secondary">
-                                                        Lizards are a widespread group of squamate reptiles, with over 6,000
-                                                        species, ranging across all continents except Antarctica
-                                                    </Typography>
-                                                    </CardContent>
-                                                </CardActionArea>
-                                            </Card>
-                                            <Card sx={{ maxWidth: 250 }}>
-                                                <CardActionArea style={{height: "300px"}}>
-                                                    <CardMedia
-                                                    component="img"
-                                                    height="140"
-                                                    image=""
-                                                    alt="green iguana"
-                                                    />
-                                                    <CardContent>
-                                                    <Typography gutterBottom variant="h5" component="div">
-                                                        Lizard
-                                                    </Typography>
-                                                    <Typography variant="body2" color="text.secondary">
-                                                        Lizards are a widespread group of squamate reptiles, with over 6,000
-                                                        species, ranging across all continents except Antarctica
-                                                    </Typography>
-                                                    </CardContent>
-                                                </CardActionArea>
-                                            </Card>
-                                            <Card sx={{ maxWidth: 250 }}>
-                                                <CardActionArea style={{height: "300px"}}>
-                                                    <CardMedia
-                                                    component="img"
-                                                    height="140"
-                                                    image=""
-                                                    alt="green iguana"
-                                                    />
-                                                    <CardContent>
-                                                    <Typography gutterBottom variant="h5" component="div">
-                                                        Lizard
-                                                    </Typography>
-                                                    <Typography variant="body2" color="text.secondary">
-                                                        Lizards are a widespread group of squamate reptiles, with over 6,000
-                                                        species, ranging across all continents except Antarctica
-                                                    </Typography>
-                                                    </CardContent>
-                                                </CardActionArea>
-                                            </Card>
-                                            <Card sx={{ maxWidth: 250 }}>
-                                                <CardActionArea style={{height: "300px"}}>
-                                                    <CardMedia
-                                                    component="img"
-                                                    height="140"
-                                                    image=""
-                                                    alt="green iguana"
-                                                    />
-                                                    <CardContent>
-                                                    <Typography gutterBottom variant="h5" component="div">
-                                                        Lizard
-                                                    </Typography>
-                                                    <Typography variant="body2" color="text.secondary">
-                                                        Lizards are a widespread group of squamate reptiles, with over 6,000
-                                                        species, ranging across all continents except Antarctica
-                                                    </Typography>
-                                                    </CardContent>
-                                                </CardActionArea>
-                                            </Card>
-                                            <Card sx={{ maxWidth: 250 }}>
-                                                <CardActionArea style={{height: "300px"}}>
-                                                    <CardMedia
-                                                    component="img"
-                                                    height="140"
-                                                    image=""
-                                                    alt="green iguana"
-                                                    />
-                                                    <CardContent>
-                                                    <Typography gutterBottom variant="h5" component="div">
-                                                        Lizard
-                                                    </Typography>
-                                                    <Typography variant="body2" color="text.secondary">
-                                                        Lizards are a widespread group of squamate reptiles, with over 6,000
-                                                        species, ranging across all continents except Antarctica
-                                                    </Typography>
-                                                    </CardContent>
-                                                </CardActionArea>
-                                            </Card>
-                                    </Carousel>
-                                </Section>
-                            </Fragment> */}
                         </div>
                     </div>
                     <Footer/>

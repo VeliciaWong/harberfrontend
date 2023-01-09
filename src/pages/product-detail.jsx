@@ -1,25 +1,89 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import Head from "next/head";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { toast} from "react-toastify";
 import LogoutIcon from '@mui/icons-material/Logout';
 import 'react-toastify/dist/ReactToastify.css';
 import IconButton from '@mui/material/IconButton';
 import Button from "../components/button/Button";
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
 import BookmarksIcon from '@mui/icons-material/Bookmarks';
 import Footer from "../components/footer/Footer";
 import { Link, Text } from "@nextui-org/react";
+import { useRouter } from "next/router";
+import { axiosLocal, deleteWishlist } from "../helpers/axios";
+import { saveWishlist } from "../helpers/axios";
+import StarRateIcon from '@mui/icons-material/StarRate';
+import { setAuthToken } from "../services/AuthService";
 
 
 const productDetailPage = () =>{
-    const [clicked, setClicked] = useState(false)
+    const [clicked, setClicked] = useState()
+    const [product, setProduct] = useState([])
+    const [similiarProduct, setSimiliarProduct] = useState([])
+    const router = useRouter()
+    var similiar = "";
+    var similiarName = "";
+    // var similiarEcommerceId = "";
+    const [tokens, setToken] = useState()
+
+    useEffect(() =>{
+        if (router.isReady) {
+            getProductById(router.query.id);
+            const token = localStorage.getItem("token");
+            // console.log(token)
+            if (token) {
+                setAuthToken(token);
+                setToken(token);
+                checkIsWishlist(router.query.id);
+            }
+        }
+    }, [router.isReady]);
+
+    const checkIsWishlist = async(idParam)=>{
+            const token = localStorage.getItem("token");
+            const result = await axiosLocal.get(`/check_wishlist/${idParam}`,{
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                } 
+            })
+            // console.log(result.data)
+            return (setClicked(result.data))
+    }
+
+    const getProductById = async (idParam) =>{
+        const result = await axiosLocal.get(`/product/${idParam}`)
+        similiar = result.data.name?.split(" ",2)
+        similiarName = similiar[0] + " " + similiar[1]
+        // similiarEcommerceId = result.data.ecommerce.id
+        let id = result.data.id;
+        return (setProduct(result.data), getProductComparison(similiarName, id))
+    }
+
+    const getProductComparison = async(nameParam, idParam) =>{
+        // const result = await axiosLocal.get(`/product?size=3&name.contains=${nameParam}&ecommerceId.notEquals=${ecommerceIdParam}`)
+        const result = await axiosLocal.get(`/product?size=3&id.notIn=${idParam}&name.contains=${nameParam}&sort=price,ASC`)
+        // console.log(result.data)
+        return setSimiliarProduct(result.data)
+    }
+
+    // const saveWishlist = async(idParam) =>{
+    //     const token = localStorage.getItem("token");
+    //         // console.log(username)
+    //         if (token) {
+    //             setAuthToken(token);
+    //         }
+    //     let result = await axiosLocal.post(`/wish_list/save/${idParam}`)
+    //     console.log(result.data)
+    //     return result.data
+    // }
+
 
     const bookmark = () =>{
-        // dikasih validasi user udh login atau gk, kl belum gk bisa akses page
-
+        router.push(`/wishlist`)
     }
 
     const editProfile = () =>{
@@ -27,14 +91,19 @@ const productDetailPage = () =>{
     }
 
     const logout = () =>{
-        
+        localStorage.removeItem("token");
+        setToken("")
+        router.push(`/`)
     }
 
     const addBookmark = () =>{
-        setClicked(current => !current);
-        if(clicked == true){
+        if(clicked === true){
+            deleteWishlist(router.query.id)
+            setClicked("")
             console.log("bookmark remove")
         }else {
+            saveWishlist(router.query.id)
+            setClicked(true)
             toast.success("Added to your Wishlist")
             console.log("bookmark added")
         }
@@ -53,14 +122,20 @@ const productDetailPage = () =>{
                                 height={70}
                             />   
                         </Link>
-                            <div className="px-2">
-                                <input type="text" placeholder="Search Keyword" className="mt-[1.5%] py-1 px-4 w-[400px] h-[35px] border-[#ABABAB] border-2 text-base text-black rounded-lg font-semibold"></input>
-                            </div>
+                        {
+                            tokens?<>
                             <div className="hidden sm:flex sm:items-center sm:space-x-[14px]">
                                 <BookmarksIcon fontSize="large" className="cursor-pointer" onClick={bookmark}/>
-                                <Button onClick={() => window.location.href = "/login"}>LOGIN</Button>
-                                {/* <LogoutIcon fontSize="large" onClick={(logout)} className="cursor-pointer"/> */}
+                                <AccountCircleIcon fontSize="large" className="cursor-pointer" onClick={editProfile}/>
+                                <LogoutIcon fontSize="large" onClick={(logout)} className="cursor-pointer"/>
                             </div>
+
+                            </>:<>
+                            <div className="hidden sm:flex sm:items-center sm:space-x-[14px]">
+                                <Button onClick={() => window.location.href = "/login"}>LOGIN</Button>
+                            </div>
+                            </>
+                        }
                     </div>
                 </header>
 
@@ -68,28 +143,37 @@ const productDetailPage = () =>{
                     <div className="flex flex-row ml-[25%] gap-x-10 mb-[10px]">
                         <div className="flex flex-col gap-y-[5px]">
                            <img
-                            src="https://nextui.org/images/fruit-1.jpeg"
+                            src={product?.urlImage}
                             alt=""
                             width={300}
                             height={250}
                             className="rounded-md drop-shadow-lg"
                             />
-                            <div className="flex flex-row items-center">
-                                <IconButton onClick={addBookmark}>
-                                    { clicked?
-                                    <BookmarkIcon sx={{ fontSize: "45px" }}/> :  <BookmarkBorderIcon sx={{ fontSize: "45px" }}/> 
-                                    }
-                                </IconButton>
-                                <span className="font-bold text-2xl">Wishlist</span>
-                            </div>
+                                {
+                                    tokens?<>
+                                        <div className="flex flex-row items-center">
+                                            <IconButton onClick={addBookmark}>
+                                                { clicked === true ?
+                                                    <BookmarkIcon sx={{ fontSize: "45px" }}/> :  <BookmarkBorderIcon sx={{ fontSize: "45px" }}/> 
+                                                }
+                                            </IconButton> 
+                                            <span className="font-bold text-2xl">Wishlist</span>
+                                        </div>
+                                    </>:<>
+                                    </>
+                                }
                         </div>
                         
                         <div className="flex flex-col">
-                            <Text size={30} className="font-bold tracking-[1px]">ITEM TITLE</Text>
+                            <p className="font-bold tracking-[1px] w-[400px] text-2xl">{product?.name}</p>
                             <div className="mt-[15px] font-semibold flex flex-col text-slate-500 text-lg">
-                                <span>CATEGORY</span>
-                                <span>LOCATION</span>
-                                <span>RATING</span>
+                                <span>Price: Rp&nbsp;{product?.price}</span>
+                                <span>Category: &nbsp;{product?.category?.name}</span>
+                                <span>Location: &nbsp; {product?.location}</span>
+                                <span>Ecommerce Origin: &nbsp;{product?.ecommerce?.name}</span>
+                                <span>Shop Name: &nbsp; {product?.shopName}</span>
+                                <span className="flex items-center">Rating: &nbsp;<StarRateIcon/>{product?.rating}</span>
+                                <a href={product?.url} target="_blank" rel="noopener noreferrer" className="pt-[20px] underline text-[#4ECDC4]">GO TO PRODUCT URL</a>
                             </div>
                         </div>
                     </div>
@@ -103,16 +187,47 @@ const productDetailPage = () =>{
                     </div> */}
 
                     <div className="mt-[50px] flex flex-col justify-center items-center bg-[#F7FFF7]">
-                        <Text size={28} className="font-bold tracking-[1px] text-center mb-3">PRICE LIST FROM E-COMMERCE &#40;LOWEST TO HIGHEST&#41;</Text>
-                        <div className="w-[900px] h-[100px] bg-[#FFFFFF] drop-shadow-lg mb-10 border-[#DEDEDE] border-2 rounded-lg">
-
-                        </div>
-                        <div className="w-[900px] h-[100px] bg-[#FFFFFF] drop-shadow-lg mb-10 border-[#DEDEDE] border-2 rounded-lg">
-                                
-                        </div>
-                        <div className="w-[900px] h-[100px] bg-[#FFFFFF] drop-shadow-lg mb-10 border-[#DEDEDE] border-2 rounded-lg">
-                                
-                        </div>
+                        <Text size={28} className="font-bold tracking-[1px] text-center mb-3">SIMILIAR PRODUCT FROM E-COMMERCE &#40;LOWEST TO HIGHEST&#41;</Text>
+                        {   
+                            // console.log(similiarProduct)
+                            similiarProduct.map((item, index) => (
+                                <a href={item.url} target="_blank" rel="noopener noreferrer">
+                                    <div className="w-[950px] h-[150px] bg-[#FFFFFF] drop-shadow-lg mb-10 border-[#DEDEDE] border-2 rounded-lg p-3" key={index}>
+                                        <div className="flex flex-col">
+                                          <span className="font-bold text-[20px] text-[#4ECDC4]">{item.name}</span>
+                                          <span className="font-semibold text-[20px]">Rp&nbsp;{item.price}</span>
+                                          {
+                                                                item.ecommerce.name === "Tokopedia" ? <>
+                                                                <Text css={{ color: "$green600", fontWeight: "$semibold", fontSize: "$sm" }}> 
+                                                                {item.ecommerce.name}
+                                                                </Text>
+                                                                </>:<>
+                                                                {
+                                                                    item.ecommerce.name === "Shopee" ? <>
+                                                                    <Text css={{ color: "#F1582C", fontWeight: "$semibold", fontSize: "$sm" }}> 
+                                                                        {item.ecommerce.name}
+                                                                    </Text>
+                                                                    </>:<>
+                                                                    <Text css={{ color: "#0094D9", fontWeight: "$semibold", fontSize: "$sm" }}> 
+                                                                    {item.ecommerce.name}
+                                                                    </Text>
+                                                                    </>
+                                                                }
+                                                                </>
+                                                            }
+                                          {/* <Button className="w-[150px] mt-[10px] flex flex-end text-center" onClick={async() =>{
+                                            const result = await axiosLocal.get(`/product/${item.id}`)
+                                            // console.log(result.data)
+                                            router.push({
+                                                pathname: `/product-detail/`,
+                                                query: { "id": result.data.id },
+                                              })
+                                        }}>See Details</Button> */}
+                                        </div>
+                                    </div>
+                                </a>
+                            ))
+                        }
                     </div>
 
                     <Footer/>

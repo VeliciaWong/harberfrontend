@@ -6,35 +6,67 @@ import ModalSetRecovery from "../components/modal/ModalSetRecovery"
 import * as React from 'react';
 import * as yup from "yup";
 import { useYupResolver } from "../helpers/yup";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useForm, Controller } from "react-hook-form";
 import FormContainer  from "../components/forms/Container";
 import Field  from "../components/forms/Field";
 import { Input } from "../components/inputs";
 import Footer from "../components/footer/Footer";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { toast} from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+import { axiosLocal } from "../helpers/axios";
+import { data } from "autoprefixer";
+import { useRouter } from "next/router";
 
 const schema = yup.object().shape(
   {
     username: yup.string().required("Field username is required"),
     email: yup.string().required("Field email is required"),
     password: yup.string().required("Field password is required"),
-    confirm_password: yup.string().required("Field confirm password is required"),
+    confirm_password: yup.string().required("Field confirm password is required").oneOf([yup.ref('password')], 'Password does not match'),
   },
   []
 );
 
 const RegisterPage = () =>{
   const [modalChooseRecovery, setModalChooseRecovery] = useState(false);
+  const [isShown, setIsSHown] = useState(false);
+  const router = useRouter();
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
   const resolver = useYupResolver(schema);
   const { register, handleSubmit, control, formState: { errors }} = useForm({resolver});
 
+//   useEffect(() => {
+//     registers();
+//     saveRecovery();
+// });
+
   const registers = (data) =>{
-    setModalChooseRecovery(true)
-    console.log(data);
+    setUsername(data.username);
+    setEmail(data.email);
+    setPassword(data.password)
+    setModalChooseRecovery(true);
   }
 
-  const saveRecovery = () =>{
-    window.location.href="/"
+  const saveRecovery = async(data) =>{
+    // nembak api buat nyimpen user + recovery
+    // console.log(result.data);
+    await axiosLocal.post(`/user/save`, {
+      "username": username,
+      "password": password,
+      "email": email,
+      "questionRecovery":{
+          "id":data.recoveryQuestion?.id
+      },
+      "answerRecovery": data.recovery_answer
+  });
+    toast.success("Successfully create account!")
+    await router.push(`/login`)
+    // window.location.href="/login"
   }
 
     return(
@@ -70,10 +102,10 @@ const RegisterPage = () =>{
                           <Input {...register("email", { required: true })} />
                         </Field>
                         <Field label="Password" error={errors["password"]?.message} className>
-                          <Input {...register("password", { required: true })} />
+                          <Input  type={isShown ? "text" : "password"} {...register("password", { required: true })} />
                         </Field>
                         <Field label="Confirm Password" error={errors["confirm_password"]?.message} className>
-                          <Input {...register("confirm_password", { required: true })} />
+                          <Input type={isShown ? "text" : "password"} {...register("confirm_password", { required: true })} />
                         </Field>
                         
                         <div className="flex justify-end pt-[3%]">
@@ -90,7 +122,8 @@ const RegisterPage = () =>{
                     onClose={() => {
                       setModalChooseRecovery(false);
                     }}
-                    onSubmit={saveRecovery}/>
+                    onSubmit={saveRecovery}
+                  />
                 </div>
                 <footer>
                     <div className="text-black font-semibold text-center text-[25px] pt-[30px] pb-[30px] flex self-center justify-center items-center">

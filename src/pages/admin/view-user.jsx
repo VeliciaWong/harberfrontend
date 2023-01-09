@@ -11,10 +11,22 @@ import 'react-toastify/dist/ReactToastify.css';
 import Footer from "../../components/footer/Footer";
 import { createColumnHelper } from "@tanstack/react-table";
 import { useQuery } from "@tanstack/react-query";
+import { axiosLocal } from "../../helpers/axios";
+import { setAuthToken } from "../../services/AuthService";
+import { useRouter } from "next/router";
 
 const adminViewUserPage = () =>{
+    const router = useRouter();
+    useEffect(()=>{
+        const token = localStorage.getItem("token");
+        if (token) {
+            setAuthToken(token);
+        } else localStorage.removeItem("token");
+    })
+
     const logout = () =>{
-        window.location.href = "/admin"
+        localStorage.removeItem("token")
+        router.push(`/admin`)
     }
 
     const exportCsv = () =>{
@@ -22,32 +34,37 @@ const adminViewUserPage = () =>{
     }
 
     const userListQuery = useQuery({
-        queryKey: [""],
-        // queryFn: async () => {
-        //   let result = await axiosAdmin.post(`/getAllMissions`);
+        queryKey: ["user-list"],
+        queryFn: async () => {
+        const token = localStorage.getItem("token");
+          let result = await axiosLocal.get(`/user`,{
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
     
-        //   return result.data;
-        // },
+          return result.data;
+        },
       });
 
         const columnHelper = createColumnHelper();
         const columns = useMemo(
             () => [
-            columnHelper.accessor("number", {
+            columnHelper.accessor("id", {
                 header: () => <span>No</span>,
-                // cell: (info) => <p>{info.getValue()}</p>,
+                cell: (info) => <p>{info.getValue()}</p>,
             }),
             columnHelper.accessor("username", {
                 header: () => <span>Username</span>,
-                // cell: (info) => <p>{info.getValue()}</p>,
+                cell: (info) => <p>{info.getValue()}</p>,
+            }),
+            columnHelper.accessor("role.name", {
+                header: () => <span>Role</span>,
+                cell: (info) => info.getValue(),
             }),
             columnHelper.accessor("email", {
                 header: () => <span>email</span>,
-                // cell: (info) => info.getValue(),
-            }),
-            columnHelper.accessor("created_time", {
-                header: () => <span>Created On</span>,
-                // cell: (info) => info.getValue(),
+                cell: (info) => info.getValue(),
             }),
             ],
             []

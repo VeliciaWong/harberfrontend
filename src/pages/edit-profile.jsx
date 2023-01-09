@@ -9,27 +9,66 @@ import { useRouter } from 'next/router'
 import { Link, Text } from "@nextui-org/react";
 import { useForm } from "react-hook-form";
 import { toast} from "react-toastify";
-import LogoutIcon from '@mui/icons-material/Logout';
 import 'react-toastify/dist/ReactToastify.css';
+import LogoutIcon from '@mui/icons-material/Logout';
 import Footer from "../components/footer/Footer";
+import { axiosLocal } from "../helpers/axios";
 
 
-const saveEditProfile = () =>{
-    // masukin api buat nyimpen edit profile user
-    toast.success("Save Success!");
-    window.location.href="/"
-}
 
 const editProfilePage = () =>{
     const { register, handleSubmit, control, formState: { errors }} = useForm();
     const router = useRouter();
-
+    const [isShown, setIsSHown] = useState(false);
+    const [username, setUsername] = useState()
+    const [email, setEmail] = useState()
+    const [id, setId] = useState()
+    
+    
     const logout = () =>{
-        toast.warn("Logout !");
-        // router.back();
+        localStorage.removeItem("token");
+        localStorage.removeItem("username");
+        router.push(`/`)
     }
-
-    return(
+    
+    useEffect(()=>{
+        getUserDetail();
+        // saveEditProfile()
+    })
+    
+    const getUserDetail = async()=>{
+        const token = localStorage.getItem("token");
+        let result = await axiosLocal.get(`/user/see_my_profile`,{
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        })
+        return(
+            setUsername(result.data?.username),
+            setEmail(result.data?.email),
+            setId(result.data?.id)
+            )
+    }
+        
+        const saveEditProfile = async(data) =>{
+            // masukin api buat nyimpen edit profile user
+            const token = localStorage.getItem("token");
+            const result = await axiosLocal.put(`/user/${id}`, {
+                username : data.username,
+                password : data.password,
+                email : data.email,
+            },{
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            })
+            toast.success("Save Success!");
+            // localStorage.removeItem("token");
+            localStorage.setItem("username", result.data?.username);
+            router.push(`/`)
+            // window.location.href="/"
+        }
+        return(
         <div className="relative bg-[#F7FFF7]">
             <div className="h-screen w-screen flex flex-col">
                 <header className="pt-4 px-4 pb-[30px]">
@@ -56,13 +95,13 @@ const editProfilePage = () =>{
                             <FormContainer>
                                 <div className="space-y-5">
                                     <Field label="Username" error={errors["username"]?.message}>
-                                        <Input {...register("username", { required: true })} />
+                                        <Input defaultValue={username} {...register("username", { required: true })} />
                                     </Field>
                                     <Field label="Email" error={errors["email"]?.message}>
-                                        <Input {...register("email", { required: true })} />
+                                        <Input defaultValue={email} {...register("email", { required: true })} />
                                     </Field>
                                     <Field label="Password" error={errors["password"]?.message} className>
-                                        <Input {...register("password", { required: true })} />
+                                        <Input type={isShown ? "text" : "password"} {...register("password", { required: true })} />
                                     </Field>
                                     <div className="flex justify-end">
                                         <Button onClick={handleSubmit(saveEditProfile)}>SAVE</Button>
