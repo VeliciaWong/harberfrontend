@@ -103,18 +103,6 @@ const WishlistPagination = (data) =>{
 
     }, [page, data])
 
-    // const getWishlistPage = async (pageParam = 0, filterParam) =>{
-    //     const result = await axiosLocal.get(`/wish_list?page=${pageParam}&categoryId.equals=${filterParam?.category?.id ? filterParam?.category?.id :""}&price.lessThan=${filterParam?.minPrice ? filterParam?.minPrice:""}&price.greaterThan=${filterParam?.maxPrice ? filterParam?.maxPrice:""}&location.contains=${filterParam?.location ? filterParam?.location:""}&rating.equals=${filterParam?.rating?.value ? filterParam?.rating?.value :""}`)
-    //     // console.log(result.data)
-    //     return result.data
-    // }
-
-    // const content = product.data?.map((item, index) => {
-    //         <Grid xs={4} sm={3} key={index} >
-    //             <ProductCard item={item}/>  
-    //         </Grid>
-    // })
-
     const nextPage = () => setPage(prev => prev + 1)
     const totalPage = Math.ceil(product.length / pageSize);
     const prevPage = () => setPage(prev => prev - 1)
@@ -124,82 +112,84 @@ const WishlistPagination = (data) =>{
     })
 
     return (
-        <>  <Text size={20} className="font-bold">{product.length} Items</Text>
+        <>  
             {
                 product.length === 0 ?
-                <div>
+                <div className="font-bold flex justify-center items-center text-center text-3xl">
                     There is no product
-                </div>:<>
-                <Grid.Container gap={3} justify="flex-start">
-                    {product.map((item, index) => (
-                                        <Grid xs={4} sm={3} key={index} >
-                                        <Card isPressable isHoverable css={{width: "250px"}} onClick={async() =>{
-                                            const result = await axiosLocal.get(`/product/${item.id}`)
-                                            // console.log(result.data)
-                                            router.push({
-                                                pathname: `/product-detail/`,
-                                                query: { "id": result.data.id },
-                                              })
-                                        }}>
-                                            <Card.Body css={{ p: 0, height: "350px" }}>
-                                            <Card.Image
-                                                src={item.product?.urlImage}
-                                                objectFit="cover"
-                                                width="100%"
-                                                height={140}
-                                                alt={item.product?.name}
-                                            />
-                                            <Card.Footer css={{ justifyItems: "flex-start" }}>
-                                                <Col wrap="wrap" align="left">
-                                                    <Text b>{item.product?.name}</Text>
-                                                    <div className="pt-2">
-                                                        <Row wrap="wrap" justify="left">
-                                                            <Text className="pr-3" css={{ color: "$accents7", fontWeight: "$semibold", fontSize: "$sm" }}>Rp &nbsp;
-                                                            {item.product?.price}
-                                                            </Text>
-                                                            <Text className="flex items-center" css={{ color: "$accents7", fontWeight: "$semibold", fontSize: "$sm" }}><StarRateIcon/>
-                                                            {item.product?.rating}
-                                                            </Text>
-                                                        </Row>
-                                                        <Text css={{ color: "$accents7", fontWeight: "$semibold", fontSize: "$sm" }}> 
-                                                        {item.product?.location}
-                                                        </Text>
-                                                        {
-                                                                item.ecommerce?.name === "Tokopedia" ? <>
-                                                                <Text css={{ color: "$green600", fontWeight: "$semibold", fontSize: "$sm" }}> 
-                                                                {item.ecommerce?.name}
+                </div>:
+                <>
+                    <Text size={20} className="font-bold">{product.length} Items</Text>
+                    <Grid.Container gap={3} justify="flex-start">
+                        {product.map((item, index) => (
+                                            <Grid xs={4} sm={3} key={index} >
+                                            <Card isPressable isHoverable css={{width: "250px"}} onClick={async() =>{
+                                                const result = await axiosLocal.get(`/product/${item.id}`)
+                                                // console.log(result.data)
+                                                router.push({
+                                                    pathname: `/product-detail/`,
+                                                    query: { "id": result.data.id },
+                                                })
+                                            }}>
+                                                <Card.Body css={{ p: 0, height: "350px" }}>
+                                                <Card.Image
+                                                    src={item.product?.urlImage}
+                                                    objectFit="cover"
+                                                    width="100%"
+                                                    height={140}
+                                                    alt={item.product?.name}
+                                                />
+                                                <Card.Footer css={{ justifyItems: "flex-start" }}>
+                                                    <Col wrap="wrap" align="left">
+                                                        <Text b>{item.product?.name}</Text>
+                                                        <div className="pt-2">
+                                                            <Row wrap="wrap" justify="left">
+                                                                <Text className="pr-3" css={{ color: "$accents7", fontWeight: "$semibold", fontSize: "$sm" }}>Rp &nbsp;
+                                                                {item.product?.price}
                                                                 </Text>
-                                                                </>:<>
-                                                                {
-                                                                    item.ecommerce?.name === "Shopee" ? <>
-                                                                    <Text css={{ color: "#F1582C", fontWeight: "$semibold", fontSize: "$sm" }}> 
-                                                                        {item.ecommerce?.name}
-                                                                    </Text>
-                                                                    </>:<>
-                                                                    <Text css={{ color: "#0094D9", fontWeight: "$semibold", fontSize: "$sm" }}> 
+                                                                <Text className="flex items-center" css={{ color: "$accents7", fontWeight: "$semibold", fontSize: "$sm" }}><StarRateIcon/>
+                                                                {item.product?.rating}
+                                                                </Text>
+                                                            </Row>
+                                                            <Text css={{ color: "$accents7", fontWeight: "$semibold", fontSize: "$sm" }}> 
+                                                            {item.product?.location}
+                                                            </Text>
+                                                            {
+                                                                    item.ecommerce?.name === "Tokopedia" ? <>
+                                                                    <Text css={{ color: "$green600", fontWeight: "$semibold", fontSize: "$sm" }}> 
                                                                     {item.ecommerce?.name}
                                                                     </Text>
+                                                                    </>:<>
+                                                                    {
+                                                                        item.ecommerce?.name === "Shopee" ? <>
+                                                                        <Text css={{ color: "#F1582C", fontWeight: "$semibold", fontSize: "$sm" }}> 
+                                                                            {item.ecommerce?.name}
+                                                                        </Text>
+                                                                        </>:<>
+                                                                        <Text css={{ color: "#0094D9", fontWeight: "$semibold", fontSize: "$sm" }}> 
+                                                                        {item.ecommerce?.name}
+                                                                        </Text>
+                                                                        </>
+                                                                    }
                                                                     </>
                                                                 }
-                                                                </>
-                                                            }
-                                                    </div>
-                                                </Col>
-                                            </Card.Footer>
-                                            </Card.Body>
-                                        </Card>
-                                        </Grid>
-                        ))}
+                                                        </div>
+                                                    </Col>
+                                                </Card.Footer>
+                                                </Card.Body>
+                                            </Card>
+                                            </Grid>
+                            ))}
 
-                </Grid.Container>
+                    </Grid.Container>
+                    <nav className="flex justify-center content-center items-center pb-[2%]">
+                        <button onClick={prevPage} disabled={page === 0} style={{
+                            marginRight: "20px"
+                        }}>Prev Page</button>
+                        <button onClick={nextPage} disabled={page === totalPage}>Next Page</button>
+                    </nav>
                 </>
             }
-            <nav className="flex justify-center content-center items-center pb-[2%]">
-                <button onClick={prevPage} disabled={page === 0} style={{
-                    marginRight: "20px"
-                }}>Prev Page</button>
-                <button onClick={nextPage} disabled={page === totalPage}>Next Page</button>
-            </nav>
             {/* {content} */}
         </>
     )

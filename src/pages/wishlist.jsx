@@ -115,9 +115,18 @@ const ratingList = [
                                     />   
                                 </Link>
                                 <div className="hidden sm:flex sm:items-center sm:space-x-[14px]">
-                                    <BookmarksIcon fontSize="large" className="cursor-pointer" onClick={bookmark}/>
-                                    <AccountCircleIcon fontSize="large" className="cursor-pointer" onClick={editProfile}/>
-                                    <LogoutIcon fontSize="large" onClick={(logout)} className="ml-[93%] cursor-pointer"/>
+                                    <div className="flex items-center space-x-1 cursor-pointer" onClick={bookmark}>
+                                        <BookmarksIcon fontSize="large"/>
+                                        <span className="font-semibold">Wishlist</span>
+                                    </div>
+                                    <div className="flex items-center space-x-1 cursor-pointer" onClick={editProfile}>
+                                        <AccountCircleIcon fontSize="large"/>
+                                        <span className="font-semibold">Profile</span>
+                                    </div>
+                                    <div className="flex items-center space-x-1 cursor-pointer" onClick={logout}>
+                                      <LogoutIcon fontSize="large"/>
+                                      <span className="font-semibold">Logout</span>
+                                    </div>
                                 </div>
                             </>:<>
                             <Link href="/">
@@ -167,15 +176,15 @@ const ratingList = [
                                 <div className="w-[250px] h-[130px] bg-[#FFFFFF] border-[#DADADA] border-2 rounded-md mb-[20px] p-2 pl-4">
                                     <Text size={21} className="font-bold">Harga</Text>
                                     <div className="mt-1 flex flex-col gap-y-2">
-                                        <Input placeholder="Minimum Price" {...register("minPrice")}></Input>
-                                        <Input placeholder="Maximal Price" {...register("maxPrice")}></Input>  
+                                        <Input defaultValue="1000" placeholder="Minimum Price" {...register("minPrice")}></Input>
+                                        <Input defaultValue="10000000" placeholder="Maximal Price" {...register("maxPrice")}></Input>  
                                     </div>
                                     
                                 </div>
                                 <div className="w-[250px] h-[100px] bg-[#FFFFFF] border-[#DADADA] border-2 rounded-md mb-[20px] p-2 pl-4">
                                 <Text size={21} className="font-bold">Lokasi</Text>
                                     <div className="items-center">
-                                    <Input placeholder="Location" {...register("location")}></Input>
+                                    <Input defaultValue="Tangerang" placeholder="Location" {...register("location")}></Input>
                                     </div>
                                 </div>
                                 <div className="w-[250px] h-[110px] bg-[#FFFFFF] border-[#DADADA] border-2 rounded-md mb-[20px] p-2 pl-4">
@@ -195,7 +204,7 @@ const ratingList = [
                                     />
                                 </div>
                                 <Button type="submit" className="flex justify-self-end mb-[20px]">SUBMIT</Button>
-                            </form>
+                            </form>   
                         </div>
 
                         <div className="mt-[10px] ml-[20px] w-screen flex flex-col justify-center self-center">

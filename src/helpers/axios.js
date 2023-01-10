@@ -1,5 +1,5 @@
 import Axios from "axios"
-import { setAuthToken } from "../services/AuthService"
+import download from "downloadjs"
 
 export const axiosLocal = Axios.create({
     baseURL: 'http://localhost:8091/api'
@@ -51,6 +51,17 @@ export const deleteWishlist = async(idParam)=>{
     })
 }
 
+export const getUserData= async() => {
+    // getJsonData: async () =>{
+        const fileName =  "Account_List.xlsx";
+        await axiosLocal.get(`/user_export`,{
+            headers : {'Content-Type' : `application/csv`}, responseType: 'blob',
+        }).then(res => {
+            const content = res.headers[`content-type`];
+            download(res.data, fileName, content)
+        })
+    // }
+}
 // export const saveEditProfile = async(idParam) =>{
 //     const token = localStorage.getItem("token");
 //     await axiosLocal.delete(`/user/${idParam}`,{

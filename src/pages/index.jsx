@@ -42,16 +42,10 @@ export default function Home(){
       } = useForm();
 
     const onSubmit = async (data)=>{
-        // let result = await axiosLocal.get(`/product`, {params: {
-        //     name.contains : data.searchkeyword,
-        // }});
-        // let result = getProductByKeyword(data.searchkeyword)
-        // console.log(result)
         router.push({
             pathname: `/product-list/`,
             query: { "keyword": data.searchkeyword },
           })
-        // console.log(data.searchkeyword);
     }
 
     const bookmark = () =>{
@@ -61,10 +55,6 @@ export default function Home(){
 
     const editProfile = () =>{
         router.push(`/edit-profile`)
-        // router.push({
-        //     pathname: `/edit-profile/`,
-        //     query: { "id": userId}
-        // })
     }
 
     const logout = () =>{
@@ -78,7 +68,6 @@ export default function Home(){
     useEffect(()=>{
         const token = localStorage.getItem("token");
         const username = localStorage.getItem("username");
-        // console.log(username)
         if (token) {
             setAuthToken(token);
             setToken(token)
@@ -97,9 +86,18 @@ export default function Home(){
                                     <span className="font-bold text-2xl">Hi, {usernames}</span>  
                                 </div>
                                 <div className="hidden sm:flex sm:items-center sm:space-x-[14px]">
-                                    <BookmarksIcon fontSize="large" className="cursor-pointer" onClick={bookmark}/>
-                                    <AccountCircleIcon fontSize="large" className="cursor-pointer" onClick={editProfile}/>
-                                    <LogoutIcon fontSize="large" onClick={(logout)} className="ml-[93%] cursor-pointer"/>
+                                    <div className="flex items-center space-x-1 cursor-pointer" onClick={bookmark}>
+                                        <BookmarksIcon fontSize="large"/>
+                                        <span className="font-semibold">Wishlist</span>
+                                    </div>
+                                    <div className="flex items-center space-x-1 cursor-pointer" onClick={editProfile}>
+                                        <AccountCircleIcon fontSize="large"/>
+                                        <span className="font-semibold">Profile</span>
+                                    </div>
+                                    <div className="flex items-center space-x-1 cursor-pointer" onClick={logout}>
+                                      <LogoutIcon fontSize="large"/>
+                                      <span className="font-semibold">Logout</span>
+                                    </div>
                                 </div>
                             </>:<>
                             <div>
@@ -110,20 +108,6 @@ export default function Home(){
                             </div>
                             </>
                         }
-                        {/* bikin kondisi kl misalnya blm login headernya munculin yg mana, login yg mana*/}
-                        {/* buat greetings user, nanti tarik dari BE buat ambil username user */}
-                        {/* <div>
-                          <span className="font-bold text-2xl">Hi</span>  
-                        </div>
-                        <div className="hidden sm:flex sm:items-center sm:space-x-[14px]">
-                            <BookmarksIcon fontSize="large" className="cursor-pointer" onClick={bookmark}/>
-                            <Buttons onClick={() => window.location.href = "/login"}>LOGIN</Buttons>
-                        </div> */}
-                        {/* <div className="hidden sm:flex sm:items-center sm:space-x-[14px]">
-                            <BookmarksIcon fontSize="large" className="cursor-pointer" onClick={bookmark}/>
-                            <AccountCircleIcon fontSize="large" className="cursor-pointer" onClick={editProfile}/>
-                            <LogoutIcon fontSize="large" onClick={(logout)} className="ml-[93%] cursor-pointer"/>
-                        </div> */}
                     </div>
                 </header>
                 <div className="h-screen w-screen flex flex-col">

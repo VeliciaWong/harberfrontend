@@ -82,7 +82,10 @@ const editProfilePage = () =>{
                                 />   
                         </Link>
                         <div className="hidden sm:flex sm:items-center sm:space-x-[14px]">
-                            <LogoutIcon fontSize="large" onClick={(logout)} className="cursor-pointer"/>
+                            <div className="flex items-center space-x-1 cursor-pointer" onClick={logout}>
+                                <LogoutIcon fontSize="large"/>
+                                <span className="font-semibold">Logout</span>
+                            </div>
                         </div>
                     </div>
                 </header>

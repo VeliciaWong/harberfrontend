@@ -4,38 +4,32 @@ import { useState, useEffect } from "react";
 import LogoutIcon from '@mui/icons-material/Logout';
 import Button from "../../components/button/Button";
 import BookmarksIcon from '@mui/icons-material/Bookmarks';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import Footer from "../../components/footer/Footer";
 import { axiosLocal } from "../../helpers/axios";
 import { Card, Grid, Link, Row, Text } from "@nextui-org/react";
 import StarRateIcon from '@mui/icons-material/StarRate';
 import { useRouter } from "next/router";
 import { useQuery } from "@tanstack/react-query";
+import { setAuthToken } from "../../services/AuthService";
 
 const elektronikPage = () =>{
   const [product, setProduct] = useState([]);
   const router = useRouter()
+  const [tokens, setToken] = useState()
 
-  // useEffect(() => {
-  //   getElektronik() 
-  //  }, []
-  //  )
- 
-  //  const getElektronik = async () =>{
-  //    // let result = await Axios.post(`http://localhost:8080/harberid/webresources/product`, {
-  //    //   filterCategory: data.filterCategory,
-  //    // });
- 
-  //   //  let result = await Axios.get(`http://localhost:8080/harberid/webresources/product?filterCategory=2`);
-  //   // console.log(result.data);
-  //   //  return setProduct(result.data);
 
-  //   let result = await axiosLocal.get(`/product?categoryId.equals=2`);
-  //   // console.log(result.data);
-  //   return setProduct(result.data);
-     
-  //  }
+  useEffect(()=>{
+    const token = localStorage.getItem("token");
+    // console.log(username)
+    if (token) {
+        setAuthToken(token);
+        setToken(token)
+    } else localStorage.removeItem("token");
+})
 
   const getElektronik = useQuery({
+    
     queryKey: ["elektronik-list"],
     queryFn: async () => {
       let result = await axiosLocal.get(`/product?categoryId.equals=2`);
@@ -44,76 +38,61 @@ const elektronikPage = () =>{
     },
   });
 
-    const logout = () =>{
-        toast.warn("Logout !");
-        // router.back();
-    }
+  const logout = () =>{
+    localStorage.removeItem("token");
+    localStorage.removeItem("username");
+    setToken("")
+    router.push(`/`)
+      // router.back();
+  }
 
-    const bookmark = () =>{
+  const bookmark = () =>{
+    router.push(`/wishlist`)
+  }
 
-    }
-
-    // const list = [
-    //     {
-    //       title: "Orange",
-    //       img: "/images/fruit-1.jpeg",
-    //       price: "$5.50",
-    //     },
-    //     {
-    //       title: "Tangerine",
-    //       img: "/images/fruit-2.jpeg",
-    //       price: "$3.00",
-    //     },
-    //     {
-    //       title: "Cherry",
-    //       img: "/images/fruit-3.jpeg",
-    //       price: "$10.00",
-    //     },
-    //     {
-    //       title: "Lemon",
-    //       img: "/images/fruit-4.jpeg",
-    //       price: "$5.30",
-    //     },
-    //     {
-    //       title: "Avocado",
-    //       img: "/images/fruit-5.jpeg",
-    //       price: "$15.70",
-    //     },
-    //     {
-    //       title: "Lemon 2",
-    //       img: "/images/fruit-6.jpeg",
-    //       price: "$8.00",
-    //     },
-    //     {
-    //       title: "Banana",
-    //       img: "/images/fruit-7.jpeg",
-    //       price: "$7.50",
-    //     },
-    //     {
-    //       title: "Watermelon",
-    //       img: "/images/fruit-8.jpeg",
-    //       price: "$12.20",
-    //     },
-        
-    //   ];
+  const editProfile = () =>{
+    router.push(`/edit-profile`)
+    // router.push({
+    //     pathname: `/edit-profile/`,
+    //     query: { "id": userId}
+    // })
+}
 
     return(
         <div className="relative bg-[#F7FFF7]">
             <div className="h-screen w-screen flex flex-col">
                 <header className="pt-4 pb-[3%]">
                     <div className="items-center justify-center flex sm:justify-between px-10">
-                      <Link href="/">
-                              <Image
-                                  src="/assets/images/harber.png"
-                                  alt=""
-                                  width={150}
-                                  height={70}
-                              />   
+                    <Link href="/">
+                          <Image
+                            src="/assets/images/harber.png"
+                            alt=""
+                            width={150}
+                            height={70}
+                                    />   
                       </Link>
+                    {
+                            tokens?<>
+                                <div className="hidden sm:flex sm:items-center sm:space-x-[14px]">
+                                    <div className="flex items-center space-x-1 cursor-pointer" onClick={bookmark}>
+                                        <BookmarksIcon fontSize="large"/>
+                                        <span className="font-semibold">Wishlist</span>
+                                    </div>
+                                    <div className="flex items-center space-x-1 cursor-pointer" onClick={editProfile}>
+                                        <AccountCircleIcon fontSize="large"/>
+                                        <span className="font-semibold">Profile</span>
+                                    </div>
+                                    <div className="flex items-center space-x-1 cursor-pointer" onClick={logout}>
+                                      <LogoutIcon fontSize="large"/>
+                                      <span className="font-semibold">Logout</span>
+                                    </div>
+                                </div>
+                            </>:<>
                             <div className="hidden sm:flex sm:items-center sm:space-x-[14px]">
                                 <Button onClick={() => window.location.href = "/login"}>LOGIN</Button>
-                                {/* <LogoutIcon fontSize="large" onClick={(logout)} className="cursor-pointer"/> */}
                             </div>
+                            </>
+                        }
                     </div>
                 </header>
 

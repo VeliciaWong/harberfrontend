@@ -39,7 +39,7 @@ const ProductPagination = (data) =>{
         {console.log(totalPage)}
             {
                 product.length === 0 ?
-                <div>
+                <div className="font-bold flex justify-center items-center text-center text-3xl">
                     There is no product
                 </div>:<>
                 <Grid.Container gap={3} justify="flex-start">
@@ -103,15 +103,14 @@ const ProductPagination = (data) =>{
                                             </Grid>
                                         ))}
                 </Grid.Container>
+                <nav className="flex justify-center content-center items-center pb-[2%] font-semibold">
+                    <button onClick={prevPage} disabled={page === 0} style={{
+                        marginRight: "20px"
+                    }}>Prev Page</button>
+                    <button onClick={nextPage} disabled={page === totalPage}>Next Page</button>
+                </nav>
                 </>
             }
-            <nav className="flex justify-center content-center items-center pb-[2%]">
-                <button onClick={prevPage} disabled={page === 0} style={{
-                    marginRight: "20px"
-                }}>Prev Page</button>
-                <button onClick={nextPage} disabled={page === totalPage}>Next Page</button>
-            </nav>
-            {/* {content} */}
         </>
     )
 }

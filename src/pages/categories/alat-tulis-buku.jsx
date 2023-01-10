@@ -4,36 +4,28 @@ import Image from "next/image";
 import LogoutIcon from '@mui/icons-material/Logout';
 import Button from "../../components/button/Button";
 import BookmarksIcon from '@mui/icons-material/Bookmarks';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import Footer from "../../components/footer/Footer";
 import { axiosLocal } from "../../helpers/axios";
 import { Card, Col, Grid, Link, Row, Text } from "@nextui-org/react";
 import StarRateIcon from '@mui/icons-material/StarRate';
 import { useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/router";
+import { setAuthToken } from "../../services/AuthService";
 
 const alatTulisBukuPage = () =>{
   const [product, setProduct] = useState([]);
   const router = useRouter()
+  const [tokens, setToken] = useState()
 
-//   useEffect(() => {
-//    getalatTulisBuku() 
-//   }, []
-//   )
-
-//   const getalatTulisBuku = async () =>{
-//     // let result = await Axios.post(`http://localhost:8080/harberid/webresources/product`, {
-//     //   filterCategory: data.filterCategory,
-//     // });
-
-//     // let result = await Axios.get(`http://localhost:8080/harberid/webresources/product?filterCategory=1`);
-//     // // console.log(result.data);
-//     // return setProduct(result.data);
-
-//     let result = await axiosLocal.get(`/product?categoryId.equals=1`);
-//     console.log(result.data);
-//     return setProduct(result.data);
-  
-//   }
+  useEffect(()=>{
+    const token = localStorage.getItem("token");
+    // console.log(username)
+    if (token) {
+        setAuthToken(token);
+        setToken(token)
+    } else localStorage.removeItem("token");
+})
 
 const getalatTulisBuku = useQuery({
     queryKey: ["alatTulisBuku-list"],
@@ -45,13 +37,24 @@ const getalatTulisBuku = useQuery({
   });
 
     const logout = () =>{
-        toast.warn("Logout !");
+      localStorage.removeItem("token");
+      localStorage.removeItem("username");
+      setToken("")
+      router.push(`/`)
         // router.back();
     }
 
     const bookmark = () =>{
-
+      router.push(`/wishlist`)
     }
+
+    const editProfile = () =>{
+      router.push(`/edit-profile`)
+      // router.push({
+      //     pathname: `/edit-profile/`,
+      //     query: { "id": userId}
+      // })
+  }
 
     return(
         <div className="relative bg-[#F7FFF7]">
@@ -59,17 +62,35 @@ const getalatTulisBuku = useQuery({
                 <header className="pt-4 pb-[3%]">
                     <div className="items-center justify-center flex sm:justify-between px-10">
                       <Link href="/">
-                              <Image
-                                  src="/assets/images/harber.png"
-                                  alt=""
-                                  width={150}
-                                  height={70}
-                              />   
+                          <Image
+                            src="/assets/images/harber.png"
+                            alt=""
+                            width={150}
+                            height={70}
+                                    />   
                       </Link>
+                    {
+                            tokens?<>
+                                <div className="hidden sm:flex sm:items-center sm:space-x-[14px]">
+                                    <div className="flex items-center space-x-1 cursor-pointer" onClick={bookmark}>
+                                        <BookmarksIcon fontSize="large"/>
+                                        <span className="font-semibold">Wishlist</span>
+                                    </div>
+                                    <div className="flex items-center space-x-1 cursor-pointer" onClick={editProfile}>
+                                        <AccountCircleIcon fontSize="large"/>
+                                        <span className="font-semibold">Profile</span>
+                                    </div>
+                                    <div className="flex items-center space-x-1 cursor-pointer" onClick={logout}>
+                                      <LogoutIcon fontSize="large"/>
+                                      <span className="font-semibold">Logout</span>
+                                    </div>
+                                </div>
+                            </>:<>
                             <div className="hidden sm:flex sm:items-center sm:space-x-[14px]">
                                 <Button onClick={() => window.location.href = "/login"}>LOGIN</Button>
-                                {/* <LogoutIcon fontSize="large" onClick={(logout)} className="cursor-pointer"/> */}
                             </div>
+                            </>
+                        }
                     </div>
                 </header>
 

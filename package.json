@@ -18,6 +18,7 @@
     "@testing-library/user-event": "^14.4.3",
     "axios": "^1.2.1",
     "classcat": "^5.0.4",
+    "downloadjs": "^1.4.7",
     "history": "^5.3.0",
     "jwt-decode": "^3.1.2",
     "keen-slider": "^6.8.5",

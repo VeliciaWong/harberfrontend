@@ -23,21 +23,7 @@ const productListPage = () =>{
     const [filter, setFilter] = useState([]);
     const [defaultCategory, setDefaultCategory] = useState()
     const router = useRouter()
-
-    // const getKeyword = async()=>{
-    //     let result = getProductByKeyword(data.searchkeyword)
-    //     console.log(result)
-    // }
-
-    // const productListQuery = useQuery({
-    //     queryKey: ["product-list"],
-    //     queryFn: async () => {
-    //       let result = await axiosLocal.get(`/product`);
-    //       return result.data;
-    //     },
-    // });
     
-
     const categoryListQuery = useQuery({
         queryKey: ["category-list"],
         queryFn: async () => {
@@ -48,14 +34,6 @@ const productListPage = () =>{
         },
     });
 
-    // const lokasiListQuery = useQuery({
-    //     queryKey: ["lokasi-list"],
-    //     queryFn: async () => {
-    //       let result = await axiosLocal.get(`/`);
-    //       return result.data;
-    //     },
-    // });
-
     const {
         register,
         control,
@@ -64,6 +42,14 @@ const productListPage = () =>{
         resetField,
         formState: { errors },
       } = useForm();
+
+      const searchkeywords = async (data)=>{
+        router.push({
+            pathname: `/product-list/`,
+            query: { "keyword": data.searchkeyword },
+          })
+        // console.log(data.searchkeyword);
+    }
 
     const ratingList = [
         {
@@ -107,13 +93,6 @@ const productListPage = () =>{
         setFilter(data)
     }
 
-    const searchKeyword = (data)=>{
-        router.push({
-            pathname: `/product-list/`,
-            query: { "keyword": data.searchkeyword },
-          })
-    }
-
     const [tokens, setToken] = useState()
 
     useEffect(()=>{
@@ -131,36 +110,31 @@ const productListPage = () =>{
             <div className="h-screen w-screen flex flex-col bg-[#F7FFF7]">
                 <header className="pt-4 pb-[2%]">
                     <div className="items-center justify-center flex sm:justify-between px-20">
+                        <Link href="/">
+                            <Image
+                                src="/assets/images/harber.png"
+                                alt=""
+                                width={150}
+                                height={70}
+                            />   
+                        </Link>
                         {
                             tokens?<>
-                                <Link href="/">
-                                    <Image
-                                        src="/assets/images/harber.png"
-                                        alt=""
-                                        width={150}
-                                        height={70}
-                                    />   
-                                </Link>
-                                <form onSubmit={handleSubmit(searchKeyword)}>
-                                    <input type="text" placeholder="Search Keyword" className="mt-[1.5%] py-1 px-4 w-[400px] h-[35px] border-[#ABABAB] border-2 shadow-lg text-base text-black rounded-lg font-semibold" {...register("searchkeyword")}></input> 
-                                </form>
                                 <div className="hidden sm:flex sm:items-center sm:space-x-[14px]">
-                                    <BookmarksIcon fontSize="large" className="cursor-pointer" onClick={bookmark}/>
-                                    <AccountCircleIcon fontSize="large" className="cursor-pointer" onClick={editProfile}/>
-                                    <LogoutIcon fontSize="large" onClick={(logout)} className="ml-[93%] cursor-pointer"/>
+                                    <div className="flex items-center space-x-1 cursor-pointer" onClick={bookmark}>
+                                        <BookmarksIcon fontSize="large"/>
+                                        <span className="font-semibold">Wishlist</span>
+                                    </div>
+                                    <div className="flex items-center space-x-1 cursor-pointer" onClick={editProfile}>
+                                        <AccountCircleIcon fontSize="large"/>
+                                        <span className="font-semibold">Profile</span>
+                                    </div>
+                                    <div className="flex items-center space-x-1 cursor-pointer" onClick={logout}>
+                                      <LogoutIcon fontSize="large"/>
+                                      <span className="font-semibold">Logout</span>
+                                    </div>
                                 </div>
                             </>:<>
-                            <Link href="/">
-                                <Image
-                                    src="/assets/images/harber.png"
-                                    alt=""
-                                    width={150}
-                                    height={70}
-                                />   
-                            </Link>
-                            <form onSubmit={handleSubmit(onSubmit)}>
-                                <input type="text" placeholder="Search Keyword" className="mt-[1.5%] py-1 px-4 w-[400px] h-[35px] border-[#ABABAB] border-2 shadow-lg text-base text-black rounded-lg font-semibold" {...register("searchkeyword")}></input> 
-                            </form>
                             <div className="hidden sm:flex sm:items-center sm:space-x-[14px]">
                                 <Button onClick={() => window.location.href = "/login"}>LOGIN</Button>
                             </div>
@@ -227,53 +201,20 @@ const productListPage = () =>{
                                     />
                                 </div>
                                 <Button type="submit" className="flex justify-self-end mb-[20px]">SUBMIT</Button>
-                            </form>
-                            
+                            </form>                
                         </div>
 
                         <div className="w-screen flex flex-col justify-center self-center">
-                            <div className="mb-2">
+                            <div className="pt-[50px]">
+                                {router.query.keyword ? <>
                                 <Text size={16} className="ml-[20px] font-bold">Results &quot;{router.query.keyword}&quot;</Text>
+                                
+                                </>:<>
+                                <div></div>
+                                </>}
                             </div>
                             <div className="mr-[90px]">
-                                {/* <Grid.Container gap={3} justify="flex-start">
-                                {productListQuery.data?.map((item, index) => (
-                                    <Grid xs={4} sm={3} key={index} >
-                                    <Card isPressable isHoverable css={{width: "250px"}}>
-                                        <Card.Body css={{ p: 0, height: "300px" }}>
-                                        <Card.Image
-                                            src={item.urlImage}
-                                            objectFit="cover"
-                                            width="100%"
-                                            height={140}
-                                            alt={item.name}
-                                        />
-                                        <Card.Footer css={{ justifyItems: "flex-start" }}>
-                                            <Row wrap="wrap" justify="space-between" align="center">
-                                                <Text b>{item.name}</Text>
-                                                <div className="pt-2">
-                                                    <Row wrap="wrap" justify="space-between">
-                                                        <Text className="pr-3" css={{ color: "$accents7", fontWeight: "$semibold", fontSize: "$sm" }}>Rp 
-                                                        {item.price}
-                                                        </Text>
-                                                        <Text className="flex items-center" css={{ color: "$accents7", fontWeight: "$semibold", fontSize: "$sm" }}><StarRateIcon/>
-                                                        {item.rating}
-                                                        </Text>
-                                                    </Row>
-                                                    <Text css={{ color: "$accents7", fontWeight: "$semibold", fontSize: "$sm" }}> 
-                                                    {item.location}
-                                                    </Text>
-                                                </div>
-                                            </Row>
-                                        </Card.Footer>
-                                        </Card.Body>
-                                    </Card>
-                                    </Grid>
-                                ))}
-                                </Grid.Container> */}
-                                {/* {console.log(filter.category?.id)} */}
                                 <ProductPagination data={{keyword : router.query.keyword, filter: filter}}/>
-                                {/* <ProductPagination setProduct= {(p) => setProduct(p)}/> */}
                             </div>
                         </div>
                     </div>

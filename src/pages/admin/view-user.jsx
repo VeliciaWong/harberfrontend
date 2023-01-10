@@ -11,7 +11,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Footer from "../../components/footer/Footer";
 import { createColumnHelper } from "@tanstack/react-table";
 import { useQuery } from "@tanstack/react-query";
-import { axiosLocal } from "../../helpers/axios";
+import { axiosLocal, getUserData } from "../../helpers/axios";
 import { setAuthToken } from "../../services/AuthService";
 import { useRouter } from "next/router";
 
@@ -29,8 +29,34 @@ const adminViewUserPage = () =>{
         router.push(`/admin`)
     }
 
-    const exportCsv = () =>{
+    // const downloadFile = ({ data, fileName, fileType }) => {
+    //     const blob = new Blob([data], { type: fileType });
 
+    //     const a = document.createElement("a");
+    //     a.download = fileName;
+    //     a.href = window.URL.createObjectURL(blob);
+    //     const clickEvt = new MouseEvent("click", {
+    //         view: window,
+    //         bubbles: true,
+    //         cancelable: true,
+    //     });
+    //     a.dispatchEvent(clickEvt);
+    //     a.remove();
+    // };
+
+    const exportCsv = async() =>{
+        getUserData()
+        // e.preventDefault();
+        // const userData = await getUserData.getJsonData()
+
+        // downloadFile({
+        //     data: [userData],
+        //     fileName: "List.csv",
+        //     fileType: "text/csv",
+        // })
+        // let result = await axiosLocal.get(`/user_export`)
+        // const data = await result.getJsonData()
+        
     }
 
     const userListQuery = useQuery({
@@ -65,6 +91,10 @@ const adminViewUserPage = () =>{
             columnHelper.accessor("email", {
                 header: () => <span>email</span>,
                 cell: (info) => info.getValue(),
+            }),
+            columnHelper.accessor("createOn", {
+                header: () => <span>Created on</span>,
+                cell: (info) => new Date(info.getValue()).toLocaleString(),
             }),
             ],
             []

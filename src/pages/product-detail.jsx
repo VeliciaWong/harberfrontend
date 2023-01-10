@@ -70,18 +70,6 @@ const productDetailPage = () =>{
         return setSimiliarProduct(result.data)
     }
 
-    // const saveWishlist = async(idParam) =>{
-    //     const token = localStorage.getItem("token");
-    //         // console.log(username)
-    //         if (token) {
-    //             setAuthToken(token);
-    //         }
-    //     let result = await axiosLocal.post(`/wish_list/save/${idParam}`)
-    //     console.log(result.data)
-    //     return result.data
-    // }
-
-
     const bookmark = () =>{
         router.push(`/wishlist`)
     }
@@ -124,11 +112,20 @@ const productDetailPage = () =>{
                         </Link>
                         {
                             tokens?<>
-                            <div className="hidden sm:flex sm:items-center sm:space-x-[14px]">
-                                <BookmarksIcon fontSize="large" className="cursor-pointer" onClick={bookmark}/>
-                                <AccountCircleIcon fontSize="large" className="cursor-pointer" onClick={editProfile}/>
-                                <LogoutIcon fontSize="large" onClick={(logout)} className="cursor-pointer"/>
-                            </div>
+                               <div className="hidden sm:flex sm:items-center sm:space-x-[14px]">
+                                    <div className="flex items-center space-x-1 cursor-pointer" onClick={bookmark}>
+                                        <BookmarksIcon fontSize="large"/>
+                                        <span className="font-semibold">Wishlist</span>
+                                    </div>
+                                    <div className="flex items-center space-x-1 cursor-pointer" onClick={editProfile}>
+                                        <AccountCircleIcon fontSize="large"/>
+                                        <span className="font-semibold">Profile</span>
+                                    </div>
+                                    <div className="flex items-center space-x-1 cursor-pointer" onClick={logout}>
+                                      <LogoutIcon fontSize="large"/>
+                                      <span className="font-semibold">Logout</span>
+                                    </div>
+                                </div>
 
                             </>:<>
                             <div className="hidden sm:flex sm:items-center sm:space-x-[14px]">
@@ -171,61 +168,52 @@ const productDetailPage = () =>{
                                 <span>Category: &nbsp;{product?.category?.name}</span>
                                 <span>Location: &nbsp; {product?.location}</span>
                                 <span>Ecommerce Origin: &nbsp;{product?.ecommerce?.name}</span>
-                                <span>Shop Name: &nbsp; {product?.shopName}</span>
+                                <span>Shop Name: &nbsp;{product?.shopName}</span>
                                 <span className="flex items-center">Rating: &nbsp;<StarRateIcon/>{product?.rating}</span>
                                 <a href={product?.url} target="_blank" rel="noopener noreferrer" className="pt-[20px] underline text-[#4ECDC4]">GO TO PRODUCT URL</a>
                             </div>
                         </div>
                     </div>
-                    {/* <div className="flex flex-row ml-[23.7%] items-center">
-                        <IconButton onClick={addBookmark}>
-                            { clicked?
-                               <BookmarkIcon  sx={{ fontSize: "45px" }}/> :  <BookmarkBorderIcon  sx={{ fontSize: "45px" }}/> 
-                            }
-                        </IconButton>
-                        <span className="font-bold text-2xl">Wishlist</span>
-                    </div> */}
 
                     <div className="mt-[50px] flex flex-col justify-center items-center bg-[#F7FFF7]">
-                        <Text size={28} className="font-bold tracking-[1px] text-center mb-3">SIMILIAR PRODUCT FROM E-COMMERCE &#40;LOWEST TO HIGHEST&#41;</Text>
+                        <Text size={28} className="font-bold tracking-[1px] text-center mb-[20px]">SIMILIAR PRODUCT FROM E-COMMERCE &#40;LOWEST TO HIGHEST&#41;</Text>
                         {   
                             // console.log(similiarProduct)
                             similiarProduct.map((item, index) => (
-                                <a href={item.url} target="_blank" rel="noopener noreferrer">
-                                    <div className="w-[950px] h-[150px] bg-[#FFFFFF] drop-shadow-lg mb-10 border-[#DEDEDE] border-2 rounded-lg p-3" key={index}>
+                                    <div className="w-[950px] h-[200px] bg-[#FFFFFF] drop-shadow-lg mb-10 border-[#DEDEDE] border-2 rounded-lg p-4" key={index}>
                                         <div className="flex flex-col">
-                                          <span className="font-bold text-[20px] text-[#4ECDC4]">{item.name}</span>
-                                          <span className="font-semibold text-[20px]">Rp&nbsp;{item.price}</span>
+                                        <a href={item.url} target="_blank" rel="noopener noreferrer">
+                                            <span className="font-bold text-[18px] text-[#4ECDC4]">{item.name}</span>
+                                        </a> 
+                                          <span className="font-semibold text-[19px]">Rp&nbsp;{item.price}</span>
                                           {
-                                                                item.ecommerce.name === "Tokopedia" ? <>
-                                                                <Text css={{ color: "$green600", fontWeight: "$semibold", fontSize: "$sm" }}> 
-                                                                {item.ecommerce.name}
-                                                                </Text>
-                                                                </>:<>
-                                                                {
-                                                                    item.ecommerce.name === "Shopee" ? <>
-                                                                    <Text css={{ color: "#F1582C", fontWeight: "$semibold", fontSize: "$sm" }}> 
-                                                                        {item.ecommerce.name}
-                                                                    </Text>
-                                                                    </>:<>
-                                                                    <Text css={{ color: "#0094D9", fontWeight: "$semibold", fontSize: "$sm" }}> 
-                                                                    {item.ecommerce.name}
-                                                                    </Text>
-                                                                    </>
-                                                                }
-                                                                </>
-                                                            }
-                                          {/* <Button className="w-[150px] mt-[10px] flex flex-end text-center" onClick={async() =>{
+                                            item.ecommerce.name === "Tokopedia" ? <>
+                                            <Text css={{ color: "$green600", fontWeight: "$semibold", fontSize: "$lg" }}> 
+                                                {item.ecommerce.name}
+                                            </Text>
+                                                </>:<>
+                                                    {
+                                                        item.ecommerce.name === "Shopee" ? <>
+                                                        <Text css={{ color: "#F1582C", fontWeight: "$semibold", fontSize: "$lg" }}> 
+                                                            {item.ecommerce.name}
+                                                        </Text>
+                                                        </>:<>
+                                                        <Text css={{ color: "#0094D9", fontWeight: "$semibold", fontSize: "$lg" }}> 
+                                                            {item.ecommerce.name}
+                                                        </Text>
+                                                        </>
+                                                    }
+                                                </>
+                                        }
+                                          <Button className="w-[140px] mt-[10px] flex flex-end text-center" onClick={async() =>{
                                             const result = await axiosLocal.get(`/product/${item.id}`)
-                                            // console.log(result.data)
                                             router.push({
                                                 pathname: `/product-detail/`,
                                                 query: { "id": result.data.id },
-                                              })
-                                        }}>See Details</Button> */}
+                                              }).then(() => router.reload())
+                                        }}>See Details</Button>
                                         </div>
                                     </div>
-                                </a>
                             ))
                         }
                     </div>
