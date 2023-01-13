@@ -18,7 +18,7 @@ import 'react-toastify/dist/ReactToastify.css';
 const recoveryChangePasswordPage = () =>{
     const schema = yup.object().shape(
         {
-            password: yup.string().required("Field password is required"),
+            password: yup.string().required("Field password is required").min(8, "Password must be 8 Characters long"),
             confirm_password: yup.string().required("Field confirm password is required").oneOf([yup.ref('password')], 'Password does not match'),
         },
         []

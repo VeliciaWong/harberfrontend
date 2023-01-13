@@ -53,7 +53,7 @@ const editProfilePage = () =>{
         const saveEditProfile = async(data) =>{
             // masukin api buat nyimpen edit profile user
             const token = localStorage.getItem("token");
-            const result = await axiosLocal.put(`/user/${id}`, {
+            await axiosLocal.put(`/user/${id}`, {
                 username : data.username,
                 password : data.password,
                 email : data.email,
@@ -61,11 +61,15 @@ const editProfilePage = () =>{
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
-            })
-            toast.success("Save Success!");
-            // localStorage.removeItem("token");
-            localStorage.setItem("username", result.data?.username);
-            router.push(`/`)
+            }).then(res =>{
+                toast.success("Save Success!");
+                // localStorage.removeItem("token");
+                localStorage.setItem("username", res.data?.username);
+                router.push(`/`)
+            }).catch(error =>{
+                toast.warn("Username or email already registered!")
+                console.log(error)
+              })
             // window.location.href="/"
         }
         return(

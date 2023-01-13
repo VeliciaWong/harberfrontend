@@ -67,7 +67,7 @@ const ProductPagination = (data) =>{
                                                         <div className="pt-2">
                                                             <Row wrap="wrap" justify="left">
                                                                 <Text className="pr-3" css={{ color: "$accents7", fontWeight: "$semibold", fontSize: "$sm" }}>Rp &nbsp;
-                                                                {item.price}
+                                                                {(item.price)?.toLocaleString()}
                                                                 </Text>
                                                                 <Text className="flex items-center" css={{ color: "$accents7", fontWeight: "$semibold", fontSize: "$sm" }}><StarRateIcon/>
                                                                 {item.rating}

@@ -50,23 +50,7 @@ import { useRouter } from "next/router";
 //   ];
 
 const SliderofCards = () =>{
-  const [productRecommend, setProductRecommend] = useState([]);
   const router = useRouter()
-
-    // useEffect(() => {
-    // getProductRecommend() 
-    // }, []
-    // )
-
-    // const getProductRecommend = async () =>{
-    //   // let result = await Axios.post(`http://localhost:8080/harberid/webresources/product`, {
-    //   //   filterCategory: data.filterCategory,
-    //   // });
-
-    //   let result = await axiosLocal.get(`/product`);
-    //   console.log(result.data);
-    //   return setProductRecommend(result.data);
-    // }
 
     const getProductRecommend = useQuery({
       queryKey: ["productRecommend-list"],
@@ -101,7 +85,7 @@ const SliderofCards = () =>{
                                 <Text b size={13}>{item.name}</Text>
                                 <div className="pt-2">
                                     <Text className="pr-5" css={{ color: "$accents7", fontWeight: "$semibold", fontSize: "$sm" }}>Rp &nbsp; 
-                                      {item.price}
+                                      {(item.price)?.toLocaleString()}
                                     </Text>
                                   <Row wrap="wrap" justify="space-between">
                                       <Text className="flex items-center mr-[100px]" css={{ color: "$accents7", fontWeight: "$semibold", fontSize: "$sm" }}>

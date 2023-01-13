@@ -23,6 +23,7 @@ import { setAuthToken } from "../services/AuthService";
 const productDetailPage = () =>{
     const [clicked, setClicked] = useState()
     const [product, setProduct] = useState([])
+    const [wishlistId, setWishlistId] = useState()
     const [similiarProduct, setSimiliarProduct] = useState([])
     const router = useRouter()
     var similiar = "";
@@ -88,6 +89,7 @@ const productDetailPage = () =>{
         if(clicked === true){
             deleteWishlist(router.query.id)
             setClicked("")
+            toast.warn("Remove from your Wishlist")
             console.log("bookmark remove")
         }else {
             saveWishlist(router.query.id)
@@ -96,6 +98,30 @@ const productDetailPage = () =>{
             console.log("bookmark added")
         }
     }
+
+    // const CommaFormatted = (amount) =>{
+    //     var delimiter = ","; // replace comma if desired
+    //     var a = amount.split('.',2)
+    //     var d = a[1];
+    //     var i = parseInt(a[0]);
+    //     if(isNaN(i)) { return ''; }
+    //     var minus = '';
+    //     if(i < 0) { minus = '-'; }
+    //     i = Math.abs(i);
+    //     var n = new String(i);
+    //     var a = [];
+    //     while(n.length > 3) {
+    //         var nn = n.substr(n.length-3);
+    //         a.unshift(nn);
+    //         n = n.substr(0,n.length-3);
+    //     }
+    //     if(n.length > 0) { a.unshift(n); }
+    //     n = a.join(delimiter);
+    //     if(d.length < 1) { amount = n; }
+    //     else { amount = n + '.' + d; }
+    //     amount = minus + amount;
+    //     return amount;
+    // }
 
     return(
         <div className="relative bg-[#F7FFF7]">
@@ -164,7 +190,7 @@ const productDetailPage = () =>{
                         <div className="flex flex-col">
                             <p className="font-bold tracking-[1px] w-[400px] text-2xl">{product?.name}</p>
                             <div className="mt-[15px] font-semibold flex flex-col text-slate-500 text-lg">
-                                <span>Price: Rp&nbsp;{product?.price}</span>
+                                <span>Price: Rp&nbsp;{(product?.price)?.toLocaleString()}</span>
                                 <span>Category: &nbsp;{product?.category?.name}</span>
                                 <span>Location: &nbsp; {product?.location}</span>
                                 <span>Ecommerce Origin: &nbsp;{product?.ecommerce?.name}</span>
@@ -185,7 +211,7 @@ const productDetailPage = () =>{
                                         <a href={item.url} target="_blank" rel="noopener noreferrer">
                                             <span className="font-bold text-[18px] text-[#4ECDC4]">{item.name}</span>
                                         </a> 
-                                          <span className="font-semibold text-[19px]">Rp&nbsp;{item.price}</span>
+                                          <span className="font-semibold text-[19px]">Rp&nbsp;{(item.price)?.toLocaleString()}</span>
                                           {
                                             item.ecommerce.name === "Tokopedia" ? <>
                                             <Text css={{ color: "$green600", fontWeight: "$semibold", fontSize: "$lg" }}> 

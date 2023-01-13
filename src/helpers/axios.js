@@ -7,7 +7,7 @@ export const axiosLocal = Axios.create({
   
 
 export const getProductPage = async (pageParam = 0, keywordParam, filterParam) =>{
-    const result = await axiosLocal.get(`/product?page=${pageParam}&name.contains=${keywordParam}&categoryId.equals=${filterParam?.category?.id ? filterParam?.category?.id :""}&price.lessThan=${filterParam?.minPrice ? filterParam?.minPrice:""}&price.greaterThan=${filterParam?.maxPrice ? filterParam?.maxPrice:""}&location.contains=${filterParam?.location ? filterParam?.location:""}&rating.equals=${filterParam?.rating?.value ? filterParam?.rating?.value :""}`)
+    const result = await axiosLocal.get(`/product?page=${pageParam}&name.contains=${keywordParam}&categoryId.equals=${filterParam?.category?.id ? filterParam?.category?.id :""}&price.lessThan=${filterParam?.maxPrice ? filterParam?.maxPrice:""}&price.greaterThan=${filterParam?.minPrice ? filterParam?.minPrice:""}&location.contains=${filterParam?.location ? filterParam?.location:""}&rating.contains=${filterParam?.rating?.value ? filterParam?.rating?.value :""}`)
     // .then(res => {
     //     localStorage.setItem("totalProduct", res.headers.get('X-Total-Count'));
 
@@ -18,7 +18,7 @@ export const getProductPage = async (pageParam = 0, keywordParam, filterParam) =
 
 export const getWishlistPage = async (pageParam = 0, filterParam) =>{
     const token = localStorage.getItem("token");
-    const result = await axiosLocal.get(`/wish_list?page=${pageParam}&categoryId.equals=${filterParam?.category?.id ? filterParam?.category?.id :""}&price.lessThan=${filterParam?.minPrice ? filterParam?.minPrice:""}&price.greaterThan=${filterParam?.maxPrice ? filterParam?.maxPrice:""}&location.contains=${filterParam?.location ? filterParam?.location:""}&rating.equals=${filterParam?.rating?.value ? filterParam?.rating?.value :""}`,{
+    const result = await axiosLocal.get(`/wish_list?page=${pageParam}&categoryId.equals=${filterParam?.category?.id ? filterParam?.category?.id :""}&price.lessThan=${filterParam?.maxPrice ? filterParam?.maxPrice:""}&price.greaterThan=${filterParam?.minPrice ? filterParam?.minPrice:""}&location.contains=${filterParam?.location ? filterParam?.location:""}&rating.contains=${filterParam?.rating?.value ? filterParam?.rating?.value :""}`,{
         headers: {
             Authorization: `Bearer ${token}`
         }
@@ -44,7 +44,7 @@ export const saveWishlist = async(idParam) =>{
 
 export const deleteWishlist = async(idParam)=>{
     const token = localStorage.getItem("token");
-    await axiosLocal.delete(`/wish_list/${idParam}`,{
+    await axiosLocal.delete(`/wish_list/product/${idParam}`,{
         headers: {
             'Authorization': `Bearer ${token}`
         }

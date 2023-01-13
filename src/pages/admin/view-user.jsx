@@ -76,23 +76,15 @@ const adminViewUserPage = () =>{
         const columnHelper = createColumnHelper();
         const columns = useMemo(
             () => [
-            columnHelper.accessor("id", {
-                header: () => <span>No</span>,
-                cell: (info) => <p>{info.getValue()}</p>,
-            }),
             columnHelper.accessor("username", {
                 header: () => <span>Username</span>,
                 cell: (info) => <p>{info.getValue()}</p>,
-            }),
-            columnHelper.accessor("role.name", {
-                header: () => <span>Role</span>,
-                cell: (info) => info.getValue(),
             }),
             columnHelper.accessor("email", {
                 header: () => <span>email</span>,
                 cell: (info) => info.getValue(),
             }),
-            columnHelper.accessor("createOn", {
+            columnHelper.accessor("createdDate", {
                 header: () => <span>Created on</span>,
                 cell: (info) => new Date(info.getValue()).toLocaleString(),
             }),
@@ -119,7 +111,7 @@ const adminViewUserPage = () =>{
                 <div className="w-screen h-screen flex flex-col">
                     <div className="flex justify-between px-[9.5%] mb-10">
                         <Text size={35} className="text-black font-bold">List of Users</Text>
-                        <Button onClick={exportCsv}>Export .csv</Button>
+                        <Button onClick={exportCsv}>Export .xlsx</Button>
                     </div>
 
                     <div className="z-30 flex items-center justify-center">

@@ -104,7 +104,7 @@ const elektronikPage = () =>{
                     </div>
                     
 
-                    <div className="flex justify-center self-center items-center ml-[60px] pt-[50px] pb-[50px] px-10">
+                    <div className="flex justify-center self-center items-center ml-[60px] pt-[50px] pb-[50px] px-10 bg-[#F7FFF7]">
                         <Grid.Container gap={4} justify="flex-start">
                           {getElektronik.data?.map((item, index) => (
                                 <Grid xs={5} sm={3} key={index}>
@@ -130,7 +130,7 @@ const elektronikPage = () =>{
                                             <div className="pt-2">
                                               <Row wrap="wrap" justify="space-between">
                                                 <Text className="pr-3" css={{ color: "$accents7", fontWeight: "$semibold", fontSize: "$sm" }}>Rp &nbsp;
-                                                  {item.price}
+                                                  {(item.price)?.toLocaleString()}
                                                   </Text>
                                                   <Text className="flex items-center" css={{ color: "$accents7", fontWeight: "$semibold", fontSize: "$sm" }}><StarRateIcon/>
                                                   {item.rating}

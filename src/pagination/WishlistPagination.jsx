@@ -124,11 +124,11 @@ const WishlistPagination = (data) =>{
                         {product.map((item, index) => (
                                             <Grid xs={4} sm={3} key={index} >
                                             <Card isPressable isHoverable css={{width: "250px"}} onClick={async() =>{
-                                                const result = await axiosLocal.get(`/product/${item.id}`)
+                                                const result = await axiosLocal.get(`/product/${item.product?.id}`)
                                                 // console.log(result.data)
                                                 router.push({
                                                     pathname: `/product-detail/`,
-                                                    query: { "id": result.data.id },
+                                                    query: { "id": item.product?.id },
                                                 })
                                             }}>
                                                 <Card.Body css={{ p: 0, height: "350px" }}>
@@ -145,7 +145,7 @@ const WishlistPagination = (data) =>{
                                                         <div className="pt-2">
                                                             <Row wrap="wrap" justify="left">
                                                                 <Text className="pr-3" css={{ color: "$accents7", fontWeight: "$semibold", fontSize: "$sm" }}>Rp &nbsp;
-                                                                {item.product?.price}
+                                                                {(item.product?.price)?.toLocaleString()}
                                                                 </Text>
                                                                 <Text className="flex items-center" css={{ color: "$accents7", fontWeight: "$semibold", fontSize: "$sm" }}><StarRateIcon/>
                                                                 {item.product?.rating}

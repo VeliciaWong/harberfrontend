@@ -94,7 +94,7 @@ const getalatTulisBuku = useQuery({
                     </div>
                 </header>
 
-                <div className="h-screen w-screen flex flex-col">
+                <div className="h-screen w-screen flex flex-col bg-[#F7FFF7]">
                     <div className="flex justify-center items-center">
                       <div className="w-[1000px] h-[300px] bg-[#4ECDC4] rounded-lg flex flex-col justify-center self-center items-center">
                           <span className="text-white text-5xl font-bold">ALAT TULIS & BUKU</span>
@@ -102,7 +102,7 @@ const getalatTulisBuku = useQuery({
                     </div>
                     
 
-                    <div className="flex justify-center self-center items-center ml-[60px] pt-[50px] pb-[50px] px-10">
+                    <div className="flex justify-center self-center items-center ml-[60px] pt-[50px] pb-[50px] px-10 bg-[#F7FFF7]">
                         <Grid.Container gap={4} justify="flex-start">
                             {/* {console.log(product)} */}
                             {getalatTulisBuku.data?.map((item, index) => (
@@ -129,7 +129,7 @@ const getalatTulisBuku = useQuery({
                                             <div className="pt-2">
                                               <Row wrap="wrap" justify="space-between">
                                                 <Text className="pr-3" css={{ color: "$accents7", fontWeight: "$semibold", fontSize: "$sm" }}>Rp&nbsp; 
-                                                  {item.price}
+                                                  {(item.price)?.toLocaleString()}
                                                   </Text>
                                                   <Text className="flex items-center" css={{ color: "$accents7", fontWeight: "$semibold", fontSize: "$sm" }}><StarRateIcon/>
                                                   {item.rating}
