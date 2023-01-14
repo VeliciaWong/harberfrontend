@@ -21,6 +21,9 @@ const withPWA = require('next-pwa')({
 
 module.exports = withPWA({
   trailingSlash: true,
+  images: {
+    unoptimized: true,
+  },
   reactStrictMode: true,
   swcMinify: true,
   experimental: {

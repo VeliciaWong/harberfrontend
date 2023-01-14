@@ -77,7 +77,7 @@ const LoginPage = () =>{
         <div className="h-screen w-screen bg-[#F7FFF7]">
             <div className="relative h-screen w-screen top-0">
               <div className="h-screen w-screen flex flex-col">
-                <div className="max-w-[150px] mt-[2%] mb-[2%] z-40 ml-[70px] cursor-pointer" onClick={() => window.location.href = "/"}>
+                <div className="max-w-[150px] mt-[2%] mb-[2%] z-40 ml-[70px] xs:ml-[25px] sm:ml-[50px] lg:ml-[60px] xl:ml-[70px] cursor-pointer" onClick={() => window.location.href = "/"}>
                     <Image
                         src="/assets/images/harber.png"
                         alt=""
@@ -88,7 +88,7 @@ const LoginPage = () =>{
                 </div>
                 <div className="flex-grow flex items-center justify-center">
                   <Modal>
-                      <span className="text-white text-4xl text-center pl-[20px] font-bold mb-10">
+                      <span className="text-white text-4xl text-center pl-[20px] sm:pl-2 font-bold mb-10">
                           Login to HarBer.id
                       </span>
                 
@@ -121,7 +121,7 @@ const LoginPage = () =>{
                     onSubmit={goToRecovery}/> */}
                 </div>
                 <footer>
-                    <div className="text-black font-semibold text-center text-[25px] pt-[30px] pb-[30px] flex self-center justify-center items-center">
+                    <div className="text-black font-semibold text-center text-[25px] xs:text-[20px] pt-[30px] pb-[30px] flex self-center justify-center items-center">
                             <span>©2022-2023 HarBer.Id | All right reserved</span>
                     </div>
                 </footer>

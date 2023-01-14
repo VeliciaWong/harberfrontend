@@ -54,7 +54,7 @@ const recoveryChangePasswordPage = () =>{
         return(
         <div className="relative h-screen w-screen bg-[#F7FFF7]">
             <div className={`relative h-screen w-screen overflow-hidden xl:px-30 3xl:px-[139px]`}>
-                <div className="max-w-[150px] mt-[2%] mb-[2%] z-40 ml-[70px] cursor-pointer" onClick={() => window.location.href = "/"}>
+                <div className="max-w-[150px] mt-[2%] mb-[2%] z-40 ml-[70px] cursor-pointer">
                     <Link href="/">
                             <Image
                                 src="/assets/images/harber.png"

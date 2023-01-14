@@ -78,32 +78,32 @@ export default function Home(){
     return(
         <div className="relative bg-[#F7FFF7]">
             <div className="h-screen w-screen flex flex-col">
-                <header className="pt-4 px-10 pb-[3%]">
-                    <div className="items-center justify-center flex sm:justify-between px-10">
+                <header className="pt-4 px-5 pb-[3%]">
+                    <div className="items-center flex justify-between px-10 xs:px-2 sm:px-2">
                         {
                             tokens?<>
                                 <div>
-                                    <span className="font-bold text-2xl">Hi, {usernames}</span>  
+                                    <span className="font-bold text-2xl xs:text-lg sm:text-lg md:text-xl lg:text-2xl">Hi, {usernames}</span>  
                                 </div>
-                                <div className="hidden sm:flex sm:items-center sm:space-x-[14px]">
+                                <div className="flex sm:items-center space-x-[5px]">
                                     <div className="flex items-center space-x-1 cursor-pointer" onClick={bookmark}>
                                         <BookmarksIcon fontSize="large"/>
-                                        <span className="font-semibold">Wishlist</span>
+                                        <span className="font-semibold xs:hidden sm:flex">Wishlist</span>
                                     </div>
                                     <div className="flex items-center space-x-1 cursor-pointer" onClick={editProfile}>
                                         <AccountCircleIcon fontSize="large"/>
-                                        <span className="font-semibold">Profile</span>
+                                        <span className="font-semibold xs:hidden sm:flex">Profile</span>
                                     </div>
                                     <div className="flex items-center space-x-1 cursor-pointer" onClick={logout}>
                                       <LogoutIcon fontSize="large"/>
-                                      <span className="font-semibold">Logout</span>
+                                      <span className="font-semibold xs:hidden sm:flex">Logout</span>
                                     </div>
                                 </div>
                             </>:<>
                             <div>
                                 {/* <span className="font-bold text-2xl">Hi</span>   */}
                             </div>
-                            <div className="hidden sm:flex sm:items-center sm:space-x-[14px]">
+                            <div className="sm:flex-end sm:space-x-[15px]">
                                 <Buttons onClick={() => window.location.href = "/login"}>LOGIN</Buttons>
                             </div>
                             </>
@@ -117,6 +117,7 @@ export default function Home(){
                             alt=""
                             width={300}
                             height={150}
+                            className="w-[300px] xs:w-[200px] sm:w-[200px] md:w-[200px] lg:w-[300px]"
                         />
                         
                         <form onSubmit={handleSubmit(onSubmit)}>
@@ -126,9 +127,9 @@ export default function Home(){
                     
                     <div className="bg-[#F7FFF7] relative flex flex-col">
                       <Text size={20} className="text-black font-bold mb-[20px] pt-[8%] text-3xl text-center">PROMOS</Text>
-                        <div className="flex flex-row justify-center items-center gap-x-6 relative sm:gap-x-2 md:gap-x-6">
+                        <div className="flex flex-row justify-center items-center gap-x-6 relative xs:gap-x-1 sm:gap-x-2 md:gap-x-3 xl:gap-x-6">
                             <a href="https://www.tokopedia.com/promo/" target="_blank" rel="noopener noreferrer">
-                                <div className="w-[350px] h-[150px] bg-[#54C55B] flex shrink items-center justify-center rounded-lg drop-shadow-lg shadow-lg cursor-pointer sm:w-[190px] md:w-[300px]">
+                                <div className="w-[350px] h-[150px] bg-[#54C55B] flex shrink items-center justify-center rounded-lg drop-shadow-lg shadow-lg cursor-pointer xs:w-[150px] xs:h-[100px] sm:w-[150px] sm:h-[150px] md:w-[300px]">
                                     <img
                                         src="/assets/images/tokopedia.png"
                                         alt=""
@@ -138,7 +139,7 @@ export default function Home(){
                             </a>
 
                             <a href="https://shopee.co.id/campaigns/" target="_blank" rel="noopener noreferrer">
-                                <div className="w-[350px] h-[150px] bg-[#F1582C] flex items-center justify-center rounded-lg drop-shadow-lg shadow-lg cursor-pointer sm:w-[190px] md:w-[300px]">
+                                <div className="w-[350px] h-[150px] bg-[#F1582C] flex items-center justify-center rounded-lg drop-shadow-lg shadow-lg cursor-pointer xs:w-[150px] xs:h-[100px] sm:w-[150px] sm:h-[150px] md:w-[300px]">
                                     <img
                                         src="/assets/images/shopee.png"
                                         alt=""
@@ -148,7 +149,7 @@ export default function Home(){
                             </a>
 
                             <a href="https://www.blibli.com/promosi/" target="_blank" rel="noopener noreferrer">
-                                <div className="w-[350px] h-[150px] bg-[#0094D9] flex items-center justify-center rounded-lg drop-shadow-lg shadow-lg cursor-pointer sm:w-[190px] md:w-[300px]">
+                                <div className="w-[350px] h-[150px] bg-[#0094D9] flex items-center justify-center rounded-lg drop-shadow-lg shadow-lg cursor-pointer xs:w-[150px] xs:h-[100px] sm:w-[150px] sm:h-[150px] md:w-[300px]">
                                     <img
                                         src="/assets/images/blibli.png"
                                         alt=""
@@ -159,9 +160,9 @@ export default function Home(){
                         </div>
 
                         <Text size={20} className="text-black font-bold mb-[20px] pt-[10%] text-3xl text-center">CATEGORIES</Text>
-                        <div className="flex flex-col justify-center items-center gap-y-[50px]">
-                            <div className="grid grid-cols-3 gap-x-[30px]">
-                                <Card sx={{ maxWidth: 250 }} style={{boxShadow: "rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px"}} onClick={() => window.location.href = "/categories/alat-tulis-buku"}>
+                        <div className="flex flex-col justify-center items-center gap-y-[50px] xs:gap-y-[20px] md:gap-y-[30px] lg:gap-y-[40px]">
+                            <div className="grid grid-cols-3 gap-x-[30px] xs:gap-x-[10px] sm:gap-x-[10px] md:gap-x-[15px] lg:gap-x-[20px] xl:gap-x-[30px]">
+                                <Card sx={{ maxWidth: 250 }} style={{boxShadow: "rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px"}} onClick={() => window.location.href = "/categories/alat-tulis-buku"} className="w-[250px] xs:w-[150px] sm:w-[150px] lg:w-[200px] xl:w-[250px] h-[300px] xs:h-[250px] sm:h-[250px] lg:h-[300px] xl:h-[300px]">
                                     <CardActionArea style={{height: "300px"}}>
                                         <CardMedia
                                         component="img"
@@ -170,7 +171,7 @@ export default function Home(){
                                         alt=""
                                         />
                                         <CardContent>
-                                        <Typography gutterBottom variant="h5" component="div" className="text-center font-semibold">
+                                        <Typography gutterBottom variant="h6" component="div" className="text-center font-semibold text-lg">
                                             Alat Tulis & Buku
                                         </Typography>
                                         
@@ -178,7 +179,7 @@ export default function Home(){
                                     </CardActionArea>
                                 </Card>
 
-                                <Card sx={{ maxWidth: 250 }} style={{boxShadow: "rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px"}} onClick={() => window.location.href = "/categories/elektronik"}>
+                                <Card sx={{ maxWidth: 250 }} style={{boxShadow: "rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px"}} onClick={() => window.location.href = "/categories/elektronik"} className="w-[250px] xs:w-[150px] sm:w-[150px] lg:w-[200px] xl:w-[250px] h-[300px] xs:h-[250px] sm:h-[250px] lg:h-[300px] xl:h-[300px]">
                                     <CardActionArea style={{height: "300px"}}>
                                         <CardMedia
                                         component="img"
@@ -187,14 +188,14 @@ export default function Home(){
                                         alt=""
                                         />
                                         <CardContent>
-                                        <Typography gutterBottom variant="h5" component="div" className="text-center font-semibold">
+                                        <Typography gutterBottom variant="h6" component="div" className="text-center font-semibold text-lg">
                                             Elektronik
                                         </Typography>
                                         
                                         </CardContent>
                                     </CardActionArea>
                                 </Card>
-                                <Card sx={{ maxWidth: 250 }} style={{boxShadow: "rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px"}} onClick={() => window.location.href = "/categories/kesehatan"}>
+                                <Card sx={{ maxWidth: 250 }} style={{boxShadow: "rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px"}} onClick={() => window.location.href = "/categories/kesehatan"} className="w-[250px] xs:w-[150px] sm:w-[150px] lg:w-[200px] xl:w-[250px] h-[300px] xs:h-[250px] sm:h-[250px] lg:h-[300px] xl:h-[300px]">
                                     <CardActionArea style={{height: "300px"}}>
                                         <CardMedia
                                         component="img"
@@ -203,7 +204,7 @@ export default function Home(){
                                         alt=""
                                         />
                                         <CardContent>
-                                        <Typography gutterBottom variant="h5" component="div" className="text-center font-semibold">
+                                        <Typography gutterBottom variant="h6" component="div" className="text-center font-semibold text-lg">
                                             Kesehatan
                                         </Typography>
                                         
@@ -211,8 +212,8 @@ export default function Home(){
                                     </CardActionArea>
                                 </Card>
                             </div>
-                            <div className="grid grid-cols-3 gap-x-[30px]">
-                                <Card sx={{ maxWidth: 250 }} style={{boxShadow: "rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px"}} onClick={() => window.location.href = "/categories/makanan-minuman"}>
+                            <div className="grid grid-cols-3 gap-x-[30px] xs:gap-x-[10px] sm:gap-x-[10px] md:gap-x-[15px] lg:gap-x-[20px] xl:gap-x-[30px]">
+                                <Card sx={{ maxWidth: 250 }} style={{boxShadow: "rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px"}} onClick={() => window.location.href = "/categories/makanan-minuman"} className="w-[250px] xs:w-[150px] sm:w-[150px] lg:w-[200px] xl:w-[250px] h-[300px] xs:h-[250px] sm:h-[250px] lg:h-[300px] xl:h-[300px]">
                                     <CardActionArea style={{height: "300px"}}>
                                         <CardMedia
                                         component="img"
@@ -221,14 +222,14 @@ export default function Home(){
                                         alt=""
                                         />
                                         <CardContent>
-                                        <Typography gutterBottom variant="h5" component="div" className="text-center font-semibold">
+                                        <Typography gutterBottom variant="h6" component="div" className="text-center font-semibold text-lg">
                                             Makanan & Minuman
                                         </Typography>
                                         
                                         </CardContent>
                                     </CardActionArea>
                                 </Card>
-                                <Card sx={{ maxWidth: 250 }} style={{boxShadow: "rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px"}} onClick={() => window.location.href = "/categories/pakaian"}>
+                                <Card sx={{ maxWidth: 250 }} style={{boxShadow: "rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px"}} onClick={() => window.location.href = "/categories/pakaian"} className="w-[250px] xs:w-[150px] sm:w-[150px] lg:w-[200px] xl:w-[250px] h-[300px] xs:h-[250px] sm:h-[250px] lg:h-[300px] xl:h-[300px]">
                                     <CardActionArea style={{height: "300px"}}>
                                         <CardMedia
                                         component="img"
@@ -237,24 +238,24 @@ export default function Home(){
                                         alt=""
                                         />
                                         <CardContent>
-                                        <Typography gutterBottom variant="h5" component="div" className="text-center font-semibold">
+                                        <Typography gutterBottom variant="h5" component="div" className="text-center font-semibold text-lg">
                                             Pakaian
                                         </Typography>
                                         
                                         </CardContent>
                                     </CardActionArea>
                                 </Card>
-                                <Card sx={{ maxWidth: 250 }} style={{boxShadow: "rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px"}} onClick={() => window.location.href = "/categories/perlengkapan-rumah"}>
+                                <Card sx={{ maxWidth: 250 }} style={{boxShadow: "rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px"}} onClick={() => window.location.href = "/categories/perlengkapan-rumah"} className="w-[250px] xs:w-[150px] sm:w-[150px] lg:w-[200px] xl:w-[250px] h-[300px] xs:h-[250px] sm:h-[250px] lg:h-[300px] xl:h-[300px]">
                                     <CardActionArea style={{height: "300px"}}>
                                         <CardMedia
                                         component="img"
                                         height="150"
                                         image="/assets/images/perlengkapan-rumah.png"
                                         alt=""
-                                        style={{height: "200px", width: "200px", marginLeft: "20px"}}
+                                        style={{width: "200px", paddingLeft: "20px"}}
                                         />
                                         <CardContent>
-                                        <Typography gutterBottom variant="h5" component="div" className="text-center font-semibold">
+                                        <Typography gutterBottom variant="h6" component="div" className="text-center font-semibold text-lg xs:text-base sm:text-base lg:text-lg xl:text-lg">
                                             Perlengkapan Rumah Tangga
                                         </Typography>
                                         
