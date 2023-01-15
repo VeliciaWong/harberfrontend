@@ -78,7 +78,7 @@ const recoveryChangePasswordPage = () =>{
                                         <Input type={isShown ? "text" : "password"} {...register("confirm_password", { required: true })} />
                                     </Field>
                                     <div className="flex justify-end">
-                                        <Button onSubmit={handleSubmit(saveRecoveryPassword)}>SAVE</Button>
+                                        <Button onClick={handleSubmit(saveRecoveryPassword)}>SAVE</Button>
                                     </div>
                                 </div>
                             </FormContainer>

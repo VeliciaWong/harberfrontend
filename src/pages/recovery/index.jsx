@@ -101,7 +101,7 @@ const recoveryPage = () =>{
                                         <Input {...register("recovery_answer", { required: true })} />
                                     </Field>
                                     <div className="flex justify-end">
-                                        <Button onSubmit={handleSubmit(getRecoveryById)}>SUBMIT</Button>
+                                        <Button onClick={handleSubmit(getRecoveryById)}>SUBMIT</Button>
                                     </div>
                                 </div>
                             </FormContainer>

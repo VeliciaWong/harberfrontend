@@ -78,7 +78,7 @@ const forgotPassword = () =>{
                                         <Input {...register("email", { required: true })} />
                                     </Field>
                                     <div className="flex justify-end">
-                                        <Button onSubmit={handleSubmit(goToRecovery)}>SUBMIT</Button>
+                                        <Button onClick={handleSubmit(goToRecovery)}>SUBMIT</Button>
                                     </div>
                                 </div>
                             </FormContainer>
