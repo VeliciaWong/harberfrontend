@@ -34,11 +34,14 @@ const TableGroup = ({
   });
 
   const makeVisiblePages = ({ pagePointer, margin = 2, pageCount }) => {
-    const pages = new Array(margin * 2 + 1)
-      .fill(null)
-      .map((_, i) => pagePointer - margin + i)
-      .filter((page) => page > 0 && page <= pageCount);
-    return pages;
+    if(pages){
+      const pages = new Array(margin * 2 + 1)
+        .fill(null)
+        .map((_, i) => pagePointer - margin + i)
+        .filter((page) => page > 0 && page <= pageCount);
+      return pages;
+      
+    }
   };
 
   const [isLoading, setIsloading] = useState(true);
