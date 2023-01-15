@@ -13,7 +13,7 @@ const Input = forwardRef(({ onChange, className, prefix, affix, ...rest }, ref) 
       onChange={onChange}
         ref={ref}
         className={[
-          "py-1 px-4 w-[300px] xs:w-[250px] sm:w-[250px] h-[26px] text-base text-black rounded-md",
+          "py-1 px-4 w-[350px] xs:w-[250px] sm:w-[350px] h-[26px] text-base text-black rounded-md",
           className,
           prefix && "rounded-l-none pl-0",
           affix && "rounded-r-none pr-0",

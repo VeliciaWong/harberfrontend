@@ -40,7 +40,7 @@ const LoginPage = () =>{
     const login = async (data) =>{
       await axios({
         method: 'post',
-        url: 'http://localhost:8091/api/login',
+        url: 'https://harber.herokuapp.com/login',
         data: qs.stringify({
           username: data.username,
           password: data.password
@@ -68,7 +68,7 @@ const LoginPage = () =>{
       })
       })
       .catch(err => {
-        toast.error("Your Email/Password is incorrect!")
+        toast.error("Your Username/Password is incorrect!")
         console.log(err)
       });
   }
