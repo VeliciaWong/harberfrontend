@@ -31,12 +31,14 @@ const ProductPagination = (data) =>{
     // })
 
     const nextPage = () => setPage(prev => prev + 1)
-    const totalPage = Math.ceil(total / pageSize);
+    // const totalPage = Math.ceil(total / pageSize);
+    const totalPage = Math.ceil(product.length / pageSize);
     const prevPage = () => setPage(prev => prev - 1)
 
     return (
         <>  
-        {console.log(totalPage)}
+        {/* {console.log(totalPage)} */}
+        {console.log(product.length)}
             {
                 product.length === 0 ?
                 <div className="font-bold flex justify-center items-center text-center text-3xl">
