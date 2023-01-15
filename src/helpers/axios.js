@@ -13,10 +13,10 @@ export const axiosHarber = Axios.create({
 export const getProductPage = async (pageParam = 0, keywordParam, filterParam) =>{
     // const result = await axiosLocal.get(`/product?page=${pageParam}&name.contains=${keywordParam}&categoryId.equals=${filterParam?.category?.id ? filterParam?.category?.id :""}&price.lessThan=${filterParam?.maxPrice ? filterParam?.maxPrice:""}&price.greaterThan=${filterParam?.minPrice ? filterParam?.minPrice:""}&location.contains=${filterParam?.location ? filterParam?.location:""}&rating.contains=${filterParam?.rating?.value ? filterParam?.rating?.value :""}`)
     const result = await axiosHarber.get(`/product?page=${pageParam}&name.contains=${keywordParam}&categoryId.equals=${filterParam?.category?.id ? filterParam?.category?.id :""}&price.lessThan=${filterParam?.maxPrice ? filterParam?.maxPrice:""}&price.greaterThan=${filterParam?.minPrice ? filterParam?.minPrice:""}&location.contains=${filterParam?.location ? filterParam?.location:""}&rating.contains=${filterParam?.rating?.value ? filterParam?.rating?.value :""}`)
-    .then(res => {
-        localStorage.setItem("totalProduct", res.headers.get('X-Total-Count'));
-        
-    })
+    // .then(res => {
+    //     localStorage.setItem("totalProduct", res.headers.get('X-Total-Count'));
+
+    // })
     return result.data
     // console.log(result.data)
 }
