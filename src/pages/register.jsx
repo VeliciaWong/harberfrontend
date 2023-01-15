@@ -46,9 +46,9 @@ const RegisterPage = () =>{
 // });
 
   const registers = (data) =>{
-    setUsername(data?.username);
-    setEmail(data?.email);
-    setPassword(data?.password)
+    setUsername(data.username);
+    setEmail(data.email);
+    setPassword(data.password)
     setModalChooseRecovery(true);
   }
 
@@ -61,9 +61,9 @@ const RegisterPage = () =>{
       "password": password,
       "email": email,
       "questionRecovery":{
-          "id":data?.recoveryQuestion?.id
+          "id":data.recoveryQuestion?.id
       },
-      "answerRecovery": data?.recovery_answer
+      "answerRecovery": data.recovery_answer
   });
     toast.success("Successfully create account!")
     await router.push(`/login`)
