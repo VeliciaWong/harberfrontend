@@ -4,10 +4,15 @@ import download from "downloadjs"
 export const axiosLocal = Axios.create({
     baseURL: 'http://localhost:8091/api'
 })
+
+export const axiosHarber = Axios.create({
+    baseURL: `https://harber.herokuapp.com/api`
+})
   
 
 export const getProductPage = async (pageParam = 0, keywordParam, filterParam) =>{
-    const result = await axiosLocal.get(`/product?page=${pageParam}&name.contains=${keywordParam}&categoryId.equals=${filterParam?.category?.id ? filterParam?.category?.id :""}&price.lessThan=${filterParam?.maxPrice ? filterParam?.maxPrice:""}&price.greaterThan=${filterParam?.minPrice ? filterParam?.minPrice:""}&location.contains=${filterParam?.location ? filterParam?.location:""}&rating.contains=${filterParam?.rating?.value ? filterParam?.rating?.value :""}`)
+    // const result = await axiosLocal.get(`/product?page=${pageParam}&name.contains=${keywordParam}&categoryId.equals=${filterParam?.category?.id ? filterParam?.category?.id :""}&price.lessThan=${filterParam?.maxPrice ? filterParam?.maxPrice:""}&price.greaterThan=${filterParam?.minPrice ? filterParam?.minPrice:""}&location.contains=${filterParam?.location ? filterParam?.location:""}&rating.contains=${filterParam?.rating?.value ? filterParam?.rating?.value :""}`)
+    const result = await axiosHarber.get(`/product?page=${pageParam}&name.contains=${keywordParam}&categoryId.equals=${filterParam?.category?.id ? filterParam?.category?.id :""}&price.lessThan=${filterParam?.maxPrice ? filterParam?.maxPrice:""}&price.greaterThan=${filterParam?.minPrice ? filterParam?.minPrice:""}&location.contains=${filterParam?.location ? filterParam?.location:""}&rating.contains=${filterParam?.rating?.value ? filterParam?.rating?.value :""}`)
     // .then(res => {
     //     localStorage.setItem("totalProduct", res.headers.get('X-Total-Count'));
 
@@ -18,7 +23,12 @@ export const getProductPage = async (pageParam = 0, keywordParam, filterParam) =
 
 export const getWishlistPage = async (pageParam = 0, filterParam) =>{
     const token = localStorage.getItem("token");
-    const result = await axiosLocal.get(`/wish_list?page=${pageParam}&categoryId.equals=${filterParam?.category?.id ? filterParam?.category?.id :""}&price.lessThan=${filterParam?.maxPrice ? filterParam?.maxPrice:""}&price.greaterThan=${filterParam?.minPrice ? filterParam?.minPrice:""}&location.contains=${filterParam?.location ? filterParam?.location:""}&rating.contains=${filterParam?.rating?.value ? filterParam?.rating?.value :""}`,{
+    // const result = await axiosLocal.get(`/wish_list?page=${pageParam}&categoryId.equals=${filterParam?.category?.id ? filterParam?.category?.id :""}&price.lessThan=${filterParam?.maxPrice ? filterParam?.maxPrice:""}&price.greaterThan=${filterParam?.minPrice ? filterParam?.minPrice:""}&location.contains=${filterParam?.location ? filterParam?.location:""}&rating.contains=${filterParam?.rating?.value ? filterParam?.rating?.value :""}`,{
+    //     headers: {
+    //         Authorization: `Bearer ${token}`
+    //     }
+    // })
+    const result = await axiosHarber.get(`/wish_list?page=${pageParam}&categoryId.equals=${filterParam?.category?.id ? filterParam?.category?.id :""}&price.lessThan=${filterParam?.maxPrice ? filterParam?.maxPrice:""}&price.greaterThan=${filterParam?.minPrice ? filterParam?.minPrice:""}&location.contains=${filterParam?.location ? filterParam?.location:""}&rating.contains=${filterParam?.rating?.value ? filterParam?.rating?.value :""}`,{
         headers: {
             Authorization: `Bearer ${token}`
         }
@@ -28,14 +38,20 @@ export const getWishlistPage = async (pageParam = 0, filterParam) =>{
 }
 
 export const getProductById = async (idParam) =>{
-    const result = await axiosLocal.get(`/product/${idParam}`)
-    console.log(result.data)
+    // const result = await axiosLocal.get(`/product/${idParam}`)
+    const result = await axiosHarber.get(`/product/${idParam}`)
+    // console.log(result.data)
     return result.data
 }
 
 export const saveWishlist = async(idParam) =>{
     const token = localStorage.getItem("token");
-    await axiosLocal.post(`/wish_list/save/${idParam}`,{}, {
+    // await axiosLocal.post(`/wish_list/save/${idParam}`,{}, {
+    //     headers: {
+    //         'Authorization': `Bearer ${token}`
+    //     }
+    // })
+    await axiosHarber.post(`/wish_list/save/${idParam}`,{}, {
         headers: {
             'Authorization': `Bearer ${token}`
         }
@@ -44,7 +60,12 @@ export const saveWishlist = async(idParam) =>{
 
 export const deleteWishlist = async(idParam)=>{
     const token = localStorage.getItem("token");
-    await axiosLocal.delete(`/wish_list/product/${idParam}`,{
+    // await axiosLocal.delete(`/wish_list/product/${idParam}`,{
+    //     headers: {
+    //         'Authorization': `Bearer ${token}`
+    //     }
+    // })
+    await axiosHarber.delete(`/wish_list/product/${idParam}`,{
         headers: {
             'Authorization': `Bearer ${token}`
         }
@@ -52,16 +73,21 @@ export const deleteWishlist = async(idParam)=>{
 }
 
 export const getUserData= async() => {
-    // getJsonData: async () =>{
         const fileName =  "Account_List.xlsx";
-        await axiosLocal.get(`/user_export`,{
+        // await axiosLocal.get(`/user_export`,{
+        //     headers : {'Content-Type' : `application/csv`}, responseType: 'blob',
+        // }).then(res => {
+        //     const content = res.headers[`content-type`];
+        //     download(res.data, fileName, content)
+        // })
+        await axiosHarber.get(`/user_export`,{
             headers : {'Content-Type' : `application/csv`}, responseType: 'blob',
         }).then(res => {
             const content = res.headers[`content-type`];
             download(res.data, fileName, content)
         })
-    // }
 }
+
 // export const saveEditProfile = async(idParam) =>{
 //     const token = localStorage.getItem("token");
 //     await axiosLocal.delete(`/user/${idParam}`,{

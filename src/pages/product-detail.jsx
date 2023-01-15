@@ -14,7 +14,7 @@ import BookmarksIcon from '@mui/icons-material/Bookmarks';
 import Footer from "../components/footer/Footer";
 import { Link, Text } from "@nextui-org/react";
 import { useRouter } from "next/router";
-import { axiosLocal, deleteWishlist } from "../helpers/axios";
+import { axiosHarber, axiosLocal, deleteWishlist } from "../helpers/axios";
 import { saveWishlist } from "../helpers/axios";
 import StarRateIcon from '@mui/icons-material/StarRate';
 import { setAuthToken } from "../services/AuthService";
@@ -46,7 +46,12 @@ const productDetailPage = () =>{
 
     const checkIsWishlist = async(idParam)=>{
             const token = localStorage.getItem("token");
-            const result = await axiosLocal.get(`/check_wishlist/${idParam}`,{
+            // const result = await axiosLocal.get(`/check_wishlist/${idParam}`,{
+            //     headers: {
+            //         'Authorization': `Bearer ${token}`
+            //     } 
+            // })
+            const result = await axiosHarber.get(`/check_wishlist/${idParam}`,{
                 headers: {
                     'Authorization': `Bearer ${token}`
                 } 
@@ -56,7 +61,8 @@ const productDetailPage = () =>{
     }
 
     const getProductById = async (idParam) =>{
-        const result = await axiosLocal.get(`/product/${idParam}`)
+        // const result = await axiosLocal.get(`/product/${idParam}`)
+        const result = await axiosHarber.get(`/product/${idParam}`)
         similiar = result.data.name?.split(" ",2)
         similiarName = similiar[0] + " " + similiar[1]
         // similiarEcommerceId = result.data.ecommerce.id
@@ -65,8 +71,8 @@ const productDetailPage = () =>{
     }
 
     const getProductComparison = async(nameParam, idParam) =>{
-        // const result = await axiosLocal.get(`/product?size=3&name.contains=${nameParam}&ecommerceId.notEquals=${ecommerceIdParam}`)
-        const result = await axiosLocal.get(`/product?size=3&id.notIn=${idParam}&name.contains=${nameParam}&sort=price,ASC`)
+        // const result = await axiosLocal.get(`/product?size=3&id.notIn=${idParam}&name.contains=${nameParam}&sort=price,ASC`)
+        const result = await axiosHarber.get(`/product?size=3&id.notIn=${idParam}&name.contains=${nameParam}&sort=price,ASC`)
         // console.log(result.data)
         return setSimiliarProduct(result.data)
     }
@@ -98,30 +104,6 @@ const productDetailPage = () =>{
             console.log("bookmark added")
         }
     }
-
-    // const CommaFormatted = (amount) =>{
-    //     var delimiter = ","; // replace comma if desired
-    //     var a = amount.split('.',2)
-    //     var d = a[1];
-    //     var i = parseInt(a[0]);
-    //     if(isNaN(i)) { return ''; }
-    //     var minus = '';
-    //     if(i < 0) { minus = '-'; }
-    //     i = Math.abs(i);
-    //     var n = new String(i);
-    //     var a = [];
-    //     while(n.length > 3) {
-    //         var nn = n.substr(n.length-3);
-    //         a.unshift(nn);
-    //         n = n.substr(0,n.length-3);
-    //     }
-    //     if(n.length > 0) { a.unshift(n); }
-    //     n = a.join(delimiter);
-    //     if(d.length < 1) { amount = n; }
-    //     else { amount = n + '.' + d; }
-    //     amount = minus + amount;
-    //     return amount;
-    // }
 
     return(
         <div className="relative bg-[#F7FFF7]">
@@ -232,7 +214,8 @@ const productDetailPage = () =>{
                                                 </>
                                         }
                                           <Button className="w-[140px] mt-[10px] flex flex-end text-center" onClick={async() =>{
-                                            const result = await axiosLocal.get(`/product/${item.id}`)
+                                            // const result = await axiosLocal.get(`/product/${item.id}`)
+                                            const result = await axiosHarber.get(`/product/${item.id}`)
                                             router.push({
                                                 pathname: `/product-detail/`,
                                                 query: { "id": result.data.id },

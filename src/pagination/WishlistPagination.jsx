@@ -1,7 +1,7 @@
 import {Box, Pagination} from "@mui/material"
 import { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { axiosLocal, getWishlistPage } from "../helpers/axios";
+import { axiosHarber, axiosLocal, getWishlistPage } from "../helpers/axios";
 import { Card, Col, Grid, Link, Row, Text } from "@nextui-org/react";
 import StarRateIcon from '@mui/icons-material/StarRate';
 import { useRouter } from "next/router";
@@ -124,7 +124,8 @@ const WishlistPagination = (data) =>{
                         {product.map((item, index) => (
                                             <Grid xs={4} sm={3} key={index} >
                                             <Card isPressable isHoverable css={{width: "250px"}} onClick={async() =>{
-                                                const result = await axiosLocal.get(`/product/${item.product?.id}`)
+                                                // const result = await axiosLocal.get(`/product/${item.product?.id}`)
+                                                const result = await axiosHarber.get(`/product/${item.product?.id}`)
                                                 // console.log(result.data)
                                                 router.push({
                                                     pathname: `/product-detail/`,

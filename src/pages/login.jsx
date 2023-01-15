@@ -106,7 +106,7 @@ const LoginPage = () =>{
                           <a className="text-white underline cursor-pointer" href="/register">Don’t have an account? Register here</a>
                           </div>
                           <div className="flex justify-end">
-                            <Button onClick={handleSubmit(login)}>LOGIN</Button>
+                            <Button onSubmit={handleSubmit(login)}>LOGIN</Button>
                           </div>
                         </div>
                       </FormContainer>

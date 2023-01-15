@@ -11,7 +11,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Footer from "../../components/footer/Footer";
 import { createColumnHelper } from "@tanstack/react-table";
 import { useQuery } from "@tanstack/react-query";
-import { axiosLocal, getUserData } from "../../helpers/axios";
+import { axiosHarber, axiosLocal, getUserData } from "../../helpers/axios";
 import { setAuthToken } from "../../services/AuthService";
 import { useRouter } from "next/router";
 
@@ -29,33 +29,8 @@ const adminViewUserPage = () =>{
         router.push(`/admin`)
     }
 
-    // const downloadFile = ({ data, fileName, fileType }) => {
-    //     const blob = new Blob([data], { type: fileType });
-
-    //     const a = document.createElement("a");
-    //     a.download = fileName;
-    //     a.href = window.URL.createObjectURL(blob);
-    //     const clickEvt = new MouseEvent("click", {
-    //         view: window,
-    //         bubbles: true,
-    //         cancelable: true,
-    //     });
-    //     a.dispatchEvent(clickEvt);
-    //     a.remove();
-    // };
-
     const exportCsv = async() =>{
         getUserData()
-        // e.preventDefault();
-        // const userData = await getUserData.getJsonData()
-
-        // downloadFile({
-        //     data: [userData],
-        //     fileName: "List.csv",
-        //     fileType: "text/csv",
-        // })
-        // let result = await axiosLocal.get(`/user_export`)
-        // const data = await result.getJsonData()
         
     }
 
@@ -63,7 +38,8 @@ const adminViewUserPage = () =>{
         queryKey: ["user-list"],
         queryFn: async () => {
         const token = localStorage.getItem("token");
-          let result = await axiosLocal.get(`/user`,{
+        //   let result = await axiosLocal.get(`/user`,{
+            let result = await axiosHarber.get(`/user`,{
             headers: {
                 'Authorization': `Bearer ${token}`
             }

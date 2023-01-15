@@ -1,53 +1,9 @@
 import { useState, useEffect } from "react";
 import { Card, Grid, Link, Row, Text } from "@nextui-org/react";
 import StarRateIcon from '@mui/icons-material/StarRate';
-import { axiosLocal } from "../../helpers/axios";
+import { axiosHarber, axiosLocal } from "../../helpers/axios";
 import { useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/router";
-
-// const list = [
-//     {
-//       title: "Orange",
-//       img: "/images/fruit-1.jpeg",
-//       price: "$5.50",
-//     },
-//     {
-//       title: "Tangerine",
-//       img: "/images/fruit-2.jpeg",
-//       price: "$3.00",
-//     },
-//     {
-//       title: "Cherry",
-//       img: "/images/fruit-3.jpeg",
-//       price: "$10.00",
-//     },
-//     {
-//       title: "Lemon",
-//       img: "/images/fruit-4.jpeg",
-//       price: "$5.30",
-//     },
-//     {
-//       title: "Avocado",
-//       img: "/images/fruit-5.jpeg",
-//       price: "$15.70",
-//     },
-//     {
-//       title: "Lemon 2",
-//       img: "/images/fruit-6.jpeg",
-//       price: "$8.00",
-//     },
-//     {
-//       title: "Banana",
-//       img: "/images/fruit-7.jpeg",
-//       price: "$7.50",
-//     },
-//     {
-//       title: "Watermelon",
-//       img: "/images/fruit-8.jpeg",
-//       price: "$12.20",
-//     },
-    
-//   ];
 
 const SliderofCards = () =>{
   const router = useRouter()
@@ -55,8 +11,8 @@ const SliderofCards = () =>{
     const getProductRecommend = useQuery({
       queryKey: ["productRecommend-list"],
       queryFn: async () => {
-        let result = await axiosLocal.get(`/product?size=10&sort=rating,DESC`);
-  
+        // let result = await axiosLocal.get(`/product?size=10&sort=rating,DESC`);
+        let result = await axiosHarber.get(`/product?size=10&sort=rating,DESC`);
         return result.data;
       },
     });
@@ -65,7 +21,8 @@ const SliderofCards = () =>{
         <div className='bg-[#F7FFF7] grid grid-cols-10 sm:grid-cols-10 md:grid-cols-10 lg:grid-cols-10 xl:grid-cols-10 gap-[18rem] xs:gap-[16.5rem] sm:gap-[17rem] md:gap-[17rem] lg:gap-[18rem] xl:gap-[18rem] overflow-x-scroll px-2'>
                 {getProductRecommend.data?.map((item, index) => (
                     <Card isPressable isHoverable css={{width: "250px"}} key={index} onClick={async() =>{
-                      const result = await axiosLocal.get(`/product/${item.id}`)
+                      // const result = await axiosLocal.get(`/product/${item.id}`)
+                      const result = await axiosHarber.get(`/product/${item.id}`)
                       // console.log(result.data)
                       router.push({
                           pathname: `/product-detail/`,

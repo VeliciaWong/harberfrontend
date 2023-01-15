@@ -12,7 +12,7 @@ import { useState, useEffect } from "react";
 import {useForm, Controller} from "react-hook-form"
 import Input from "../components/inputs/Input"
 import ListBoxInput from "../components/inputs/ListBox"
-import { axiosLocal} from "../helpers/axios";
+import { axiosHarber, axiosLocal} from "../helpers/axios";
 import ProductPagination from "../pagination/ProductPagination";
 import StarRateIcon from '@mui/icons-material/StarRate';
 import { useRouter } from "next/router";
@@ -27,7 +27,8 @@ const productListPage = () =>{
     const categoryListQuery = useQuery({
         queryKey: ["category-list"],
         queryFn: async () => {
-          let result = await axiosLocal.get(`/category`);
+        //   let result = await axiosLocal.get(`/category`);
+        let result = await axiosHarber.get(`/category`);
           setDefaultCategory(result.data[0])
         //   console.log(result.data[1])
           return result.data;
@@ -109,7 +110,7 @@ const productListPage = () =>{
         <div className="relative bg-[#F7FFF7]">
             <div className="h-screen w-screen flex flex-col bg-[#F7FFF7]">
                 <header className="pt-4 pb-[2%]">
-                    <div className="items-center justify-center flex sm:justify-between px-20">
+                    <div className="items-center flex justify-between px-10 xs:px-3 sm:px-6">
                         <Link href="/">
                             <Image
                                 src="/assets/images/harber.png"
@@ -120,22 +121,22 @@ const productListPage = () =>{
                         </Link>
                         {
                             tokens?<>
-                                <div className="hidden sm:flex sm:items-center sm:space-x-[14px]">
+                                <div className="flex sm:items-center space-x-[5px]">
                                     <div className="flex items-center space-x-1 cursor-pointer" onClick={bookmark}>
                                         <BookmarksIcon fontSize="large"/>
-                                        <span className="font-semibold">Wishlist</span>
+                                        <span className="font-semibold xs:hidden sm:flex">Wishlist</span>
                                     </div>
                                     <div className="flex items-center space-x-1 cursor-pointer" onClick={editProfile}>
                                         <AccountCircleIcon fontSize="large"/>
-                                        <span className="font-semibold">Profile</span>
+                                        <span className="font-semibold xs:hidden sm:flex">Profile</span>
                                     </div>
                                     <div className="flex items-center space-x-1 cursor-pointer" onClick={logout}>
                                       <LogoutIcon fontSize="large"/>
-                                      <span className="font-semibold">Logout</span>
+                                      <span className="font-semibold xs:hidden sm:flex">Logout</span>
                                     </div>
                                 </div>
                             </>:<>
-                            <div className="hidden sm:flex sm:items-center sm:space-x-[14px]">
+                            <div className="sm:flex-end sm:space-x-[15px]">
                                 <Button onClick={() => window.location.href = "/login"}>LOGIN</Button>
                             </div>
                             </>
@@ -145,10 +146,10 @@ const productListPage = () =>{
 
                 <div className="h-screen w-screen flex flex-col bg-[#F7FFF7]">
                     <div className="flex flex-row bg-[#F7FFF7]">
-                        <div className="px-20 w-[350px] flex flex-col bg-[#F7FFF7]">
+                        <div className="xs:hidden px-20 sm:px-10 lg:px-20 w-[350px] sm:flex flex-col bg-[#F7FFF7]">
                             <form onSubmit={handleSubmit(onSubmit)}>
                                 <Text size={28} className="font-bold">Filter</Text>
-                                <div className="w-[250px] h-[110px] bg-[#FFFFFF] border-[#DADADA] border-2 rounded-md mb-[20px] p-2 pl-4">
+                                <div className="w-[250px] sm:w-[200px] lg:w-[250px] h-[110px] bg-[#FFFFFF] border-[#DADADA] border-2 rounded-md mb-[20px] p-2 pl-4">
                                     <Text size={21} className="font-bold">Kategori</Text>
                                     {/* <ListBoxInput></ListBoxInput> */}
                                     <div className="items-center">
@@ -170,7 +171,7 @@ const productListPage = () =>{
                                     />
                                     </div>
                                 </div>
-                                <div className="w-[250px] h-[130px] bg-[#FFFFFF] border-[#DADADA] border-2 rounded-md mb-[20px] p-2 pl-4">
+                                <div className="w-[250px] sm:w-[200px] lg:w-[250px] h-[130px] bg-[#FFFFFF] border-[#DADADA] border-2 rounded-md mb-[20px] p-2 pl-4">
                                     <Text size={21} className="font-bold">Harga</Text>
                                     <div className="mt-1 flex flex-col gap-y-2">
                                         <Input defaultValue="1000" placeholder="Minimum Price" {...register("minPrice")}></Input>
@@ -178,13 +179,13 @@ const productListPage = () =>{
                                     </div>
                                     
                                 </div>
-                                <div className="w-[250px] h-[100px] bg-[#FFFFFF] border-[#DADADA] border-2 rounded-md mb-[20px] p-2 pl-4">
+                                <div className="w-[250px] sm:w-[200px] lg:w-[250px] h-[100px] bg-[#FFFFFF] border-[#DADADA] border-2 rounded-md mb-[20px] p-2 pl-4">
                                 <Text size={21} className="font-bold">Lokasi</Text>
                                     <div className="items-center">
                                     <Input defaultValue="Tangerang" placeholder="Location" {...register("location")}></Input>
                                     </div>
                                 </div>
-                                <div className="w-[250px] h-[110px] bg-[#FFFFFF] border-[#DADADA] border-2 rounded-md mb-[20px] p-2 pl-4">
+                                <div className="w-[250px] sm:w-[200px] lg:w-[250px] h-[110px] bg-[#FFFFFF] border-[#DADADA] border-2 rounded-md mb-[20px] p-2 pl-4">
                                     <Text size={21} className="font-bold">Rating</Text>
                                     <Controller
                                         name="rating"

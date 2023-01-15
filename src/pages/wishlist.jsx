@@ -16,7 +16,7 @@ import Axios from "axios";
 import { useRouter } from "next/router";
 import WishlistPagination from "../pagination/WishlistPagination";
 import { setAuthToken } from "../services/AuthService";
-import { axiosLocal } from "../helpers/axios";
+import { axiosHarber, axiosLocal } from "../helpers/axios";
 
 const wishlistPage = () =>{
     // const [product, setProduct] = useState([]);
@@ -26,7 +26,8 @@ const wishlistPage = () =>{
     const categoryListQuery = useQuery({
         queryKey: ["category-list"],
         queryFn: async () => {
-        let result = await axiosLocal.get(`/category`);
+        // let result = await axiosLocal.get(`/category`);
+        let result = await axiosHarber.get(`/category`);
         return result.data;
         },
     });
