@@ -40,7 +40,7 @@ const LoginPage = () =>{
     const login = async (data) =>{
       await axios({
         method: 'post',
-        url: 'https://harber.herokuapp.com/login',
+        url: 'https://harber.herokuapp.com/api/login',
         data: qs.stringify({
           username: data.username,
           password: data.password
