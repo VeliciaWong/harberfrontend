@@ -14,6 +14,8 @@ import SearchIcon from '@mui/icons-material/Search';
 import { Input } from "../components/inputs";
 import Section from "../components/carousel/Section"
 import Carousel from "react-multi-carousel"
+import { toast} from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 import "react-multi-carousel/lib/styles.css";
 import { Text } from "@nextui-org/react";
 import Footer from "../components/footer/Footer";

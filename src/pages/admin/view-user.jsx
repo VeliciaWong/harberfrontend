@@ -17,23 +17,6 @@ import { useRouter } from "next/router";
 
 const adminViewUserPage = () =>{
     const router = useRouter();
-    useEffect(()=>{
-        const token = localStorage.getItem("token");
-        if (token) {
-            setAuthToken(token);
-        } else localStorage.removeItem("token");
-    })
-
-    const logout = () =>{
-        localStorage.removeItem("token")
-        router.push(`/admin`)
-    }
-
-    const exportCsv = async() =>{
-        getUserData()
-        
-    }
-
     const userListQuery = useQuery({
         queryKey: ["user-list"],
         queryFn: async () => {
@@ -48,6 +31,25 @@ const adminViewUserPage = () =>{
           return result.data;
         },
       });
+
+    useEffect(()=>{
+        const token = localStorage.getItem("token");
+        if (token) {
+            setAuthToken(token);
+            userListQuery
+        } else localStorage.removeItem("token");
+    })
+
+    const logout = () =>{
+        localStorage.removeItem("token")
+        router.push(`/admin`)
+    }
+
+    const exportCsv = async() =>{
+        getUserData()
+        
+    }
+
 
         const columnHelper = createColumnHelper();
         const columns = useMemo(
