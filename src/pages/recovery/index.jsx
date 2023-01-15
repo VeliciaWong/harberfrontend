@@ -11,7 +11,7 @@ import { useYupResolver } from "../../helpers/yup";
 import { useForm } from "react-hook-form";
 import Footer from "../../components/footer/Footer";
 import { useRouter } from "next/router";
-import { axiosLocal } from "../../helpers/axios";
+import { axiosHarber, axiosLocal } from "../../helpers/axios";
 import { toast} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -64,7 +64,8 @@ const recoveryPage = () =>{
     //   }
 
         const getRecoveryById = async(data)=>{
-            await axiosLocal.post(`/user_reset/answer_recovery/${userId}`, { answerRecovery: data.recovery_answer } ).then(response =>{
+            // await axiosLocal.post(`/user_reset/answer_recovery/${userId}`, { answerRecovery: data.recovery_answer } ).then(response =>{
+                await axiosHarber.post(`/user_reset/answer_recovery/${userId}`, { answerRecovery: data.recovery_answer } ).then(response =>{
                 console.log(response)
               // console.log(response.data?.questionRecovery?.question)
                 // localStorage.setItem("userRecoveryQuestion", response.data?.questionRecovery?.question)

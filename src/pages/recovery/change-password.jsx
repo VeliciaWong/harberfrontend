@@ -10,7 +10,7 @@ import * as yup from "yup";
 import { useYupResolver } from "../../helpers/yup";
 import { useForm } from "react-hook-form";
 import Footer from "../../components/footer/Footer";
-import { axiosLocal } from "../../helpers/axios";
+import { axiosHarber, axiosLocal } from "../../helpers/axios";
 import { useRouter } from "next/router";
 import { toast} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
@@ -46,7 +46,8 @@ const recoveryChangePasswordPage = () =>{
         
         const saveRecoveryPassword = async(data) =>{
             // masukin api buat nyimpen pass recovery ini jadi pass baru di db
-            await axiosLocal.put(`/user_reset/reset_password/${userId}`, {password : data.password})
+            // await axiosLocal.put(`/user_reset/reset_password/${userId}`, {password : data.password})
+            await axiosHarber.put(`/user_reset/reset_password/${userId}`, {password : data.password})
             toast.success("Reset password Success!");
             router.push(`/login`)
             // window.location.href="/login"
