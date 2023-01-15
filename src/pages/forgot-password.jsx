@@ -10,7 +10,7 @@ import FormContainer  from "../components/forms/Container";
 import Field  from "../components/forms/Field";
 import { Input } from "../components/inputs";
 import Footer from "../components/footer/Footer";
-import {axiosLocal} from"../helpers/axios"
+import {axiosHarber, axiosLocal} from"../helpers/axios"
 import { useRouter } from "next/router";
 import { toast} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
@@ -37,8 +37,8 @@ const forgotPassword = () =>{
       const goToRecovery = async(data) =>{
           // console.log(data)
         // localStorage.setItem("email", data)
-        await axiosLocal.post(`/user_reset`, data)
-
+        // await axiosLocal.post(`/user_reset`, data)
+        await axiosHarber.post(`/user_reset`, data)
         .then(response =>{
           const userId = response.data?.id
         // console.log(response.data?.questionRecovery?.question)

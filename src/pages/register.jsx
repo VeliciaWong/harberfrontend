@@ -15,7 +15,7 @@ import Footer from "../components/footer/Footer";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { toast} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
-import { axiosLocal } from "../helpers/axios";
+import { axiosHarber, axiosLocal } from "../helpers/axios";
 import { data } from "autoprefixer";
 import { useRouter } from "next/router";
 
@@ -55,7 +55,8 @@ const RegisterPage = () =>{
   const saveRecovery = async(data) =>{
     // nembak api buat nyimpen user + recovery
     // console.log(result.data);
-    await axiosLocal.post(`/user/save`, {
+    // await axiosLocal.post(`/user/save`, {
+      await axiosHarber.post(`/user/save`, {
       "username": username,
       "password": password,
       "email": email,

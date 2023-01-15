@@ -8,14 +8,15 @@ import ListBoxInput from "../inputs/ListBox";
 import { Listbox, Transition, Fragment } from '@headlessui/react'
 import { useMutation, useQuery } from "@tanstack/react-query";
 const { ChevronDownIcon } = require("@heroicons/react/20/solid");
-import { axiosLocal } from "../../helpers/axios";
+import { axiosHarber, axiosLocal } from "../../helpers/axios";
 
 
 export default function ModalSetRecovery({ open, onClose, onSubmit, loading }){
   const recoveryQuestionListQuery = useQuery({
     queryKey: ["recoveryquestion-list"],
     queryFn: async () => {
-      let result = await axiosLocal.get(`/question_recovery`);
+      // let result = await axiosLocal.get(`/question_recovery`);
+      let result = await axiosHarber.get(`/question_recovery`);
       return result.data;
     },
 });
@@ -26,17 +27,6 @@ export default function ModalSetRecovery({ open, onClose, onSubmit, loading }){
     //     { id: 3, name: 'C' },
     //   ]
   const { register, handleSubmit, control } = useForm();
-  // const [selectedRecoveryQuestion, setSelectedRecoveryQuestion] = useState(recoveryQuestions[0]);
-
-//   useEffect(() => {
-//     getRecoveryQuestion()
-//     }, []
-//   )
-
-//   const getRecoveryQuestion = () =>{
-//     // const recoveryQuestions = result.data[0].recoveryQuestion.join(', ');
-//     setSelectedRecoveryQuestion(recoveryQuestions)
-//   }
 
   return (
     <Modal
