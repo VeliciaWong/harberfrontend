@@ -111,10 +111,10 @@ const elektronikPage = () =>{
                   <div className="font-bold flex justify-center items-center text-center text-3xl">
                     Loading....
                   </div> : <>
-                  <Grid.Container spacing={5} className="gap-y-[2rem]" justify="flex-start">
+                  <Grid.Container spacing={4} className="gap-y-[2rem]" justify="flex-center">
                       {/* {console.log(product)} */}
                       {getElektronik.data?.map((item, index) => (
-                          <Grid xs={4} sm={3} md={3} lg={3} key={index} className="gap-x-6">
+                          <Grid xs={4} sm={3} md={3} key={index} className="gap-x-6">
                           <Card isPressable isHoverable className="w-[300px] xs:w-[250px] sm:w-[250px] lg:w-[250px] xl:w-[300px]" onClick={async() =>{
                                       // const result = await axiosLocal.get(`/product/${item.id}`)
                                       const result = await axiosHarber.get(`/product/${item.id}`)
