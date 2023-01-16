@@ -27,10 +27,12 @@ const adminViewUserPage = () =>{
                 'Authorization': `Bearer ${token}`
             }
         });
-    
-          return result.data;
+
+        for(let n = 0; n < result.data.length; n++){
+            result.data[n].key = (n+1).toString() 
+          }
         },
-      });
+    });
 
     useEffect(()=>{
         const token = localStorage.getItem("token");
@@ -54,10 +56,10 @@ const adminViewUserPage = () =>{
         const columnHelper = createColumnHelper();
         const columns = useMemo(
             () => [
-            columnHelper.accessor("id", {
-                header: () => <span>User id</span>,
-                cell: (info) => <p>{info.getValue()}</p>,
-            }),
+            // columnHelper.accessor("id", {
+            //     header: () => <span>User id</span>,
+            //     cell: (info) => <p>{info.getValue()}</p>,
+            // }),
             columnHelper.accessor("username", {
                 header: () => <span>Username</span>,
                 cell: (info) => <p>{info.getValue()}</p>,
@@ -99,7 +101,6 @@ const adminViewUserPage = () =>{
                     <div className="z-30 flex items-center justify-center">
                         <div className="max-w-[1250px] h-[450px] mx-auto bg-[#4ECDC4] drop-shadow-lg shadow-lg bg-contain bg-center rounded-[18px] w-full p-[30px]">
                         <TableGroup
-                            keyProp="user_id"
                             selectionMode="none"
                             data={userListQuery.data}
                             columns={columns}

@@ -103,6 +103,11 @@ const getalatTulisBuku = useQuery({
                     
 
                     <div className="flex justify-center self-center items-center pt-[50px] pb-[50px] px-10 bg-[#F7FFF7]">
+                      {
+                        getalatTulisBuku.length === 0 ?
+                        <div className="font-bold flex justify-center items-center text-center text-3xl">
+                            Loading....
+                        </div>:<>
                         <Grid.Container spacing={5} className="gap-y-[2rem]" justify="flex-start">
                             {/* {console.log(product)} */}
                             {getalatTulisBuku.data?.map((item, index) => (
@@ -166,6 +171,8 @@ const getalatTulisBuku = useQuery({
                                 </Grid>
                             ))}
                         </Grid.Container>
+                        </>
+                      }
                     </div>
                     <Footer/>
                 </div>
