@@ -17,6 +17,7 @@ const alatTulisBukuPage = () =>{
   const [product, setProduct] = useState([]);
   const router = useRouter()
   const [tokens, setToken] = useState()
+  const [isLoading, setIsloading] = useState(true);
 
   useEffect(()=>{
     const token = localStorage.getItem("token");
@@ -32,6 +33,7 @@ const getalatTulisBuku = useQuery({
     queryFn: async () => {
       // let result = await axiosLocal.get(`/product?categoryId.equals=1`);
       let result = await axiosHarber.get(`/product?categoryId.equals=1`);
+      setIsloading(false)
       return result.data;
     },
   });
@@ -104,7 +106,7 @@ const getalatTulisBuku = useQuery({
 
                     <div className="flex justify-center self-center items-center pt-[50px] pb-[50px] px-10 bg-[#F7FFF7]">
                       {
-                        getalatTulisBuku.length === 0 ?
+                        isLoading ?
                         <div className="font-bold flex justify-center items-center text-center text-3xl">
                             Loading....
                         </div>:<>
@@ -171,6 +173,7 @@ const getalatTulisBuku = useQuery({
                                 </Grid>
                             ))}
                         </Grid.Container>
+
                         </>
                       }
                     </div>

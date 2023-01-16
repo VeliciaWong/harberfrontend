@@ -31,6 +31,8 @@ const adminViewUserPage = () =>{
         for(let n = 0; n < result.data.length; n++){
             result.data[n].key = (n+1).toString() 
           }
+
+        return result.data
         },
     });
 

@@ -104,6 +104,11 @@ const kesehatanPage = () =>{
               
 
               <div className="flex justify-center self-center items-center pt-[50px] pb-[50px] px-10 bg-[#F7FFF7]">
+                {
+                  getKesehatan.length === 0 ?
+                  <div className="font-bold flex justify-center items-center text-center text-3xl">
+                    Loading....
+                  </div>:<>
                   <Grid.Container spacing={5} className="gap-y-[2rem]" justify="flex-start">
                       {/* {console.log(product)} */}
                       {getKesehatan.data?.map((item, index) => (
@@ -167,6 +172,9 @@ const kesehatanPage = () =>{
                           </Grid>
                       ))}
                   </Grid.Container>
+
+                  </>
+                }
               </div>
               <Footer/>
           </div>
