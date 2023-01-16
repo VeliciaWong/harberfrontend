@@ -73,7 +73,7 @@ const RegisterPage = () =>{
     return(
         <div className="min-h-screen w-screen bg-[#F7FFF7]">
             <div className="h-screen w-screen flex flex-col">
-                <div className="max-w-[150px] mt-[2%] mb-[2%] z-40 ml-[70px] cursor-pointer">
+                <div className="max-w-[150px] mt-[2%] mb-[2%] z-40 ml-[70px] xs:ml-[25px] sm:ml-[50px] lg:ml-[60px] xl:ml-[70px] cursor-pointer" onClick={() => window.location.href = "/"}>
                     <Image
                         src="/assets/images/harber.png"
                         alt=""
@@ -84,11 +84,11 @@ const RegisterPage = () =>{
                 </div>
                 <div className="flex-grow flex items-center justify-center">
                 <Modal>
-                    <div className="text-white text-left pl-[20px] font-bold space-y-10">
-                        <span className="text-4xl">
+                    <div className="text-white text-left pl-[20px] font-bold space-y-10 xs:space-y-2">
+                        <span className="text-4xl xs:text-2xl lg:text-4xl">
                             Welcome to HarBer.id
                         </span>
-                        <p className="text-[30px]">
+                        <p className="text-[30px] xs:text-[16px] md:text-[20px] lg:text-[30px] xs:hidden sm:flex">
                             Website Product Price<br/>Comparison from Various<br/>E-commerce in Indonesia
                         </p>
                     </div>
@@ -127,7 +127,7 @@ const RegisterPage = () =>{
                   />
                 </div>
                 <footer>
-                    <div className="text-black font-semibold text-center text-[25px] pt-[30px] pb-[30px] flex self-center justify-center items-center">
+                    <div className="text-black font-semibold text-center text-[25px] xs:text-[20px] lg:text-[25px] pt-[30px] pb-[30px] flex self-center justify-center items-center">
                             <span>©2022-2023 HarBer.Id | All right reserved</span>
                     </div>
                 </footer>

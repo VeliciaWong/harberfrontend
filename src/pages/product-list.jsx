@@ -144,12 +144,12 @@ const productListPage = () =>{
                     </div>
                 </header>
 
-                <div className="h-screen w-screen flex flex-col bg-[#F7FFF7]">
+                <div className="h-screen w-screen flex flex-col bg-[#F7FFF7] xs:overflow-x-auto sm:overflow-x-hidden">
                     <div className="flex flex-row bg-[#F7FFF7]">
-                        <div className="xs:hidden px-20 sm:px-10 lg:px-20 w-[350px] sm:flex flex-col bg-[#F7FFF7]">
+                        <div className="ml-[50px] xs:ml-0 sm:ml-[20px] lg:ml-[30px] xl:ml-[50px] px-10 w-[350px] flex-col bg-[#F7FFF7]">
                             <form onSubmit={handleSubmit(onSubmit)}>
                                 <Text size={28} className="font-bold">Filter</Text>
-                                <div className="w-[250px] sm:w-[200px] lg:w-[250px] h-[110px] bg-[#FFFFFF] border-[#DADADA] border-2 rounded-md mb-[20px] p-2 pl-4">
+                                <div className="w-[250px] h-[110px] bg-[#FFFFFF] border-[#DADADA] border-2 rounded-md mb-[20px] p-2 pl-4">
                                     <Text size={21} className="font-bold">Kategori</Text>
                                     {/* <ListBoxInput></ListBoxInput> */}
                                     <div className="items-center">
@@ -171,7 +171,7 @@ const productListPage = () =>{
                                     />
                                     </div>
                                 </div>
-                                <div className="w-[250px] sm:w-[200px] lg:w-[250px] h-[130px] bg-[#FFFFFF] border-[#DADADA] border-2 rounded-md mb-[20px] p-2 pl-4">
+                                <div className="w-[250px] h-[130px] bg-[#FFFFFF] border-[#DADADA] border-2 rounded-md mb-[20px] p-2 pl-4">
                                     <Text size={21} className="font-bold">Harga</Text>
                                     <div className="mt-1 flex flex-col gap-y-2">
                                         <Input defaultValue="1000" placeholder="Minimum Price" {...register("minPrice")}></Input>
@@ -179,13 +179,13 @@ const productListPage = () =>{
                                     </div>
                                     
                                 </div>
-                                <div className="w-[250px] sm:w-[200px] lg:w-[250px] h-[100px] bg-[#FFFFFF] border-[#DADADA] border-2 rounded-md mb-[20px] p-2 pl-4">
+                                <div className="w-[250px] h-[100px] bg-[#FFFFFF] border-[#DADADA] border-2 rounded-md mb-[20px] p-2 pl-4">
                                 <Text size={21} className="font-bold">Lokasi</Text>
                                     <div className="items-center">
                                     <Input defaultValue="Tangerang" placeholder="Location" {...register("location")}></Input>
                                     </div>
                                 </div>
-                                <div className="w-[250px] sm:w-[200px] lg:w-[250px] h-[110px] bg-[#FFFFFF] border-[#DADADA] border-2 rounded-md mb-[20px] p-2 pl-4">
+                                <div className="w-[250px] h-[110px] bg-[#FFFFFF] border-[#DADADA] border-2 rounded-md mb-[20px] p-2 pl-4">
                                     <Text size={21} className="font-bold">Rating</Text>
                                     <Controller
                                         name="rating"
@@ -214,7 +214,7 @@ const productListPage = () =>{
                                 <div></div>
                                 </>}
                             </div>
-                            <div className="mr-[90px]">
+                            <div className="">
                                 <ProductPagination data={{keyword : router.query.keyword, filter: filter}}/>
                             </div>
                         </div>

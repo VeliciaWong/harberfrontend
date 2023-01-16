@@ -98,7 +98,7 @@ const editProfilePage = () =>{
         <div className="relative bg-[#F7FFF7]">
             <div className="h-screen w-screen flex flex-col">
                 <header className="pt-4 px-4 pb-[30px]">
-                    <div className="relative overflow-hidden xl:px-32 3xl:px-[139px] mx-auto items-center justify-center flex sm:justify-between">
+                    <div className="relative overflow-hidden xl:px-32 3xl:px-[139px] mx-auto items-center flex justify-between px-10 xs:px-2 sm:px-2">
                         <Link href="/">
                                 <Image
                                     src="/assets/images/harber.png"
@@ -107,7 +107,7 @@ const editProfilePage = () =>{
                                     height={70}
                                 />   
                         </Link>
-                        <div className="hidden sm:flex sm:items-center sm:space-x-[14px]">
+                        <div className="flex sm:items-center space-x-[5px]">
                             <div className="flex items-center space-x-1 cursor-pointer" onClick={logout}>
                                 <LogoutIcon fontSize="large"/>
                                 <span className="font-semibold">Logout</span>
@@ -118,7 +118,7 @@ const editProfilePage = () =>{
                 <div className={`relative h-screen w-screen overflow-hidden xl:px-30 3xl:px-[139px]`}>
                 
                 <Text size={30} className="text-black font-bold text-center mb-[20px]">Edit My Profile</Text>
-                <div className="max-w-[650px] h-[380px] mx-auto bg-[#4ECDC4] shadow-xl bg-contain bg-center rounded-[18px] w-full p-5 mb-[5%]">
+                <div className="max-w-[650px] xs:max-w-[450px] md:max-w-[550px] lg:max-w-[650px] h-[380px] mx-auto bg-[#4ECDC4] shadow-xl bg-contain bg-center rounded-[18px] w-full p-5 mb-[5%]">
                     <div className="relative w-full h-full mx-auto">
                         <div className='mt-[2%] flex flex-col justify-center items-center'>
                             <FormContainer>

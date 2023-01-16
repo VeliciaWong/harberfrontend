@@ -183,7 +183,7 @@ const WishlistPagination = (data) =>{
                             ))}
 
                     </Grid.Container>
-                    <nav className="flex justify-center content-center items-center pb-[2%]">
+                    <nav className="flex justify-center content-center items-center mt-[2%] pb-[2%]">
                         <button onClick={prevPage} disabled={page === 0} style={{
                             marginRight: "20px"
                         }}>Prev Page</button>

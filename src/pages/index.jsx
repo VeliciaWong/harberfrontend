@@ -240,7 +240,7 @@ export default function Home(){
                                         alt=""
                                         />
                                         <CardContent>
-                                        <Typography gutterBottom variant="h5" component="div" className="text-center font-semibold text-lg">
+                                        <Typography gutterBottom variant="h6" component="div" className="text-center font-semibold text-lg">
                                             Pakaian
                                         </Typography>
                                         
@@ -257,7 +257,7 @@ export default function Home(){
                                         style={{width: "200px", paddingLeft: "20px"}}
                                         />
                                         <CardContent>
-                                        <Typography gutterBottom variant="h6" component="div" className="text-center font-semibold text-lg xs:text-base sm:text-base lg:text-lg xl:text-lg">
+                                        <Typography gutterBottom component="div" className="text-center font-bold text-lg xs:text-base sm:text-base lg:text-lg xl:text-lg">
                                             Perlengkapan Rumah Tangga
                                         </Typography>
                                         

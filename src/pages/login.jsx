@@ -121,7 +121,7 @@ const LoginPage = () =>{
                     onSubmit={goToRecovery}/> */}
                 </div>
                 <footer>
-                    <div className="text-black font-semibold text-center text-[25px] xs:text-[20px] pt-[30px] pb-[30px] flex self-center justify-center items-center">
+                    <div className="text-black font-semibold text-center text-[25px] xs:text-[20px] lg:text-[25px] pt-[30px] pb-[30px] flex self-center justify-center items-center">
                             <span>©2022-2023 HarBer.Id | All right reserved</span>
                     </div>
                 </footer>
