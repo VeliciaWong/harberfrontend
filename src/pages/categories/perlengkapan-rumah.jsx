@@ -17,7 +17,7 @@ const perlengkapanRumahTanggaPage = () =>{
   const [product, setProduct] = useState([]);
   const router = useRouter()
   const [tokens, setToken] = useState()
-
+  const [isLoading, setIsloading] = useState(true);
 
   useEffect(()=>{
     const token = localStorage.getItem("token");
@@ -32,6 +32,7 @@ const perlengkapanRumahTanggaPage = () =>{
     queryFn: async () => {
       // let result = await axiosLocal.get(`/product?categoryId.equals=6`);
       let result = await axiosHarber.get(`/product?categoryId.equals=6`);
+      setIsloading(false)
       return result.data;
     },
   });
@@ -102,7 +103,11 @@ const perlengkapanRumahTanggaPage = () =>{
               </div>
               
 
-              <div className="flex justify-center self-center items-center pt-[50px] pb-[50px] px-10 bg-[#F7FFF7]">
+              <div className="flex justify-center self-center items-center pt-[50px] pb-[50px] px-10 bg-[#F7FFF7]">{
+                isLoading ?
+                <div className="font-bold flex justify-center items-center text-center text-3xl">
+                  Loading....
+                </div>:<>
                   <Grid.Container spacing={5} className="gap-y-[2rem]" justify="flex-start">
                       {/* {console.log(product)} */}
                       {getPerlengkapanRumah.data?.map((item, index) => (
@@ -166,6 +171,9 @@ const perlengkapanRumahTanggaPage = () =>{
                           </Grid>
                       ))}
                   </Grid.Container>
+                
+                </>
+              }
               </div>
               <Footer/>
           </div>

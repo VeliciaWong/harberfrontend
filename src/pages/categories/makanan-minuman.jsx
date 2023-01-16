@@ -16,7 +16,7 @@ import { setAuthToken } from "../../services/AuthService";
 const makananMinumanPage = () =>{
   const [product, setProduct] = useState([])
   const router = useRouter()
-
+  const [isLoading, setIsloading] = useState(true);
   const [tokens, setToken] = useState()
 
 
@@ -34,6 +34,7 @@ const makananMinumanPage = () =>{
     queryFn: async () => {
       // let result = await axiosLocal.get(`/product?categoryId.equals=4`);
       let result = await axiosHarber.get(`/product?categoryId.equals=4`);
+      setIsloading(false)
       return result.data;
     },
   });
@@ -105,6 +106,10 @@ const makananMinumanPage = () =>{
               
 
               <div className="flex justify-center self-center items-center pt-[50px] pb-[50px] px-10 bg-[#F7FFF7]">
+                {
+                  isLoading?<div className="font-bold flex justify-center items-center text-center text-3xl">
+                  Loading....
+                </div>:<>
                   <Grid.Container spacing={5} className="gap-y-[2rem]" justify="flex-start">
                       {/* {console.log(product)} */}
                       {getMakananMinuman.data?.map((item, index) => (
@@ -168,6 +173,8 @@ const makananMinumanPage = () =>{
                           </Grid>
                       ))}
                   </Grid.Container>
+                  </>
+                }
               </div>
               <Footer/>
           </div>

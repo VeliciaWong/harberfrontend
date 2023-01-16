@@ -17,7 +17,7 @@ const pakaianPage = () =>{
   const [product, setProduct] = useState([]);
   const router = useRouter()
   const [tokens, setToken] = useState()
-
+  const [isLoading, setIsloading] = useState(true);
 
   useEffect(()=>{
     const token = localStorage.getItem("token");
@@ -33,6 +33,7 @@ const pakaianPage = () =>{
     queryFn: async () => {
       // let result = await axiosLocal.get(`/product?categoryId.equals=5`);
       let result = await axiosHarber.get(`/product?categoryId.equals=5`);
+      setIsloading(false)
       return result.data;
     },
   });
@@ -104,6 +105,10 @@ const pakaianPage = () =>{
               
 
               <div className="flex justify-center self-center items-center pt-[50px] pb-[50px] px-10 bg-[#F7FFF7]">
+              {
+                  isLoading?<div className="font-bold flex justify-center items-center text-center text-3xl">
+                  Loading....
+                </div>:<>
                   <Grid.Container spacing={5} className="gap-y-[2rem]" justify="flex-start">
                       {/* {console.log(product)} */}
                       {getPakaian.data?.map((item, index) => (
@@ -167,6 +172,8 @@ const pakaianPage = () =>{
                           </Grid>
                       ))}
                   </Grid.Container>
+                
+                </>}
               </div>
               <Footer/>
           </div>
