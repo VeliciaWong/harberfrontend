@@ -28,9 +28,9 @@ const adminViewUserPage = () =>{
             }
         });
 
-        for(let n = 0; n < result.data.length; n++){
-            result.data[n].key = (n+1).toString() 
-          }
+        // for(let n = 0; n < result.data.length; n++){
+        //     result.data[n].key = (n+1).toString() 
+        //   }
 
         return result.data
         },
@@ -40,7 +40,7 @@ const adminViewUserPage = () =>{
         const token = localStorage.getItem("token");
         if (token) {
             setAuthToken(token);
-            userListQuery
+            // userListQuery
         } else localStorage.removeItem("token");
     })
 
@@ -75,7 +75,7 @@ const adminViewUserPage = () =>{
                 cell: (info) => new Date(info.getValue()).toLocaleString(),
             }),
             ],
-            []
+            [userListQuery?.data]
         );
 
     return(
