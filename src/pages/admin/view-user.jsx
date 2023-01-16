@@ -54,6 +54,10 @@ const adminViewUserPage = () =>{
         const columnHelper = createColumnHelper();
         const columns = useMemo(
             () => [
+            columnHelper.accessor("id", {
+                header: () => <span>User id</span>,
+                cell: (info) => <p>{info.getValue()}</p>,
+            }),
             columnHelper.accessor("username", {
                 header: () => <span>Username</span>,
                 cell: (info) => <p>{info.getValue()}</p>,
