@@ -120,18 +120,18 @@ const productDetailPage = () =>{
                         </Link>
                         {
                             tokens?<>
-                               <div className="hidden sm:flex sm:items-center sm:space-x-[14px]">
+                               <div className="flex sm:items-center space-x-[15px]">
                                     <div className="flex items-center space-x-1 cursor-pointer" onClick={bookmark}>
                                         <BookmarksIcon fontSize="large"/>
-                                        <span className="font-semibold">Wishlist</span>
+                                        <span className="font-semibold xs:hidden sm:flex">Wishlist</span>
                                     </div>
                                     <div className="flex items-center space-x-1 cursor-pointer" onClick={editProfile}>
                                         <AccountCircleIcon fontSize="large"/>
-                                        <span className="font-semibold">Profile</span>
+                                        <span className="font-semibold xs:hidden sm:flex">Profile</span>
                                     </div>
                                     <div className="flex items-center space-x-1 cursor-pointer" onClick={logout}>
                                       <LogoutIcon fontSize="large"/>
-                                      <span className="font-semibold">Logout</span>
+                                      <span className="font-semibold xs:hidden sm:flex">Logout</span>
                                     </div>
                                 </div>
 

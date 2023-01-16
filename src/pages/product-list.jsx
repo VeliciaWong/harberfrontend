@@ -121,7 +121,7 @@ const productListPage = () =>{
                         </Link>
                         {
                             tokens?<>
-                                <div className="flex sm:items-center space-x-[5px]">
+                                <div className="flex sm:items-center space-x-[15px]">
                                     <div className="flex items-center space-x-1 cursor-pointer" onClick={bookmark}>
                                         <BookmarksIcon fontSize="large"/>
                                         <span className="font-semibold xs:hidden sm:flex">Wishlist</span>
