@@ -81,7 +81,7 @@ const AdminLoginPage = () =>{
       }
     })
     .catch(err => {
-      toast.error("Your Email/Password is incorrect!")
+      toast.error("Your Username/Password is incorrect!")
       console.log(err)
     });
   }
