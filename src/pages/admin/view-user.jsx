@@ -103,7 +103,6 @@ const adminViewUserPage = () =>{
                     <div className="z-30 flex items-center justify-center">
                         <div className="max-w-[1250px] h-[450px] mx-auto bg-[#4ECDC4] drop-shadow-lg shadow-lg bg-contain bg-center rounded-[18px] w-full p-[30px]">
                         <TableGroup
-                            selectionMode="none"
                             data={userListQuery.data}
                             columns={columns}
                         />
