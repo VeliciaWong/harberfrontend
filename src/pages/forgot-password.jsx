@@ -46,7 +46,7 @@ const forgotPassword = () =>{
           router.push({
             pathname: `/recovery/`,
             query: { "id": userId }
-          })
+          }).then(() => router.reload())
         })
         .catch(error =>{
           toast.warn("Email is not registered!")
