@@ -85,7 +85,7 @@ const productDetailPage = () =>{
     }
 
     const editProfile = () =>{
-        // dikasih validasi user udh login atau gk, kl belum gk bisa akses page
+        router.push(`/edit-profile`)
     }
 
     const logout = () =>{
@@ -200,10 +200,10 @@ const productDetailPage = () =>{
                                 </>:<>
                                     {
                                         similiarProduct.map((item, index) => (
-                                            <div className="w-[950px] xs:w-[450px] sm:w-[600px] md:w-[750px] xl:w-[950px] h-[200px] bg-[#FFFFFF] drop-shadow-lg mb-10 border-[#DEDEDE] border-2 rounded-lg p-4" key={index}>
+                                            <div className="w-[950px] xs:w-[450px] sm:w-[600px] md:w-[750px] xl:w-[950px] h-[220px] content-center bg-[#FFFFFF] drop-shadow-lg mb-10 border-[#DEDEDE] border-2 rounded-lg p-4" key={index}>
                                                 <div className="flex flex-col self-center">
                                                 <a href={item.url} target="_blank" rel="noopener noreferrer">
-                                                    <span className="font-bold text-[18px] xs:text-[15px] sm:text-[18px] text-[#4ECDC4]">{item.name}</span>
+                                                    <span className="font-bold text-[16.5px] xs:text-[14px] sm:text-[16.5px] text-[#4ECDC4]">{item.name}</span>
                                                 </a> 
                                                   <span className="font-semibold text-[19px]">Rp&nbsp;{(item.price)?.toLocaleString()}</span>
                                                   {

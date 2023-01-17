@@ -97,7 +97,7 @@ const ratingList = [
             setAuthToken(token);
             setToken(token);
             setUsername(username);
-        } else localStorage.removeItem("token");
+        } else router.replace(`/login`);
     })
 
     return(

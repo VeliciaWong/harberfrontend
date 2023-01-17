@@ -65,7 +65,7 @@ const ProductPagination = (data) =>{
                                                 />
                                                 <Card.Footer css={{ justifyItems: "flex-start" }}>
                                                     <Col wrap="wrap" align="left">
-                                                        <Text b className="text-[12px] xs:text-[9px] sm:text-[12px] lg:text-[12px]">{item.name}</Text>
+                                                        <Text b className="text-[14px] xs:text-[9px] sm:text-[11px] lg:text-[12px] xl:text-[14px]">{item.name}</Text>
                                                         <div className="pt-1">
                                                             <Row wrap="wrap" justify="left">
                                                                 <Text className="pr-3 text-[15px] xs:text-[12px] sm:text-[12px] lg:text-[12px] xl:text-[15px]" css={{ color: "$accents7", fontWeight: "$semibold", fontSize: "$sm" }}>Rp &nbsp;

@@ -81,7 +81,7 @@ const productListPage = () =>{
     }
 
     const editProfile = () =>{
-        // dikasih validasi user udh login atau gk, kl belum gk bisa akses page
+        router.push(`/edit-profile`)
     }
 
     const logout = () =>{

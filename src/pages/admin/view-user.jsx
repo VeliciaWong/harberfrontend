@@ -36,12 +36,15 @@ const adminViewUserPage = () =>{
         },
     });
 
+    const [tokens, setToken] = useState()
+
     useEffect(()=>{
         const token = localStorage.getItem("token");
         if (token) {
             setAuthToken(token);
-            // userListQuery
-        } else localStorage.removeItem("token");
+            setToken(token);
+            setUsername(username);
+        } else router.replace(`/admin`);
     })
 
     const logout = () =>{

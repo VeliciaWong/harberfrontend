@@ -13,6 +13,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import LogoutIcon from '@mui/icons-material/Logout';
 import Footer from "../components/footer/Footer";
 import { axiosHarber, axiosLocal } from "../helpers/axios";
+import { setAuthToken } from "../services/AuthService";
 
 
 
@@ -23,7 +24,7 @@ const editProfilePage = () =>{
     const [username, setUsername] = useState()
     const [email, setEmail] = useState()
     const [id, setId] = useState()
-    
+    const [tokens, setToken] = useState()
     
     const logout = () =>{
         localStorage.removeItem("token");
@@ -33,6 +34,12 @@ const editProfilePage = () =>{
     
     useEffect(()=>{
         getUserDetail();
+        const token = localStorage.getItem("token");
+        if (token) {
+            setAuthToken(token);
+            setToken(token);
+            setUsername(username);
+        } else router.replace(`/login`);
         // saveEditProfile()
     })
     

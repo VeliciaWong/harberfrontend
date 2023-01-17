@@ -121,7 +121,7 @@ const WishlistPagination = (data) =>{
                 <>
                     <Text size={20} className="font-bold">{product.length} Items</Text>
                     <Grid.Container spacing={4} className="gap-y-[2rem]">
-                        {product.map((item, index) => (
+                        {product?.map((item, index) => (
                                             <Grid xs={5} sm={4} md={3} key={index} className="gap-x-10">
                                             <Card isPressable isHoverable className="w-[200px] xs:w-[200px] sm:w-[200px] lg:w-[200px]" onClick={async() =>{
                                                 // const result = await axiosLocal.get(`/product/${item.product?.id}`)
