@@ -78,8 +78,8 @@ export default function Home(){
     })
 
     return(
-        <div className="relative bg-[#F7FFF7]">
-            <div className="h-screen w-screen flex flex-col">
+        <div className="relative w-full bg-[#F7FFF7]">
+            <div className="w-full h-screen flex flex-col bg-[#F7FFF7] scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-200">
                 <header className="pt-4 px-5 pb-[3%]">
                     <div className="items-center flex justify-between px-10 xs:px-2 sm:px-2">
                         {

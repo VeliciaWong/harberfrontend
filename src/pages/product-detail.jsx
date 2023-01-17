@@ -110,7 +110,7 @@ const productDetailPage = () =>{
 
     return(
         <div className="relative bg-[#F7FFF7]">
-            <div className="h-screen w-screen flex flex-col bg-[#F7FFF7]">
+            <div className="h-screen w-screen flex flex-col bg-[#F7FFF7] scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-200">
                 <header className="pt-4 pb-[2%]">
                     <div className="items-center flex justify-between px-10 xs:px-3 sm:px-6">
                         <Link href="/">
