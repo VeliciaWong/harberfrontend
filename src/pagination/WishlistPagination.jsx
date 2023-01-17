@@ -120,10 +120,10 @@ const WishlistPagination = (data) =>{
                 </div>:
                 <>
                     <Text size={20} className="font-bold">{product.length} Items</Text>
-                    <Grid.Container gap={3} justify="flex-start">
+                    <Grid.Container spacing={4} className="gap-y-[2rem]">
                         {product.map((item, index) => (
-                                            <Grid xs={4} sm={3} key={index} >
-                                            <Card isPressable isHoverable css={{width: "250px"}} onClick={async() =>{
+                                            <Grid xs={5} sm={4} md={3} key={index} className="gap-x-10">
+                                            <Card isPressable isHoverable className="w-[200px] xs:w-[200px] sm:w-[200px] lg:w-[200px]" onClick={async() =>{
                                                 // const result = await axiosLocal.get(`/product/${item.product?.id}`)
                                                 const result = await axiosHarber.get(`/product/${item.product?.id}`)
                                                 // console.log(result.data)
@@ -132,7 +132,7 @@ const WishlistPagination = (data) =>{
                                                     query: { "id": item.product?.id },
                                                 })
                                             }}>
-                                                <Card.Body css={{ p: 0, height: "350px" }}>
+                                                <Card.Body css={{ p: 0 }} className="h-[300px] xs:h-[250px] sm:h-[250px] lg:h-[250px] xl:h-[300px]">
                                                 <Card.Image
                                                     src={item.product?.urlImage}
                                                     objectFit="cover"
@@ -142,32 +142,32 @@ const WishlistPagination = (data) =>{
                                                 />
                                                 <Card.Footer css={{ justifyItems: "flex-start" }}>
                                                     <Col wrap="wrap" align="left">
-                                                        <Text b>{item.product?.name}</Text>
+                                                        <Text b className="text-[12px] xs:text-[9px] sm:text-[12px] lg:text-[12px]">{item.product?.name}</Text>
                                                         <div className="pt-2">
                                                             <Row wrap="wrap" justify="left">
-                                                                <Text className="pr-3" css={{ color: "$accents7", fontWeight: "$semibold", fontSize: "$sm" }}>Rp &nbsp;
+                                                                <Text className="pr-3 text-[15px] xs:text-[12px] sm:text-[12px] lg:text-[12px] xl:text-[15px]" css={{ color: "$accents7", fontWeight: "$semibold" }}>Rp &nbsp;
                                                                 {(item.product?.price)?.toLocaleString()}
                                                                 </Text>
-                                                                <Text className="flex items-center" css={{ color: "$accents7", fontWeight: "$semibold", fontSize: "$sm" }}><StarRateIcon/>
+                                                                <Text className="p-1 flex items-center text-[15px] xs:text-[12px] sm:text-[12px] lg:text-[12px]" css={{ color: "$accents7", fontWeight: "$semibold" }}><StarRateIcon fontSize="small"/>
                                                                 {item.product?.rating}
                                                                 </Text>
                                                             </Row>
-                                                            <Text css={{ color: "$accents7", fontWeight: "$semibold", fontSize: "$sm" }}> 
+                                                            <Text css={{ color: "$accents7", fontWeight: "$semibold" }} className="text-[15px] xs:text-[10px] sm:text-[12px] lg:text-[12px] xl:text-[15px]"> 
                                                             {item.product?.location}
                                                             </Text>
                                                             {
                                                                     item.ecommerce?.name === "Tokopedia" ? <>
-                                                                    <Text css={{ color: "$green600", fontWeight: "$semibold", fontSize: "$sm" }}> 
+                                                                    <Text css={{ color: "$green600", fontWeight: "$semibold" }} className="text-[15px] xs:text-[10px] sm:text-[12px] lg:text-[12px] xl:text-[15px]"> 
                                                                     {item.ecommerce?.name}
                                                                     </Text>
                                                                     </>:<>
                                                                     {
                                                                         item.ecommerce?.name === "Shopee" ? <>
-                                                                        <Text css={{ color: "#F1582C", fontWeight: "$semibold", fontSize: "$sm" }}> 
+                                                                        <Text css={{ color: "#F1582C", fontWeight: "$semibold"}} className="text-[15px] xs:text-[10px] sm:text-[12px] lg:text-[12px] xl:text-[15px]"> 
                                                                             {item.ecommerce?.name}
                                                                         </Text>
                                                                         </>:<>
-                                                                        <Text css={{ color: "#0094D9", fontWeight: "$semibold", fontSize: "$sm" }}> 
+                                                                        <Text css={{ color: "#0094D9", fontWeight: "$semibold" }}className="text-[15px] xs:text-[10px] sm:text-[12px] lg:text-[12px] xl:text-[15px]"> 
                                                                         {item.ecommerce?.name}
                                                                         </Text>
                                                                         </>
@@ -183,7 +183,7 @@ const WishlistPagination = (data) =>{
                             ))}
 
                     </Grid.Container>
-                    <nav className="flex justify-center content-center items-center mt-[2%] pb-[2%]">
+                    <nav className="flex justify-center content-center items-center mt-[2%] pb-[2%] font-semibold">
                         <button onClick={prevPage} disabled={page === 0} style={{
                             marginRight: "20px"
                         }}>Prev Page</button>

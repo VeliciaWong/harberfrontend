@@ -45,8 +45,8 @@ const ProductPagination = (data) =>{
                 </div>:<>
                 <Grid.Container spacing={4} justify="flex-center" className="gap-y-[2rem]">
                     {product.map((item, index) => (
-                                            <Grid xs={5} sm={4} md={3} key={index} className="gap-x-10">
-                                            <Card isPressable isHoverable className="w-[200px] xs:w-[200px] sm:w-[200px] lg:w-[200px]" onClick={async() =>{
+                                            <Grid xs={5} sm={4} md={3} key={index} className="gap-x-8">
+                                            <Card isPressable isHoverable className="w-[250px] xs:w-[200px] sm:w-[200px] lg:w-[250px]" onClick={async() =>{
                                                 // const result = await axiosLocal.get(`/product/${item.id}`)
                                                 const result = await axiosHarber.get(`/product/${item.id}`)
                                                 // console.log(result.data)
@@ -66,7 +66,7 @@ const ProductPagination = (data) =>{
                                                 <Card.Footer css={{ justifyItems: "flex-start" }}>
                                                     <Col wrap="wrap" align="left">
                                                         <Text b className="text-[12px] xs:text-[9px] sm:text-[12px] lg:text-[12px]">{item.name}</Text>
-                                                        <div className="pt-2">
+                                                        <div className="pt-1">
                                                             <Row wrap="wrap" justify="left">
                                                                 <Text className="pr-3 text-[15px] xs:text-[12px] sm:text-[12px] lg:text-[12px] xl:text-[15px]" css={{ color: "$accents7", fontWeight: "$semibold", fontSize: "$sm" }}>Rp &nbsp;
                                                                 {(item.price)?.toLocaleString()}
@@ -75,7 +75,7 @@ const ProductPagination = (data) =>{
                                                                 {item.rating}
                                                                 </Text>
                                                             </Row>
-                                                            <Text css={{ color: "$accents7", fontWeight: "$semibold"}} className="text-[15px] xs:text-[10px] sm:text-[12px] lg:text-[12px] xl:text-[15px]"> 
+                                                            <Text css={{ color: "$accents7", fontWeight: "$semibold"}} className="text-[13px] xs:text-[10px] sm:text-[12px] lg:text-[12px] xl:text-[13px]"> 
                                                             {item.location}
                                                             </Text>
                                                             {

@@ -104,7 +104,7 @@ const ratingList = [
         <div className="relative bg-[#F7FFF7]">
             <div className="h-screen w-screen flex flex-col bg-[#F7FFF7]">
                 <header className="pt-4 pb-[2%]">
-                    <div className="items-center justify-center flex sm:justify-between px-20">
+                    <div className="items-center flex justify-between px-10 xs:px-5 sm:px-8">
                         {
                             tokens?<>
                                 <Link href="/">
@@ -138,7 +138,7 @@ const ratingList = [
                                     height={70}
                                 />   
                             </Link>
-                            <div className="flex sm:items-center space-x-[15px]">
+                            <div className="sm:flex-end sm:space-x-[15px]">
                                 <Button onClick={() => window.location.href = "/login"}>LOGIN</Button>
                             </div>
                             </>
@@ -147,9 +147,9 @@ const ratingList = [
                 </header>
 
                 <div className="h-screen w-screen flex flex-col bg-[#F7FFF7]">
-                    <Text size={40} className="ml-[80px] font-bold">{usernames}&apos;s Wishlist</Text>
+                    <Text className="text-[40px] xs:text-[30px] md:text-[40px] ml-[80px] xs:ml-5 sm:ml-[25px] lg:ml-[30px] xl:ml-[80px] font-bold">{usernames}&apos;s Wishlist</Text>
                     <div className="flex flex-row bg-[#F7FFF7]">
-                        <div className="ml-[80px] w-[300px] flex flex-col bg-[#F7FFF7]">
+                        <div className="ml-[80px] xs:ml-5 sm:ml-[25px] lg:ml-[30px] xl:ml-[80px] w-[300px] flex flex-col bg-[#F7FFF7]">
                         <form onSubmit={handleSubmit(onSubmit)}>
                                 <Text size={28} className="font-bold">Filter</Text>
                                 <div className="w-[250px] h-[110px] bg-[#FFFFFF] border-[#DADADA] border-2 rounded-md mb-[20px] p-2 pl-4">
@@ -208,10 +208,8 @@ const ratingList = [
                             </form>   
                         </div>
 
-                        <div className="mt-[10px] ml-[20px] w-screen flex flex-col justify-center self-center">
-                            <div className="mr-[90px]">
+                        <div className="mt-[10px] ml-[40px] w-screen flex flex-col justify-center self-center">
                                 <WishlistPagination data={{filter: filter}}/>
-                            </div>
                         </div>
                     </div>
                     <Footer/>

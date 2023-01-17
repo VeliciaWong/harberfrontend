@@ -114,7 +114,7 @@ const perlengkapanRumahTanggaPage = () =>{
                           <Grid xs={4} sm={3} md={3} key={index} className="gap-x-6">
                           <Card isPressable isHoverable className="w-[300px] xs:w-[250px] sm:w-[250px] lg:w-[250px] xl:w-[300px]" onClick={async() =>{
                                       // const result = await axiosLocal.get(`/product/${item.id}`)
-                                      let result = await axiosHarber.get(`/product?categoryId.equals=3`);
+                                      const result = await axiosHarber.get(`/product/${item.id}`)
                                       console.log(result.data)
                                       router.push({
                                           pathname: `/product-detail/`,

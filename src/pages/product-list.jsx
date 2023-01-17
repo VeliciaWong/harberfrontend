@@ -110,7 +110,7 @@ const productListPage = () =>{
         <div className="relative bg-[#F7FFF7]">
             <div className="h-screen w-screen flex flex-col bg-[#F7FFF7]">
                 <header className="pt-4 pb-[2%]">
-                    <div className="items-center flex justify-between px-10 xs:px-3 sm:px-6">
+                    <div className="items-center flex justify-between px-10 xs:px-5 sm:px-8">
                         <Link href="/">
                             <Image
                                 src="/assets/images/harber.png"
@@ -144,7 +144,7 @@ const productListPage = () =>{
                     </div>
                 </header>
 
-                <div className="h-screen w-screen flex flex-col bg-[#F7FFF7] xs:overflow-x-auto sm:overflow-x-hidden">
+                <div className="h-screen w-screen flex flex-col bg-[#F7FFF7]">
                     <div className="flex flex-row bg-[#F7FFF7]">
                         <div className="ml-[50px] xs:ml-0 sm:ml-[20px] lg:ml-[30px] xl:ml-[50px] px-10 w-[350px] flex-col bg-[#F7FFF7]">
                             <form onSubmit={handleSubmit(onSubmit)}>
@@ -208,13 +208,13 @@ const productListPage = () =>{
                         <div className="w-screen flex flex-col justify-center self-center">
                             <div className="pt-[50px]">
                                 {router.query.keyword ? <>
-                                <Text size={16} className="ml-[20px] font-bold">Results &quot;{router.query.keyword}&quot;</Text>
+                                <Text size={16} className="ml-[5px] mb-[10px] font-bold">Results &quot;{router.query.keyword}&quot;</Text>
                                 
                                 </>:<>
                                 <div></div>
                                 </>}
                             </div>
-                            <div className="">
+                            <div className="shrink-0">
                                 <ProductPagination data={{keyword : router.query.keyword, filter: filter}}/>
                             </div>
                         </div>

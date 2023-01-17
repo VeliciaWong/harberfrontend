@@ -82,26 +82,26 @@ const adminViewUserPage = () =>{
         <div className="relative bg-[#F7FFF7]">
             <div className="h-screen w-screen flex flex-col">
                 <header className="pt-4 px-4 pb-[30px]">
-                    <div className="relative overflow-hidden xl:px-32 3xl:px-[139px] mx-auto items-center justify-center flex sm:justify-between">
+                    <div className="relative overflow-hidden mx-auto items-center flex justify-between px-10 xs:px-2 sm:px-2">
                         <Image
                         src="/assets/images/harber.png"
                         alt=""
                         width={150}
                         height={70}
                         />
-                        <div className="hidden sm:flex sm:items-center sm:space-x-[14px]">
+                        <div className="sm:flex-end sm:space-x-[15px]">
                             <LogoutIcon fontSize="large" onClick={(logout)} className="cursor-pointer"/>
                         </div>
                     </div>
                 </header>
                 <div className="w-screen h-screen flex flex-col">
-                    <div className="flex justify-between px-[9.5%] mb-10">
+                    <div className="flex justify-between px-[9%] xs:px-[5%] sm:px-[5%] md:px-[6%] lg:px-[7%] xl:px-[9%] mb-10">
                         <Text size={35} className="text-black font-bold">List of Users</Text>
                         <Button onClick={exportCsv}>Export .xlsx</Button>
                     </div>
 
                     <div className="z-30 flex items-center justify-center">
-                        <div className="max-w-[1250px] h-[450px] mx-auto bg-[#4ECDC4] drop-shadow-lg shadow-lg bg-contain bg-center rounded-[18px] w-full p-[30px]">
+                        <div className="max-w-[1250px] xs:max-w-[450px] sm:max-w-[625px] md:max-w-[750px] lg:max-w-[950px] xl:max-w-[1250px] h-[425px] mx-auto bg-[#4ECDC4] drop-shadow-lg shadow-lg bg-contain bg-center rounded-[18px] w-full p-[30px]">
                         <TableGroup
                             selectionMode="none"
                             data={userListQuery?.data}

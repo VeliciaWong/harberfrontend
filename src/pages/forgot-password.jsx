@@ -56,8 +56,8 @@ const forgotPassword = () =>{
       }
 
     return(
-        <div className="h-screen w-screen bg-[#F7FFF7] overflow-hidden">
-            <div className={`relative w-screen overflow-hidden`}>
+        <div className="w-screen min-h-screen bg-[#F7FFF7] overflow-hidden">
+            <div className={`flex flex-col w-screen overflow-hidden`}>
                 <div className="max-w-[150px] mt-[2%] mb-[2%] z-40 ml-[70px] xs:ml-[25px] sm:ml-[50px] lg:ml-[60px] xl:ml-[70px] cursor-pointer" onClick={() => window.location.href = "/"}>
                     <Link href="/">
                             <Image

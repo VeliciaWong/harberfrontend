@@ -81,8 +81,8 @@ const recoveryPage = () =>{
 
     return(
         <div className="relative h-screen w-screen bg-[#F7FFF7]">
-            <div className={`relative h-screen w-screen overflow-hidden xl:px-30 3xl:px-[139px]`}>
-                <div className="max-w-[150px] mt-[2%] mb-[2%] z-40 ml-[70px] cursor-pointer">
+            <div className={`relative h-screen w-screen overflow-hidden`}>
+                <div className="max-w-[150px] mt-[2%] mb-[2%] z-40 ml-[70px] xs:ml-[25px] sm:ml-[50px] lg:ml-[60px] xl:ml-[70px] cursor-pointer">
                             <Image
                                 src="/assets/images/harber.png"
                                 alt=""
@@ -90,8 +90,8 @@ const recoveryPage = () =>{
                                 height={70}
                             />   
                 </div>
-                <Text size={30} className="text-black font-bold text-center mb-[20px]">Please answer your recovery question to recover your password</Text>
-                <div className="max-w-[600px] h-[380px] mx-auto bg-[#4ECDC4] shadow-xl bg-contain bg-center rounded-[18px] w-full p-5 mb-[5%]">
+                <Text className="text-black text-[30px] xs:text-[20px] lg:text-[30px] font-bold text-center mb-[20px] xs:mt-4">Please answer your recovery question to recover your password</Text>
+                <div className="max-w-[600px] xs:max-w-[450px] sm:max-w-[500px] md:max-w-[550px] lg:max-w-[650px] h-[380px] mx-auto bg-[#4ECDC4] shadow-xl bg-contain bg-center rounded-[18px] w-full p-5 mb-[5%]">
                     <div className="relative w-full h-full mx-auto">
                         <div className='mt-[8%] flex flex-col justify-center items-center'>
                                 <Text size={25} className="text-white font-bold text-center italic">{recoveryQuestion}</Text>

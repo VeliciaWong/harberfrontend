@@ -118,7 +118,7 @@ const TableGroup = ({
                 {headerGroup.headers.map((header) => (
                   <th
                     key={header.id}
-                    className="text-center uppercase bg-gray-100 px-4 first:rounded-l-xl last:rounded-r-xl"
+                    className="text-center uppercase bg-gray-100 first:rounded-l-xl last:rounded-r-xl"
                     style={header.column.columnDef.headerStyle}
                   >
                     <span className="font-bold text-black-500 text-xs leading-10">
@@ -148,7 +148,7 @@ const TableGroup = ({
                       height: `calc(${
                         perPage -
                         (isLoading ? 0 : table.getRowModel().rows.length)
-                      }*3rem)`,
+                      }*2rem)`,
                     }}
                   />
                 </tr>
@@ -158,7 +158,7 @@ const TableGroup = ({
                 <td
                   colSpan={columns.length}
                   style={{
-                    height: `calc(${perPage}*3rem)`,
+                    height: `calc(${perPage}*2rem)`,
                   }}
                 />
               </tr>
