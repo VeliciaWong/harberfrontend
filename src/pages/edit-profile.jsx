@@ -14,11 +14,21 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import Footer from "../components/footer/Footer";
 import { axiosHarber, axiosLocal } from "../helpers/axios";
 import { setAuthToken } from "../services/AuthService";
+import * as yup from "yup";
+import { useYupResolver } from "../helpers/yup";
 
-
+const schema = yup.object().shape(
+    {
+      username: yup.string().required("Field username is required"),
+      email: yup.string().email('Invalid email format').required("Field email is required"),
+      password: yup.string().required("Field password is required").min(8, "Password must be 8 Characters long"),
+    },
+    []
+  );
 
 const editProfilePage = () =>{
-    const { register, handleSubmit, control, formState: { errors }} = useForm();
+    const resolver = useYupResolver(schema);
+    const { register, handleSubmit, control, formState: { errors }} = useForm({resolver});
     const router = useRouter();
     const [isShown, setIsSHown] = useState(false);
     const [username, setUsername] = useState()
