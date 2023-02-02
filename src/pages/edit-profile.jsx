@@ -104,7 +104,10 @@ const editProfilePage = () =>{
                 toast.success("Save Success!");
                 // localStorage.removeItem("token");
                 localStorage.setItem("username", res.data?.username);
-                router.push(`/`)
+
+                setTimeout(()=>{          
+                    router.push(`/`)
+                }, 5000)
             }).catch(error =>{
                 toast.warn("Username or email already registered!")
                 console.log(error)
