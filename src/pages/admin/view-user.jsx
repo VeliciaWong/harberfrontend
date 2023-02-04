@@ -43,7 +43,7 @@ const adminViewUserPage = () =>{
         if (token) {
             setAuthToken(token);
             setToken(token);
-            setUsername(username);
+            // setUsername(username);
         } else router.replace(`/admin`);
     })
 
