@@ -101,12 +101,13 @@ const editProfilePage = () =>{
                     'Authorization': `Bearer ${token}`
                 }
             }).then(res =>{
+                toast.success("Save Success!");
                 localStorage.setItem("username", res.data?.username);
-                if(res.data?.message == "Check Verifikasi Email!"){
-                    toast.info("Edit Success! Please check your mail to verification")
-                }else toast.success("Edit Success!");
-                // localStorage.removeItem("token");
 
+                // if(res.data?.message == "Check Verifikasi Email!"){
+                //     toast.info("Edit Success! Please check your mail to verification")
+                // }else toast.success("Edit Success!");
+                // // localStorage.removeItem("token");
                 setTimeout(()=>{          
                     router.push(`/`)
                 }, 5000)
