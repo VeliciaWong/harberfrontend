@@ -23,7 +23,11 @@ const schema = yup.object().shape(
   {
     username: yup.string().required("Field username is required"),
     email: yup.string().email('Invalid email format').required("Field email is required"),
-    password: yup.string().required("Field password is required").min(8, "Password must be 8 Characters long"),
+    password: yup.string().required("Field password is required").min(8, "Password must be 8 Characters long")
+      .matches(/[0-9]/, 'Password requires a number')
+      .matches(/[a-z]/, 'Password requires a lowercase letter')
+      .matches(/[A-Z]/, 'Password requires an uppercase letter')
+      .matches(/[^\w]/, 'Password requires a symbol'),
     confirm_password: yup.string().required("Field confirm password is required").oneOf([yup.ref('password')], 'Password does not match'),
   },
   []
