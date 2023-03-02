@@ -18,7 +18,7 @@ import { Link, Text } from "@nextui-org/react";
 
 const schema = yup.object().shape(
     {
-        email: yup.string().required("Field email is required"),
+        email: yup.string().email('Invalid email format').required("Field email is required"),
     },
     []
 );
