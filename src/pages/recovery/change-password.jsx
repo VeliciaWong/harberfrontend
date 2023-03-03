@@ -21,8 +21,7 @@ const recoveryChangePasswordPage = () =>{
             password: yup.string().required("Field password is required").min(8, "Password must be 8 Characters long")
             .matches(/[0-9]/, 'Password requires a number')
             .matches(/[a-z]/, 'Password requires a lowercase letter')
-            .matches(/[A-Z]/, 'Password requires an uppercase letter')
-            .matches(/[^\w]/, 'Password requires a symbol'),
+            .matches(/[A-Z]/, 'Password requires an uppercase letter'),
             confirm_password: yup.string().required("Field confirm password is required").oneOf([yup.ref('password')], 'Password does not match'),
         },
         []
