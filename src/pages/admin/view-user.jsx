@@ -66,7 +66,7 @@ const adminViewUserPage = () =>{
             //     cell: (info) => <p>{info.getValue()}</p>,
             // }),
             columnHelper.accessor("username", {
-                header: () => <span>Username</span>,
+                header: () => <span>Nama</span>,
                 cell: (info) => <p>{info.getValue()}</p>,
             }),
             columnHelper.accessor("email", {

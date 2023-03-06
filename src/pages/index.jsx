@@ -85,7 +85,7 @@ export default function Home(){
                         {
                             tokens?<>
                                 <div>
-                                    <span className="font-bold text-2xl xs:text-lg sm:text-lg md:text-xl lg:text-2xl">Hi, {usernames}</span>  
+                                    <span className="font-bold text-2xl xs:text-lg sm:text-lg md:text-xl lg:text-2xl">Halo, {usernames}</span>  
                                 </div>
                                 <div className="flex sm:items-center space-x-[15px]">
                                     <div className="flex items-center space-x-1 cursor-pointer" onClick={bookmark}>

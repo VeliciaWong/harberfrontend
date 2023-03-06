@@ -22,8 +22,8 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const schema = yup.object().shape(
   {
-    username: yup.string().required("Field username is required"),
-    password: yup.string().required("Field password is required"),
+    username: yup.string().required("Nama harus diisi"),
+    password: yup.string().required("Kata sandi harus diisi"),
     
   },
   []
@@ -68,7 +68,7 @@ const LoginPage = () =>{
       })
       })
       .catch(err => {
-        toast.error("Your Username/Password is incorrect!")
+        toast.error("Nama atau kata sandi anda tidak benar")
         console.log(err)
       });
   }

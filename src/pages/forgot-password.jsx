@@ -49,7 +49,7 @@ const forgotPassword = () =>{
           }).then(() => router.reload())
         })
         .catch(error =>{
-          toast.warn("Email tidak terdaftar!")
+          toast.error("Email tidak terdaftar!")
           console.log(error)
         })
         // window.location.href = "/recovery"

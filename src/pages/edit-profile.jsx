@@ -19,12 +19,12 @@ import { useYupResolver } from "../helpers/yup";
 
 const schema = yup.object().shape(
     {
-      username: yup.string().required("Field username is required"),
-      email: yup.string().email('Invalid email format').required("Field email is required"),
-      password: yup.string().required("Field password is required").min(8, "Password must be 8 Characters long")
-      .matches(/[0-9]/, 'Password requires a number')
-      .matches(/[a-z]/, 'Password requires a lowercase letter')
-      .matches(/[A-Z]/, 'Password requires an uppercase letter'),
+        username: yup.string().required("Nama harus diisi"),
+        email: yup.string().email('Format email tidak sesuai').required("Email harus diisi"),
+        password: yup.string().required("Kata sandi harus diisi").min(8, "Kata sandi anda harus memiliki panjang 8 karakter")
+        .matches(/[0-9]/, 'Kata sandi harus memiliki angka')
+        .matches(/[a-z]/, 'Kata sandi harus memiliki huruf kecil')
+        .matches(/[A-Z]/, 'Kata sandi harus memiliki huruf besar'),
     },
     []
   );
@@ -104,7 +104,7 @@ const editProfilePage = () =>{
                     'Authorization': `Bearer ${token}`
                 }
             }).then(res =>{
-                toast.success("Save Success!");
+                toast.success("Perubahan tersimpan !");
                 localStorage.setItem("username", res.data?.username);
 
                 // if(res.data?.message == "Check Verifikasi Email!"){
@@ -115,7 +115,7 @@ const editProfilePage = () =>{
                     router.push(`/`).then(() => router.reload())
                 }, 3000)
             }).catch(error =>{
-                toast.warn("Username or email already registered!")
+                toast.warn("Nama atau email sudah diambil !")
                 console.log(error)
               })
             // window.location.href="/"
@@ -143,7 +143,7 @@ const editProfilePage = () =>{
                 </header>
                 <div className={`relative h-screen w-screen overflow-hidden xl:px-30 3xl:px-[139px]`}>
                 
-                <Text size={30} className="text-black font-bold text-center mb-[20px]">Edit My Profile</Text>
+                <Text size={30} className="text-black font-bold text-center mb-[20px]">Sunting Profil Saya</Text>
                 <div className="max-w-[650px] xs:max-w-[450px] md:max-w-[550px] lg:max-w-[650px] h-[380px] mx-auto bg-[#4ECDC4] shadow-xl bg-contain bg-center rounded-[18px] w-full p-5 mb-[5%]">
                     <div className="relative w-full h-full mx-auto">
                         <div className='mt-[2%] flex flex-col justify-center items-center'>

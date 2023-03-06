@@ -107,10 +107,10 @@ const AdminLoginPage = () =>{
                     <div className="relative flex px-4">
                       <FormContainer>
                         <div className="space-y-5">
-                          <Field label="Username" error={errors["username"]?.message}>
+                          <Field label="Nama" error={errors["username"]?.message}>
                             <Input {...register("username", { required: true })} />
                           </Field>
-                          <Field label="Password" error={errors["password"]?.message} className>
+                          <Field label="Kata Sandi" error={errors["password"]?.message} className>
                             <Input type={isShown ? "text" : "password"} {...register("password", { required: true })} />
                           </Field>
                           <div className="flex justify-end">

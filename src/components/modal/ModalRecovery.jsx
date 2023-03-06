@@ -15,7 +15,7 @@ export default function ModalRecovery({ open, onClose, onSubmit, loading }){
       aria-labelledby="modal-recovery"
     >
       <Modal.Header>
-        <Text size={23} className="text-black font-semibold">Please input your email account !</Text>
+        <Text size={23} className="text-black font-semibold">Silakan masukan akun email Anda !</Text>
       </Modal.Header>
       <Modal.Body>
         {/* pertanyaannya nanti bisa ditarik dari berdasarkan yg user pilih pas dia register akun */}
@@ -30,7 +30,7 @@ export default function ModalRecovery({ open, onClose, onSubmit, loading }){
             variant="submit"
             onClick={handleSubmit(onSubmit)}
         >
-          SUBMIT
+          KONFIRMASI
         </Button>
       </Modal.Footer>
     </Modal>

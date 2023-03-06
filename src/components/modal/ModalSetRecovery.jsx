@@ -34,12 +34,12 @@ export default function ModalSetRecovery({ open, onClose, onSubmit, loading }){
       onClose={onClose}
       closeButton
       aria-labelledby="modal-set-recovery"
-    >
+    > 
       <Modal.Header>
-        <Text size={23} className="text-black font-semibold">Please choose your recovery question and answer to finish register your account !</Text>
+        <Text size={23} className="text-black font-semibold">Silakan pilih pertanyaan dan jawaban pemulihan Anda untuk menyelesaikan pendaftaran akun Anda !</Text>
       </Modal.Header>
       <Modal.Body>
-        <Text size={17} className="font-semibold">Recovery Question</Text>    
+        <Text size={17} className="font-semibold">Pertanyaan Pemulihan</Text>    
         {/* <Controller control={control} name="recoveryQuestions" render={({
             field: { onChange, value },
                 }) => (
@@ -91,7 +91,7 @@ export default function ModalSetRecovery({ open, onClose, onSubmit, loading }){
             </Listbox.Options>
             </Transition>
         </Listbox> */}
-        <Text size={17} className="font-semibold">Your Answer</Text>    
+        <Text size={17} className="font-semibold">Jawaban Anda</Text>    
         <Input {...register("recovery_answer", { required: true })} />
         
        
@@ -102,7 +102,7 @@ export default function ModalSetRecovery({ open, onClose, onSubmit, loading }){
             variant="submit"
             onClick={handleSubmit(onSubmit)}
         >
-          CONFIRM
+          KONFIRMASI
         </Button>
       </Modal.Footer>
     </Modal>

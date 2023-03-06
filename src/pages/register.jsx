@@ -21,13 +21,13 @@ import { useRouter } from "next/router";
 
 const schema = yup.object().shape(
   {
-    username: yup.string().required("Field username is required"),
-    email: yup.string().email('Invalid email format').required("Field email is required"),
-    password: yup.string().required("Field password is required").min(8, "Password must be 8 Characters long")
-      .matches(/[0-9]/, 'Password requires a number')
-      .matches(/[a-z]/, 'Password requires a lowercase letter')
-      .matches(/[A-Z]/, 'Password requires an uppercase letter'),
-    confirm_password: yup.string().required("Field confirm password is required").oneOf([yup.ref('password')], 'Password does not match'),
+    username: yup.string().required("Nama harus diisi"),
+    email: yup.string().email('Format email tidak sesuai').required("Email harus diisi"),
+    password: yup.string().required("Kata sandi harus diisi").min(8, "Kata sandi anda harus memiliki panjang 8 karakter")
+    .matches(/[0-9]/, 'Kata sandi harus memiliki angka')
+    .matches(/[a-z]/, 'Kata sandi harus memiliki huruf kecil')
+    .matches(/[A-Z]/, 'Kata sandi harus memiliki huruf besar'),
+    confirm_password: yup.string().required("Konfirmasi kata sandi harus diisi").oneOf([yup.ref('password')], 'Kata sandi tidak sesuai'),
   },
   []
 );
@@ -68,7 +68,7 @@ const RegisterPage = () =>{
       },
       "answerRecovery": data.recovery_answer
   });
-    toast.success("Successfully create account!")
+    toast.success("Akun anda berhasil dibuat !")
     await router.push(`/login`)
     // window.location.href="/login"
   }
@@ -99,21 +99,21 @@ const RegisterPage = () =>{
                   <div className="relative flex px-4">
                     <FormContainer>
                       <div className="space-y-2">
-                        <Field label="Username" error={errors["username"]?.message}>
+                        <Field label="Nama" error={errors["username"]?.message}>
                           <Input {...register("username", { required: true })} />
                         </Field>
                         <Field label="Email" error={errors["email"]?.message}>
                           <Input {...register("email", { required: true })} />
                         </Field>
-                        <Field label="Password" error={errors["password"]?.message} className>
+                        <Field label="Kata Sandi" error={errors["password"]?.message} className>
                           <Input  type={isShown ? "text" : "password"} {...register("password", { required: true })} />
                         </Field>
-                        <Field label="Confirm Password" error={errors["confirm_password"]?.message} className>
+                        <Field label="Konfirmasi Kata Sandi" error={errors["confirm_password"]?.message} className>
                           <Input type={isShown ? "text" : "password"} {...register("confirm_password", { required: true })} />
                         </Field>
                         
                         <div className="flex justify-end pt-[3%]">
-                          <Button onClick={handleSubmit(registers)}>REGISTER</Button>
+                          <Button onClick={handleSubmit(registers)}>DAFTAR</Button>
                         </div>
                         
                       </div>

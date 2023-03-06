@@ -18,11 +18,11 @@ import 'react-toastify/dist/ReactToastify.css';
 const recoveryChangePasswordPage = () =>{
     const schema = yup.object().shape(
         {
-            password: yup.string().required("Field password is required").min(8, "Password must be 8 Characters long")
-            .matches(/[0-9]/, 'Password requires a number')
-            .matches(/[a-z]/, 'Password requires a lowercase letter')
-            .matches(/[A-Z]/, 'Password requires an uppercase letter'),
-            confirm_password: yup.string().required("Field confirm password is required").oneOf([yup.ref('password')], 'Password does not match'),
+            password: yup.string().required("Kata sandi harus diisi").min(8, "Kata sandi anda harus memiliki panjang 8 karakter")
+            .matches(/[0-9]/, 'Kata sandi harus memiliki angka')
+            .matches(/[a-z]/, 'Kata sandi harus memiliki huruf kecil')
+            .matches(/[A-Z]/, 'Kata sandi harus memiliki huruf besar'),
+            confirm_password: yup.string().required("Konfirmasi kata sandi harus diisi").oneOf([yup.ref('password')], 'Kata sandi tidak sesuai'),
         },
         []
         );
@@ -51,7 +51,7 @@ const recoveryChangePasswordPage = () =>{
             // masukin api buat nyimpen pass recovery ini jadi pass baru di db
             // await axiosLocal.put(`/user_reset/reset_password/${userId}`, {password : data.password})
             await axiosHarber.put(`/user_reset/reset_password/${userId}`, {password : data.password})
-            toast.success("Reset password Success!");
+            toast.success("Setel ulang kata sandi berhasil !");
             router.push(`/login`)
             // window.location.href="/login"
         }
