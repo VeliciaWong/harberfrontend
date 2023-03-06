@@ -92,8 +92,9 @@ const adminViewUserPage = () =>{
                         width={150}
                         height={70}
                         />
-                        <div className="sm:flex-end sm:space-x-[15px]">
+                        <div className="flex items-center space-x-1 cursor-pointer">
                             <LogoutIcon fontSize="large" onClick={(logout)} className="cursor-pointer"/>
+                            <span className="font-semibold xs:hidden sm:flex">Keluar</span>
                         </div>
                     </div>
                 </header>
