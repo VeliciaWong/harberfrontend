@@ -98,12 +98,12 @@ const productDetailPage = () =>{
         if(clicked === true){
             deleteWishlist(router.query.id)
             setClicked("")
-            toast.warn("Remove from your Wishlist")
+            toast.warn("Hapus dari Favorit anda")
             console.log("bookmark remove")
         }else {
             saveWishlist(router.query.id)
             setClicked(true)
-            toast.success("Added to your Wishlist")
+            toast.success("Ditambahkan ke Favorit anda")
             console.log("bookmark added")
         }
     }
