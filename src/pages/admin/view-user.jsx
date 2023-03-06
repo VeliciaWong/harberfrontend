@@ -70,11 +70,11 @@ const adminViewUserPage = () =>{
                 cell: (info) => <p>{info.getValue()}</p>,
             }),
             columnHelper.accessor("email", {
-                header: () => <span>email</span>,
+                header: () => <span>Email</span>,
                 cell: (info) => info.getValue(),
             }),
             columnHelper.accessor("createdDate", {
-                header: () => <span>Created on</span>,
+                header: () => <span>Dibuat pada</span>,
                 cell: (info) => new Date(info.getValue()).toLocaleString(),
             }),
             ],
@@ -99,8 +99,8 @@ const adminViewUserPage = () =>{
                 </header>
                 <div className="w-screen h-screen flex flex-col">
                     <div className="flex justify-between px-[9%] xs:px-[5%] sm:px-[5%] md:px-[6%] lg:px-[7%] xl:px-[9%] mb-10">
-                        <Text size={35} className="text-black font-bold">List of Users</Text>
-                        <Button onClick={exportCsv}>Export .xlsx</Button>
+                        <Text size={35} className="text-black font-bold">Daftar Pengguna</Text>
+                        <Button onClick={exportCsv}>Ekspor .xlsx</Button>
                     </div>
 
                     <div className="z-30 flex items-center justify-center">

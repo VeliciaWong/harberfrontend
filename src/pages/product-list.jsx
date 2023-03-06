@@ -124,20 +124,20 @@ const productListPage = () =>{
                                 <div className="flex sm:items-center space-x-[15px]">
                                     <div className="flex items-center space-x-1 cursor-pointer" onClick={bookmark}>
                                         <BookmarksIcon fontSize="large"/>
-                                        <span className="font-semibold xs:hidden sm:flex">Wishlist</span>
+                                        <span className="font-semibold xs:hidden sm:flex">Favorit</span>
                                     </div>
                                     <div className="flex items-center space-x-1 cursor-pointer" onClick={editProfile}>
                                         <AccountCircleIcon fontSize="large"/>
-                                        <span className="font-semibold xs:hidden sm:flex">Profile</span>
+                                        <span className="font-semibold xs:hidden sm:flex">Profil</span>
                                     </div>
                                     <div className="flex items-center space-x-1 cursor-pointer" onClick={logout}>
                                       <LogoutIcon fontSize="large"/>
-                                      <span className="font-semibold xs:hidden sm:flex">Logout</span>
+                                      <span className="font-semibold xs:hidden sm:flex">Keluar</span>
                                     </div>
                                 </div>
                             </>:<>
                             <div className="sm:flex-end sm:space-x-[15px]">
-                                <Button onClick={() => window.location.href = "/login"}>LOGIN</Button>
+                                <Button onClick={() => window.location.href = "/login"}>MASUK</Button>
                             </div>
                             </>
                         }
@@ -186,7 +186,7 @@ const productListPage = () =>{
                                     </div>
                                 </div>
                                 <div className="w-[250px] h-[110px] bg-[#FFFFFF] border-[#DADADA] border-2 rounded-md mb-[20px] p-2 pl-4">
-                                    <Text size={21} className="font-bold">Rating</Text>
+                                    <Text size={21} className="font-bold">Penilaian</Text>
                                     <Controller
                                         name="rating"
                                         render={({ field }) => (
@@ -201,14 +201,14 @@ const productListPage = () =>{
                                         control={control}
                                     />
                                 </div>
-                                <Button type="submit" className="flex justify-self-end mb-[20px]">SUBMIT</Button>
+                                <Button type="submit" className="flex justify-self-end mb-[20px]">KIRIM</Button>
                             </form>                
                         </div>
 
                         <div className="w-screen flex flex-col justify-center self-center">
                             <div className="pt-[50px]">
                                 {router.query.keyword ? <>
-                                <Text size={16} className="ml-[5px] mb-[10px] font-bold">Results &quot;{router.query.keyword}&quot;</Text>
+                                <Text size={16} className="ml-[5px] mb-[10px] font-bold">Hasil Pencarian &quot;{router.query.keyword}&quot;</Text>
                                 
                                 </>:<>
                                 <div></div>

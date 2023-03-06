@@ -136,7 +136,7 @@ const editProfilePage = () =>{
                         <div className="flex sm:items-center space-x-[5px]">
                             <div className="flex items-center space-x-1 cursor-pointer" onClick={logout}>
                                 <LogoutIcon fontSize="large"/>
-                                <span className="font-semibold">Logout</span>
+                                <span className="font-semibold">Keluar</span>
                             </div>
                         </div>
                     </div>
@@ -149,17 +149,17 @@ const editProfilePage = () =>{
                         <div className='mt-[2%] flex flex-col justify-center items-center'>
                             <FormContainer>
                                 <div className="space-y-5">
-                                    <Field label="Username" error={errors["username"]?.message}>
+                                    <Field label="Nama" error={errors["username"]?.message}>
                                         <Input defaultValue={username} {...register("username", { required: true })} />
                                     </Field>
                                     <Field label="Email" error={errors["email"]?.message}>
                                         <Input defaultValue={email} {...register("email", { required: true })} />
                                     </Field>
-                                    <Field label="Password" error={errors["password"]?.message} className>
+                                    <Field label="Kata Sandi" error={errors["password"]?.message} className>
                                         <Input type={isShown ? "text" : "password"} {...register("password", { required: true })} />
                                     </Field>
                                     <div className="flex justify-end">
-                                        <Button onClick={handleSubmit(saveEditProfile)}>SAVE</Button>
+                                        <Button onClick={handleSubmit(saveEditProfile)}>SIMPAN</Button>
                                     </div>
                                 </div>
                             </FormContainer>

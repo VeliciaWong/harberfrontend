@@ -89,21 +89,21 @@ const LoginPage = () =>{
                 <div className="flex-grow flex items-center justify-center">
                   <Modal>
                       <span className="text-white text-4xl text-center pl-[20px] sm:pl-2 font-bold mb-10">
-                          Login to HarBer.id
+                          Login HarBer.id
                       </span>
                 
                     <div className="relative flex px-4">
                       <FormContainer>
                         <div className="space-y-5">
-                          <Field label="Username" error={errors["username"]?.message}>
+                          <Field label="Nama" error={errors["username"]?.message}>
                             <Input {...register("username", { required: true })} />
                           </Field>
-                          <Field label="Password" error={errors["password"]?.message} className>
+                          <Field label="Kata Sandi" error={errors["password"]?.message} className>
                             <Input type={isShown ? "text" : "password"} {...register("password", { required: true })} />
                           </Field>
                           <div className="flex flex-col">
-                            <a className="text-white underline cursor-pointer" onClick={() => window.location.href = "/forgot-password"}>Forgot Password?</a>
-                          <a className="text-white underline cursor-pointer" href="/register">Don’t have an account? Register here</a>
+                            <a className="text-white underline cursor-pointer" onClick={() => window.location.href = "/forgot-password"}>Lupa Kata Sandi?</a>
+                          <a className="text-white underline cursor-pointer" href="/register">Belum punya akun? Daftar disini</a>
                           </div>
                           <div className="flex justify-end">
                             <Button onClick={handleSubmit(login)}>LOGIN</Button>

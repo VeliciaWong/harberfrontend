@@ -73,22 +73,22 @@ const perlengkapanRumahTanggaPage = () =>{
               {
                       tokens?<>
                           <div className="flex sm:items-center space-x-[5px]">
-                              <div className="flex items-center space-x-1 cursor-pointer" onClick={bookmark}>
-                                  <BookmarksIcon fontSize="large"/>
-                                  <span className="font-semibold xs:hidden sm:flex">Wishlist</span>
-                              </div>
-                              <div className="flex items-center space-x-1 cursor-pointer" onClick={editProfile}>
-                                  <AccountCircleIcon fontSize="large"/>
-                                  <span className="font-semibold xs:hidden sm:flex">Profile</span>
-                              </div>
-                              <div className="flex items-center space-x-1 cursor-pointer" onClick={logout}>
-                                <LogoutIcon fontSize="large"/>
-                                <span className="font-semibold xs:hidden sm:flex">Logout</span>
-                              </div>
+                                    <div className="flex items-center space-x-1 cursor-pointer" onClick={bookmark}>
+                                        <BookmarksIcon fontSize="large"/>
+                                        <span className="font-semibold xs:hidden sm:flex">Favorit</span>
+                                    </div>
+                                    <div className="flex items-center space-x-1 cursor-pointer" onClick={editProfile}>
+                                        <AccountCircleIcon fontSize="large"/>
+                                        <span className="font-semibold xs:hidden sm:flex">Profil</span>
+                                    </div>
+                                    <div className="flex items-center space-x-1 cursor-pointer" onClick={logout}>
+                                      <LogoutIcon fontSize="large"/>
+                                      <span className="font-semibold xs:hidden sm:flex">Keluar</span>
+                                    </div>
                           </div>
                       </>:<>
                       <div className="sm:flex-end sm:space-x-[15px]">
-                          <Button onClick={() => window.location.href = "/login"}>LOGIN</Button>
+                          <Button onClick={() => window.location.href = "/login"}>MASUK</Button>
                       </div>
                       </>
                   }
@@ -106,7 +106,7 @@ const perlengkapanRumahTanggaPage = () =>{
               <div className="flex justify-center self-center items-center pt-[50px] pb-[50px] px-10 bg-[#F7FFF7]">{
                 isLoading ?
                 <div className="font-bold flex justify-center items-center text-center text-3xl">
-                  Loading....
+                  Memuat....
                 </div>:<>
                   <Grid.Container spacing={5} className="gap-y-[2rem]" justify="flex-center">
                       {/* {console.log(product)} */}

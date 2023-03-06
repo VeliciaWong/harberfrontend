@@ -90,15 +90,15 @@ export default function Home(){
                                 <div className="flex sm:items-center space-x-[15px]">
                                     <div className="flex items-center space-x-1 cursor-pointer" onClick={bookmark}>
                                         <BookmarksIcon fontSize="large"/>
-                                        <span className="font-semibold xs:hidden sm:flex">Wishlist</span>
+                                        <span className="font-semibold xs:hidden sm:flex">Favorit</span>
                                     </div>
                                     <div className="flex items-center space-x-1 cursor-pointer" onClick={editProfile}>
                                         <AccountCircleIcon fontSize="large"/>
-                                        <span className="font-semibold xs:hidden sm:flex">Profile</span>
+                                        <span className="font-semibold xs:hidden sm:flex">Profil</span>
                                     </div>
                                     <div className="flex items-center space-x-1 cursor-pointer" onClick={logout}>
                                       <LogoutIcon fontSize="large"/>
-                                      <span className="font-semibold xs:hidden sm:flex">Logout</span>
+                                      <span className="font-semibold xs:hidden sm:flex">Keluar</span>
                                     </div>
                                 </div>
                             </>:<>
@@ -106,7 +106,7 @@ export default function Home(){
                                 {/* <span className="font-bold text-2xl">Hi</span>   */}
                             </div>
                             <div className="sm:flex-end sm:space-x-[15px]">
-                                <Buttons onClick={() => window.location.href = "/login"}>LOGIN</Buttons>
+                                <Buttons onClick={() => window.location.href = "/login"}>MASUK</Buttons>
                             </div>
                             </>
                         }
@@ -123,12 +123,12 @@ export default function Home(){
                         />
                         
                         <form onSubmit={handleSubmit(onSubmit)}>
-                           <input type="text" placeholder="Search Keyword" className="mt-[1.5%] py-1 px-4 w-[400px] h-[35px] border-[#ABABAB] border-2 shadow-lg text-base text-black rounded-lg font-semibold" {...register("searchkeyword")}></input> 
+                           <input type="text" placeholder="Cari Barang" className="mt-[1.5%] py-1 px-4 w-[400px] h-[35px] border-[#ABABAB] border-2 shadow-lg text-base text-black rounded-lg font-semibold" {...register("searchkeyword")}></input> 
                         </form>
                     </div>
                     
                     <div className="bg-[#F7FFF7] relative flex flex-col">
-                      <Text size={20} className="text-black font-bold mb-[20px] pt-[8%] text-3xl text-center">PROMOS</Text>
+                      <Text size={20} className="text-black font-bold mb-[20px] pt-[8%] text-3xl text-center">PROMO</Text>
                         <div className="flex flex-row justify-center items-center gap-x-6 relative xs:gap-x-1 sm:gap-x-2 md:gap-x-3 xl:gap-x-6">
                             <a href="https://www.tokopedia.com/promo/" target="_blank" rel="noopener noreferrer">
                                 <div className="w-[350px] h-[150px] bg-[#54C55B] flex shrink items-center justify-center rounded-lg drop-shadow-lg shadow-lg cursor-pointer xs:w-[150px] xs:h-[100px] sm:w-[150px] sm:h-[150px] md:w-[300px]">
@@ -161,7 +161,7 @@ export default function Home(){
                             </a>
                         </div>
 
-                        <Text size={20} className="text-black font-bold mb-[20px] pt-[10%] text-3xl text-center">CATEGORIES</Text>
+                        <Text size={20} className="text-black font-bold mb-[20px] pt-[10%] text-3xl text-center">KATEGORI</Text>
                         <div className="flex flex-col justify-center items-center gap-y-[50px] xs:gap-y-[20px] md:gap-y-[30px] lg:gap-y-[40px]">
                             <div className="grid grid-cols-3 gap-x-[30px] xs:gap-x-[10px] sm:gap-x-[10px] md:gap-x-[15px] lg:gap-x-[20px] xl:gap-x-[30px]">
                                 <Card sx={{ maxWidth: 250 }} style={{boxShadow: "rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px"}} onClick={() => window.location.href = "/categories/alat-tulis-buku"} className="w-[250px] xs:w-[150px] sm:w-[150px] lg:w-[200px] xl:w-[250px] h-[300px] xs:h-[250px] sm:h-[250px] lg:h-[300px] xl:h-[300px]">
@@ -267,8 +267,8 @@ export default function Home(){
                             </div>
                         </div>
 
-                        <div className="bg-[#4ECDC4] w-[200px] mb-[20px] mt-[5%] p-2 rounded-lg flex items-center justify-center content-center self-center">
-                            <Text size={20} className="text-white text-center font-bold text-3xl">FOR YOU</Text>
+                        <div className="bg-[#4ECDC4] w-[230px] mb-[20px] mt-[5%] p-2 rounded-lg flex items-center justify-center content-center self-center">
+                            <Text size={20} className="text-white text-center font-bold text-3xl">REKOMENDASI</Text>
                         </div>
                         <div className="mb-[20px]">
                             <SliderofCards></SliderofCards>

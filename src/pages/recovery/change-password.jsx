@@ -72,14 +72,14 @@ const recoveryChangePasswordPage = () =>{
                         <div className='mt-[8%] flex flex-col justify-center items-center'>
                             <FormContainer>
                                 <div className="space-y-10">
-                                    <Field label="Password" error={errors["password"]?.message}>
+                                    <Field label="Kata Sandi" error={errors["password"]?.message}>
                                         <Input type={isShown ? "text" : "password"} {...register("password", { required: true })} />
                                     </Field>
-                                    <Field label="Confirm Password" error={errors["confirm_password"]?.message} className>
+                                    <Field label="Konfirmasi Kata Sandi" error={errors["confirm_password"]?.message} className>
                                         <Input type={isShown ? "text" : "password"} {...register("confirm_password", { required: true })} />
                                     </Field>
                                     <div className="flex justify-end">
-                                        <Button onClick={handleSubmit(saveRecoveryPassword)}>SAVE</Button>
+                                        <Button onClick={handleSubmit(saveRecoveryPassword)}>SIMPAN</Button>
                                     </div>
                                 </div>
                             </FormContainer>

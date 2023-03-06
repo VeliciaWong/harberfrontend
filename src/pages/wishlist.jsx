@@ -118,15 +118,15 @@ const ratingList = [
                                 <div className="flex sm:items-center space-x-[15px]">
                                     <div className="flex items-center space-x-1 cursor-pointer" onClick={bookmark}>
                                         <BookmarksIcon fontSize="large"/>
-                                        <span className="font-semibold xs:hidden sm:flex">Wishlist</span>
+                                        <span className="font-semibold xs:hidden sm:flex">Favorit</span>
                                     </div>
                                     <div className="flex items-center space-x-1 cursor-pointer" onClick={editProfile}>
                                         <AccountCircleIcon fontSize="large"/>
-                                        <span className="font-semibold xs:hidden sm:flex">Profile</span>
+                                        <span className="font-semibold xs:hidden sm:flex">Profil</span>
                                     </div>
                                     <div className="flex items-center space-x-1 cursor-pointer" onClick={logout}>
                                       <LogoutIcon fontSize="large"/>
-                                      <span className="font-semibold xs:hidden sm:flex">Logout</span>
+                                      <span className="font-semibold xs:hidden sm:flex">Keluar</span>
                                     </div>
                                 </div>
                             </>:<>
@@ -139,7 +139,7 @@ const ratingList = [
                                 />   
                             </Link>
                             <div className="sm:flex-end sm:space-x-[15px]">
-                                <Button onClick={() => window.location.href = "/login"}>LOGIN</Button>
+                                <Button onClick={() => window.location.href = "/login"}>MASUK</Button>
                             </div>
                             </>
                         }
@@ -189,7 +189,7 @@ const ratingList = [
                                     </div>
                                 </div>
                                 <div className="w-[250px] h-[110px] bg-[#FFFFFF] border-[#DADADA] border-2 rounded-md mb-[20px] p-2 pl-4">
-                                    <Text size={21} className="font-bold">Rating</Text>
+                                    <Text size={21} className="font-bold">Penilaian</Text>
                                     <Controller
                                         name="rating"
                                         render={({ field }) => (
@@ -204,7 +204,7 @@ const ratingList = [
                                         control={control}
                                     />
                                 </div>
-                                <Button type="submit" className="flex justify-self-end mb-[20px]">SUBMIT</Button>
+                                <Button type="submit" className="flex justify-self-end mb-[20px]">KIRIM</Button>
                             </form>   
                         </div>
 

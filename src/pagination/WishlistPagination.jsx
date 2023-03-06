@@ -6,7 +6,8 @@ import { Card, Col, Grid, Link, Row, Text } from "@nextui-org/react";
 import StarRateIcon from '@mui/icons-material/StarRate';
 import { useRouter } from "next/router";
 import { setAuthToken } from "../services/AuthService";
-
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
 const pageSize = 8;
 
@@ -116,12 +117,12 @@ const WishlistPagination = (data) =>{
             {
                 product.length === 0 ?
                 <div className="font-bold flex justify-center items-center text-center text-3xl">
-                    There is no product
+                    Tidak ada produk ditemukan
                 </div>:
                 <>
-                    <Text size={20} className="font-bold">{product.length} Items</Text>
+                    <Text size={20} className="font-bold">{product.length} Barang</Text>
                     <Grid.Container spacing={4} className="gap-y-[2rem]">
-                        {product?.map((item, index) => (
+                        {product.map((item, index) => (
                                             <Grid xs={5} sm={4} md={3} key={index} className="gap-x-10">
                                             <Card isPressable isHoverable className="w-[200px] xs:w-[200px] sm:w-[200px] lg:w-[200px]" onClick={async() =>{
                                                 // const result = await axiosLocal.get(`/product/${item.product?.id}`)
@@ -186,8 +187,8 @@ const WishlistPagination = (data) =>{
                     <nav className="flex justify-center content-center items-center mt-[2%] pb-[2%] font-semibold">
                         <button onClick={prevPage} disabled={page === 0} style={{
                             marginRight: "20px"
-                        }}>Prev Page</button>
-                        <button onClick={nextPage} disabled={page === totalPage}>Next Page</button>
+                        }}><ArrowBackIcon/></button>
+                        <button onClick={nextPage} disabled={page === totalPage}><ArrowForwardIcon/></button>
                     </nav>
                 </>
             }

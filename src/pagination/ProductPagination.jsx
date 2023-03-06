@@ -5,7 +5,8 @@ import { axiosHarber, axiosLocal, getProductPage } from "../helpers/axios";
 import { Card, Col, Grid, Link, Row, Text } from "@nextui-org/react";
 import StarRateIcon from '@mui/icons-material/StarRate';
 import { useRouter } from "next/router";
-
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
 const pageSize = 8;
 
@@ -41,7 +42,7 @@ const ProductPagination = (data) =>{
             {
                 product.length === 0 ?
                 <div className="font-bold flex justify-center items-center text-center text-3xl">
-                    There is no product
+                    Tidak ada produk ditemukan
                 </div>:<>
                 <Grid.Container spacing={4} justify="flex-center" className="gap-y-[2rem]">
                     {product.map((item, index) => (
@@ -106,10 +107,10 @@ const ProductPagination = (data) =>{
                                         ))}
                 </Grid.Container>
                 <nav className="flex justify-center content-center items-center mt-[2%] pb-[2%] font-semibold">
-                    <button onClick={prevPage} disabled={page === 0} style={{
-                        marginRight: "20px"
-                    }}>Prev Page</button>
-                    <button onClick={nextPage} disabled={page === totalPage}>Next Page</button>
+                        <button onClick={prevPage} disabled={page === 0} style={{
+                            marginRight: "20px"
+                        }}><ArrowBackIcon/></button>
+                        <button onClick={nextPage} disabled={page === totalPage}><ArrowForwardIcon/></button>
                 </nav>
                 </>
             }

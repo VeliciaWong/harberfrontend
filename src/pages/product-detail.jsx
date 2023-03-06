@@ -126,21 +126,21 @@ const productDetailPage = () =>{
                                <div className="flex sm:items-center space-x-[15px]">
                                     <div className="flex items-center space-x-1 cursor-pointer" onClick={bookmark}>
                                         <BookmarksIcon fontSize="large"/>
-                                        <span className="font-semibold xs:hidden sm:flex">Wishlist</span>
+                                        <span className="font-semibold xs:hidden sm:flex">Favorit</span>
                                     </div>
                                     <div className="flex items-center space-x-1 cursor-pointer" onClick={editProfile}>
                                         <AccountCircleIcon fontSize="large"/>
-                                        <span className="font-semibold xs:hidden sm:flex">Profile</span>
+                                        <span className="font-semibold xs:hidden sm:flex">Profil</span>
                                     </div>
                                     <div className="flex items-center space-x-1 cursor-pointer" onClick={logout}>
                                       <LogoutIcon fontSize="large"/>
-                                      <span className="font-semibold xs:hidden sm:flex">Logout</span>
+                                      <span className="font-semibold xs:hidden sm:flex">Keluar</span>
                                     </div>
                                 </div>
 
                             </>:<>
                             <div className="sm:flex-end sm:space-x-[15px]">
-                                <Button onClick={() => window.location.href = "/login"}>LOGIN</Button>
+                                <Button onClick={() => window.location.href = "/login"}>MASUK</Button>
                             </div>
                             </>
                         }
@@ -165,7 +165,7 @@ const productDetailPage = () =>{
                                                     <BookmarkIcon className="text-[45px] xs:text-[30px] sm:text-[45px]"/> :  <BookmarkBorderIcon className="text-[45px] xs:text-[30px] sm:text-[45px]"/> 
                                                 }
                                             </IconButton> 
-                                            <span className="font-bold text-2xl xs:text-lg sm:text-2xl">Wishlist</span>
+                                            <span className="font-bold text-2xl xs:text-lg sm:text-2xl">Favorit</span>
                                         </div>
                                     </>:<>
                                     </>
@@ -175,27 +175,27 @@ const productDetailPage = () =>{
                         <div className="flex flex-col">
                             <p className="mt-[10px] font-bold tracking-[1px] w-[400px] xs:w-[150px] sm:w-[200px] lg:w-[300px] xl:w-[400px] text-2xl xs:text-base sm:text-lg xl:text-2xl">{product?.name}</p>
                             <div className="mt-[10px] font-semibold flex flex-col text-slate-500 text-lg xs:text-sm lg:text-lg">
-                                <span>Price: Rp&nbsp;{(product?.price)?.toLocaleString()}</span>
-                                <span>Category: &nbsp;{product?.category?.name}</span>
-                                <span>Location: &nbsp;{product?.location}</span>
-                                <span>Ecommerce Origin: &nbsp;{product?.ecommerce?.name}</span>
-                                <span>Shop Name: &nbsp;{product?.shopName}</span>
-                                <span className="flex items-center">Rating: &nbsp;<StarRateIcon/>{product?.rating}</span>
+                                <span>Harga: Rp&nbsp;{(product?.price)?.toLocaleString()}</span>
+                                <span>Kategori: &nbsp;{product?.category?.name}</span>
+                                <span>Lokasi: &nbsp;{product?.location}</span>
+                                <span>Asal E-commerce: &nbsp;{product?.ecommerce?.name}</span>
+                                <span>Nama Toko: &nbsp;{product?.shopName}</span>
+                                <span className="flex items-center">Penilaian: &nbsp;<StarRateIcon/>{product?.rating}</span>
                                 <a href={product?.url} target="_blank" rel="noopener noreferrer" className="pt-[20px] underline text-[#4ECDC4]">GO TO PRODUCT URL</a>
                             </div>
                         </div>
                     </div>
 
                     <div className="mt-[30px] flex flex-col justify-center items-center bg-[#F7FFF7]">
-                        <Text className="text-[30px] xs:text-[20px] md:text-[25px] lg:text-[30px] font-bold tracking-[1px] text-center mb-[21px]">SIMILIAR PRODUCT FROM E-COMMERCE &#40;LOWEST TO HIGHEST&#41;</Text>
+                        <Text className="text-[30px] xs:text-[20px] md:text-[25px] lg:text-[30px] font-bold tracking-[1px] text-center mb-[21px]">PRODUK SERUPA DARI E-COMMERCE &#40;HARGA TERENDAH KE TERTINGGI&#41;</Text>
                         {   
                             isLoading ?
                             <div className="font-bold flex justify-center items-center text-center text-3xl mb-8">
-                                Loading....
+                                Memuat....
                             </div>:<>{
                                 similiarProduct.length === 0 ? <>
                                     <div className="font-bold text-red-600 flex justify-center items-center text-center text-3xl xs:text-xl sm:text-2xl mb-4">
-                                        THERE IS NO SIMILIAR PRODUCT
+                                        TIDAK ADA PRODUK SERUPA
                                      </div>
                                 </>:<>
                                     {

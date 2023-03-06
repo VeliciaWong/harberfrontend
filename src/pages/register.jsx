@@ -89,10 +89,10 @@ const RegisterPage = () =>{
                 <Modal>
                     <div className="text-white text-left pl-[20px] font-bold space-y-10 xs:space-y-2">
                         <span className="text-4xl xs:text-2xl lg:text-4xl">
-                            Welcome to HarBer.id
+                            Selamat Datang di HarBer.id
                         </span>
                         <p className="text-[30px] xs:text-[16px] md:text-[20px] lg:text-[30px] xs:hidden sm:flex">
-                            Website Product Price<br/>Comparison from Various<br/>E-commerce in Indonesia
+                           Aplikasi Website Pembanding Harga Dari Beberapa E-commerce di Indonesia
                         </p>
                     </div>
               

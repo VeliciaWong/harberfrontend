@@ -49,7 +49,7 @@ const forgotPassword = () =>{
           }).then(() => router.reload())
         })
         .catch(error =>{
-          toast.warn("Email is not registered!")
+          toast.warn("Email tidak terdaftar!")
           console.log(error)
         })
         // window.location.href = "/recovery"
@@ -68,7 +68,7 @@ const forgotPassword = () =>{
                             />   
                     </Link>
                 </div>
-                <Text className="text-black font-bold text-center mb-[20px] text-[30px] xs:text-[20px] sm:text-[25px] lg:text-[30px] xl:text-[30px]">Please input your email account !</Text>
+                <Text className="text-black font-bold text-center mb-[20px] text-[30px] xs:text-[20px] sm:text-[25px] lg:text-[30px] xl:text-[30px]">Silakan masukan akun email anda !</Text>
                 <div className="max-w-[600px] xs:max-w-[350px] sm:max-w-[450px] lg:max-w-[500px] xl:max-w-[600px] h-[380px] mx-auto bg-[#4ECDC4] shadow-xl bg-contain bg-center rounded-[18px] w-full p-5 mb-[3.9%] flex items-center self-center">
                     <div className="relative w-full h-full mx-auto">
                         <div className='mt-[8%] flex justify-center items-center self-center'>
@@ -78,7 +78,7 @@ const forgotPassword = () =>{
                                         <Input {...register("email", { required: true })} />
                                     </Field>
                                     <div className="flex justify-end">
-                                        <Button onClick={handleSubmit(goToRecovery)}>SUBMIT</Button>
+                                        <Button onClick={handleSubmit(goToRecovery)}>KIRIM</Button>
                                     </div>
                                 </div>
                             </FormContainer>
