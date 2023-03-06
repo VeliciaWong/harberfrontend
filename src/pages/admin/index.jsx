@@ -21,8 +21,8 @@ import { useRouter } from "next/router";
 
 const schema = yup.object().shape(
   {
-    username: yup.string().required("Field username is required"),
-    password: yup.string().required("Field password is required"),
+    username: yup.string().required("Nama harus diisi"),
+    password: yup.string().required("Kata sandi harus diisi"),
     
   },
 );
@@ -77,11 +77,11 @@ const AdminLoginPage = () =>{
             // query: { "token": token },
           })
       }else {
-        toast.error("You don't have Admin role!");
+        toast.error("Anda tidak mempunyai peran admin !");
       }
     })
     .catch(err => {
-      toast.error("Your Username/Password is incorrect!")
+      toast.error("Nama atau kata sandi anda tidak benar !")
       console.log(err)
     });
   }
