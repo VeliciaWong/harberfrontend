@@ -66,7 +66,7 @@ const recoveryChangePasswordPage = () =>{
                                 height={70}
                             />   
                 </div>
-                <Text className="text-black text-[30px] xs:text-[25px] lg:text-[30px] font-bold text-center mb-[20px] xs:mt-4">Change your Password</Text>
+                <Text className="text-black text-[30px] xs:text-[25px] lg:text-[30px] font-bold text-center mb-[20px] xs:mt-4">Ubah Kata Sandi Anda</Text>
                 <div className="max-w-[600px] xs:max-w-[450px] sm:max-w-[500px] md:max-w-[550px] lg:max-w-[650px] h-[380px] mx-auto bg-[#4ECDC4] shadow-xl bg-contain bg-center rounded-[18px] w-full p-5 mb-[5%]">
                     <div className="relative w-full h-full mx-auto">
                         <div className='mt-[8%] flex flex-col justify-center items-center'>
