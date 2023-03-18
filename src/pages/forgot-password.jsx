@@ -37,8 +37,8 @@ const forgotPassword = () =>{
       const goToRecovery = async(data) =>{
           // console.log(data)
         // localStorage.setItem("email", data)
-        // await axiosLocal.post(`/user_reset`, data)
-        await axiosHarber.post(`/user_reset`, data)
+        await axiosLocal.post(`/user_reset`, data)
+        // await axiosHarber.post(`/user_reset`, data)
         .then(response =>{
           const userId = response.data?.id
         // console.log(response.data?.questionRecovery?.question)

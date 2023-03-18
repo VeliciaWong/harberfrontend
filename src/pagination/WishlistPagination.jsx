@@ -125,8 +125,8 @@ const WishlistPagination = (data) =>{
                         {product.map((item, index) => (
                                             <Grid xs={5} sm={4} md={3} key={index} className="gap-x-10">
                                             <Card isPressable isHoverable className="w-[200px] xs:w-[200px] sm:w-[200px] lg:w-[200px]" onClick={async() =>{
-                                                // const result = await axiosLocal.get(`/product/${item.product?.id}`)
-                                                const result = await axiosHarber.get(`/product/${item.product?.id}`)
+                                                const result = await axiosLocal.get(`/product/${item.product?.id}`)
+                                                // const result = await axiosHarber.get(`/product/${item.product?.id}`)
                                                 // console.log(result.data)
                                                 router.push({
                                                     pathname: `/product-detail/`,

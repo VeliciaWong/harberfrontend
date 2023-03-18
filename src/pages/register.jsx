@@ -6,17 +6,14 @@ import ModalSetRecovery from "../components/modal/ModalSetRecovery"
 import * as React from 'react';
 import * as yup from "yup";
 import { useYupResolver } from "../helpers/yup";
-import { useState, useEffect } from "react";
-import { useForm, Controller } from "react-hook-form";
+import { useState} from "react";
+import { useForm} from "react-hook-form";
 import FormContainer  from "../components/forms/Container";
 import Field  from "../components/forms/Field";
 import { Input } from "../components/inputs";
-import Footer from "../components/footer/Footer";
-import { useMutation, useQuery } from "@tanstack/react-query";
 import { toast} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import { axiosHarber, axiosLocal } from "../helpers/axios";
-import { data } from "autoprefixer";
 import { useRouter } from "next/router";
 
 const schema = yup.object().shape(
@@ -58,8 +55,8 @@ const RegisterPage = () =>{
   const saveRecovery = async(data) =>{
     // nembak api buat nyimpen user + recovery
     // console.log(result.data);
-    // await axiosLocal.post(`/user/save`, {
-      await axiosHarber.post(`/user/save`, {
+    await axiosLocal.post(`/user/save`, {
+      // await axiosHarber.post(`/user/save`, {
       "username": username,
       "password": password,
       "email": email,

@@ -47,23 +47,23 @@ const productDetailPage = () =>{
 
     const checkIsWishlist = async(idParam)=>{
             const token = localStorage.getItem("token");
-            // const result = await axiosLocal.get(`/check_wishlist/${idParam}`,{
-            //     headers: {
-            //         'Authorization': `Bearer ${token}`
-            //     } 
-            // })
-            const result = await axiosHarber.get(`/check_wishlist/${idParam}`,{
+            const result = await axiosLocal.get(`/check_wishlist/${idParam}`,{
                 headers: {
                     'Authorization': `Bearer ${token}`
                 } 
             })
+            // const result = await axiosHarber.get(`/check_wishlist/${idParam}`,{
+            //     headers: {
+            //         'Authorization': `Bearer ${token}`
+            //     } 
+            // })
             // console.log(result.data)
             return (setClicked(result.data))
     }
 
     const getProductById = async (idParam) =>{
-        // const result = await axiosLocal.get(`/product/${idParam}`)
-        const result = await axiosHarber.get(`/product/${idParam}`)
+        const result = await axiosLocal.get(`/product/${idParam}`)
+        // const result = await axiosHarber.get(`/product/${idParam}`)
         similiar = result.data.name?.split(" ",2)
         console.log(similiar[0])
         similiarName = similiar[0] + " " + similiar[1]
@@ -73,8 +73,8 @@ const productDetailPage = () =>{
     }
 
     const getProductComparison = async(nameParam, idParam) =>{
-        // const result = await axiosLocal.get(`/product?size=3&id.notIn=${idParam}&name.contains=${nameParam}&sort=price,ASC`)
-        const result = await axiosHarber.get(`/product?size=3&id.notIn=${idParam}&name.contains=${nameParam}&sort=price,ASC`)
+        const result = await axiosLocal.get(`/product?size=3&id.notIn=${idParam}&name.contains=${nameParam}&sort=price,ASC`)
+        // const result = await axiosHarber.get(`/product?size=3&id.notIn=${idParam}&name.contains=${nameParam}&sort=price,ASC`)
         // console.log(result.data)
         setIsloading(false)
         return setSimiliarProduct(result.data)
@@ -226,8 +226,8 @@ const productDetailPage = () =>{
                                                         </>
                                                 }
                                                   <Button className="w-[140px] mt-[10px] flex text-center" onClick={async() =>{
-                                                    // const result = await axiosLocal.get(`/product/${item.id}`)
-                                                    const result = await axiosHarber.get(`/product/${item.id}`)
+                                                    const result = await axiosLocal.get(`/product/${item.id}`)
+                                                    // const result = await axiosHarber.get(`/product/${item.id}`)
                                                     router.push({
                                                         pathname: `/product-detail/`,
                                                         query: { "id": result.data.id },

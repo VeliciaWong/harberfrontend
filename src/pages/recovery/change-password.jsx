@@ -49,8 +49,8 @@ const recoveryChangePasswordPage = () =>{
         
         const saveRecoveryPassword = async(data) =>{
             // masukin api buat nyimpen pass recovery ini jadi pass baru di db
-            // await axiosLocal.put(`/user_reset/reset_password/${userId}`, {password : data.password})
-            await axiosHarber.put(`/user_reset/reset_password/${userId}`, {password : data.password})
+            await axiosLocal.put(`/user_reset/reset_password/${userId}`, {password : data.password})
+            // await axiosHarber.put(`/user_reset/reset_password/${userId}`, {password : data.password})
             toast.success("Setel ulang kata sandi berhasil !");
             router.push(`/login`)
             // window.location.href="/login"

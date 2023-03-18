@@ -21,8 +21,8 @@ const adminViewUserPage = () =>{
         queryKey: ["user-list"],
         queryFn: async () => {
         const token = localStorage.getItem("token");
-        //   let result = await axiosLocal.get(`/user`,{
-            let result = await axiosHarber.get(`/user`,{
+          let result = await axiosLocal.get(`/user`,{
+            // let result = await axiosHarber.get(`/user`,{
             headers: {
                 'Authorization': `Bearer ${token}`
             }

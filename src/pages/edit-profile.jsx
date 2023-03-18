@@ -58,16 +58,16 @@ const editProfilePage = () =>{
     
     const getUserDetail = async()=>{
         const token = localStorage.getItem("token");
-        // let result = await axiosLocal.get(`/user/see_my_profile`,{
-        //     headers: {
-        //         'Authorization': `Bearer ${token}`
-        //     }
-        // })
-        let result = await axiosHarber.get(`/user/see_my_profile`,{
+        let result = await axiosLocal.get(`/user/see_my_profile`,{
             headers: {
                 'Authorization': `Bearer ${token}`
             }
         })
+        // let result = await axiosHarber.get(`/user/see_my_profile`,{
+        //     headers: {
+        //         'Authorization': `Bearer ${token}`
+        //     }
+        // })
         return(
             setUsername(result.data?.username),
             setEmail(result.data?.email),
@@ -78,24 +78,7 @@ const editProfilePage = () =>{
         const saveEditProfile = async(data) =>{
             // masukin api buat nyimpen edit profile user
             const token = localStorage.getItem("token");
-            // await axiosLocal.put(`/user/${id}`, {
-            //     username : data.username,
-            //     password : data.password,
-            //     email : data.email,
-            // },{
-            //     headers: {
-            //         'Authorization': `Bearer ${token}`
-            //     }
-            // }).then(res =>{
-            //     toast.success("Save Success!");
-            //     // localStorage.removeItem("token");
-            //     localStorage.setItem("username", res.data?.username);
-            //     router.push(`/`)
-            // }).catch(error =>{
-            //     toast.warn("Username or email already registered!")
-            //     console.log(error)
-            //   })
-            await axiosHarber.put(`/user/${id}`, {
+            await axiosLocal.put(`/user/${id}`, {
                 username : data.username,
                 password : data.password,
                 email : data.email,
@@ -104,6 +87,24 @@ const editProfilePage = () =>{
                     'Authorization': `Bearer ${token}`
                 }
             }).then(res =>{
+                toast.success("Save Success!");
+                // localStorage.removeItem("token");
+                localStorage.setItem("username", res.data?.username);
+                router.push(`/`)
+            }).catch(error =>{
+                toast.warn("Username or email already registered!")
+                console.log(error)
+              })
+            // await axiosHarber.put(`/user/${id}`, {
+            //     username : data.username,
+            //     password : data.password,
+            //     email : data.email,
+            // },{
+            //     headers: {
+            //         'Authorization': `Bearer ${token}`
+            //     }
+            // })
+            .then(res =>{
                 toast.success("Perubahan tersimpan !");
                 localStorage.setItem("username", res.data?.username);
 

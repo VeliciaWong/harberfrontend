@@ -15,10 +15,10 @@ import { axiosHarber, axiosLocal } from "../../helpers/axios";
 import { toast} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
-const goToRecoveryPassword = () =>{
-    // cek udh bener atau gk jawaban recoverynya, kl bener ke halaman change password tp kl salah kasih alert salah
-    window.location.href="/recovery/change-password"
-}
+// const goToRecoveryPassword = () =>{
+//     // cek udh bener atau gk jawaban recoverynya, kl bener ke halaman change password tp kl salah kasih alert salah
+//     window.location.href="/recovery/change-password"
+// }
 
 
 const recoveryPage = () =>{
@@ -64,8 +64,8 @@ const recoveryPage = () =>{
     //   }
 
         const getRecoveryById = async(data)=>{
-            // await axiosLocal.post(`/user_reset/answer_recovery/${userId}`, { answerRecovery: data.recovery_answer } ).then(response =>{
-                await axiosHarber.post(`/user_reset/answer_recovery/${userId}`, { answerRecovery: data.recovery_answer } ).then(response =>{
+            await axiosLocal.post(`/user_reset/answer_recovery/${userId}`, { answerRecovery: data.recovery_answer } ).then(response =>{
+                // await axiosHarber.post(`/user_reset/answer_recovery/${userId}`, { answerRecovery: data.recovery_answer } ).then(response =>{
                 console.log(response)
               // console.log(response.data?.questionRecovery?.question)
                 // localStorage.setItem("userRecoveryQuestion", response.data?.questionRecovery?.question)

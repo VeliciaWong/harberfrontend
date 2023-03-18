@@ -31,8 +31,8 @@ const pakaianPage = () =>{
   const getPakaian = useQuery({
     queryKey: ["pakaian-list"],
     queryFn: async () => {
-      // let result = await axiosLocal.get(`/product?categoryId.equals=5`);
-      let result = await axiosHarber.get(`/product?categoryId.equals=5`);
+      let result = await axiosLocal.get(`/product?categoryId.equals=5`);
+      // let result = await axiosHarber.get(`/product?categoryId.equals=5`);
       setIsloading(false)
       return result.data;
     },
@@ -114,8 +114,8 @@ const pakaianPage = () =>{
                       {getPakaian.data?.map((item, index) => (
                           <Grid xs={4} sm={3} md={3} key={index} className="gap-x-6">
                           <Card isPressable isHoverable className="w-[300px] xs:w-[250px] sm:w-[250px] lg:w-[250px] xl:w-[300px]" onClick={async() =>{
-                                      // const result = await axiosLocal.get(`/product/${item.id}`)
-                                      const result = await axiosHarber.get(`/product/${item.id}`)
+                                      const result = await axiosLocal.get(`/product/${item.id}`)
+                                      // const result = await axiosHarber.get(`/product/${item.id}`)
                                       console.log(result.data)
                                       router.push({
                                           pathname: `/product-detail/`,

@@ -12,6 +12,8 @@
 
 // module.exports = nextConfig;
 
+const CompressionPlugin = require("compression-webpack-plugin");
+
 const withPWA = require('next-pwa')({
   dest: "public",
   register: true,
@@ -20,6 +22,7 @@ const withPWA = require('next-pwa')({
 });
 
 module.exports = withPWA({
+  plugins: [new CompressionPlugin()],
   trailingSlash: true,
   images: {
     unoptimized: true,

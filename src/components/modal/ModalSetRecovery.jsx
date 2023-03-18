@@ -15,8 +15,8 @@ export default function ModalSetRecovery({ open, onClose, onSubmit, loading }){
   const recoveryQuestionListQuery = useQuery({
     queryKey: ["recoveryquestion-list"],
     queryFn: async () => {
-      // let result = await axiosLocal.get(`/question_recovery`);
-      let result = await axiosHarber.get(`/question_recovery`);
+      let result = await axiosLocal.get(`/question_recovery`);
+      // let result = await axiosHarber.get(`/question_recovery`);
       return result.data;
     },
 });

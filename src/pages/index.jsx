@@ -9,19 +9,13 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import { Button, CardActionArea, CardActions } from '@mui/material';
-import SearchIcon from '@mui/icons-material/Search';
-import { Input } from "../components/inputs";
-import Section from "../components/carousel/Section"
-import Carousel from "react-multi-carousel"
-import { toast} from "react-toastify";
+import { CardActionArea } from '@mui/material';
 import 'react-toastify/dist/ReactToastify.css';
 import "react-multi-carousel/lib/styles.css";
 import { Text } from "@nextui-org/react";
 import Footer from "../components/footer/Footer";
 import SliderofCards from "../components/carousel/SliderofCard";
 import {useForm, Controller} from "react-hook-form"
-import {axiosLocal, getProductByKeyword} from "../helpers/axios";
 import { useRouter } from 'next/router'
 import { useEffect } from "react";
 import { setAuthToken } from "../services/AuthService";

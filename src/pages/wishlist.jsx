@@ -5,14 +5,12 @@ import Button from "../components/button/Button";
 import BookmarksIcon from '@mui/icons-material/Bookmarks';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import Footer from "../components/footer/Footer";
-import Checkbox from "../components/inputs/Checkbox"
 import { Card, Grid, Link, Row, Text } from "@nextui-org/react";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useState, useEffect } from "react";
 import {useForm, Controller} from "react-hook-form"
 import Input from "../components/inputs/Input"
 import ListBoxInput from "../components/inputs/ListBox"
-import Axios from "axios";
 import { useRouter } from "next/router";
 import WishlistPagination from "../pagination/WishlistPagination";
 import { setAuthToken } from "../services/AuthService";
@@ -26,8 +24,8 @@ const wishlistPage = () =>{
     const categoryListQuery = useQuery({
         queryKey: ["category-list"],
         queryFn: async () => {
-        // let result = await axiosLocal.get(`/category`);
-        let result = await axiosHarber.get(`/category`);
+        let result = await axiosLocal.get(`/category`);
+        // let result = await axiosHarber.get(`/category`);
         return result.data;
         },
     });
